@@ -147,6 +147,19 @@ section{padding:52px 0 8px}
 .closing .rule{width:120px;height:1px;margin:0 auto 16px;background:linear-gradient(90deg,transparent,var(--hairgold),transparent)}
 .credit{margin-top:10px;font-size:13px;color:var(--silver-dim)}
 
+
+/* visiting card: 360-degree 3D spin */
+.vc-stage{display:flex;justify-content:center;perspective:1300px;padding:6px 0}
+.vc-card{position:relative;width:min(92%,520px);aspect-ratio:1100/618;transform-style:preserve-3d;animation:vcSpin 9s linear infinite}
+.vc-card:hover{animation-play-state:paused}
+.vc-face{position:absolute;inset:0;border-radius:18px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 18px 42px rgba(0,0,0,.55),0 0 0 1.5px var(--hairgold),0 0 30px rgba(212,175,55,.16)}
+img.vc-face{width:100%;height:100%;object-fit:cover}
+.vc-face.back{transform:rotateY(180deg);background:linear-gradient(150deg,#1c1f27,#0e1015 55%,#191407);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:18px}
+.vc-back-logo{width:88px;height:88px;border-radius:50%;box-shadow:0 0 0 2px var(--hairgold),0 6px 16px rgba(0,0,0,.5)}
+.vc-back-name{font-family:'Playfair Display',serif;font-weight:800;font-size:22px}
+.vc-back-addr{color:var(--silver);font-size:14px;font-weight:600}
+@keyframes vcSpin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+
 /* sticky bottom bar (mobile) */
 .bottombar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,12,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--hairline)}
 .bottombar .btn{flex:1;justify-content:center;padding:13px 10px;font-size:16px}
@@ -157,7 +170,7 @@ section{padding:52px 0 8px}
 .rv.rv-in{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
-  .hero img.ph,.brand,.logo-float,.logo-coin,.metal-gold,.metal-silver{animation:none!important}
+  .hero img.ph,.brand,.logo-float,.logo-coin,.metal-gold,.metal-silver,.vc-card{animation:none!important}
   .sl{transition:none!important}
   .rv{opacity:1!important;transform:none!important;transition:none!important}
   .prod .ph img{transition:none}
@@ -264,6 +277,20 @@ section{padding:52px 0 8px}
 </section>
 
 <section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Visiting card</span><span class="t-en">Visiting card</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Hamara card</span><span class="t-en">Our card</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Card apne aap ghoomta rehta hai - rokne ke liye uspar ruk jaiye.</span><span class="t-en">The card spins on its own - hover or hold to pause it.</span></p>
+  <div class="vc-stage"><div class="vc-card">
+    <img class="vc-face front" data-biz src="" alt="Ali Hardware &amp; Electricals ka visiting card">
+    <div class="vc-face back">
+      <img class="vc-back-logo" src="logo.png" alt="">
+      <div class="vc-back-name metal-gold">Ali Hardware &amp; Electricals</div>
+      <div class="vc-back-addr"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni</span><span class="t-en">Near Chandralok Market, Main Road, Dharni</span></div>
+    </div>
+  </div></div>
+</section>
+
+<section class="wrap rv">
   <div class="visit-card">
     <div class="eyebrow metal-gold"><span class="t-hi">Dukaan par aaiye</span><span class="t-en">Visit the shop</span></div>
     <p class="a"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span></p>
@@ -287,8 +314,10 @@ section{padding:52px 0 8px}
 </div>
 
 <script src="3-images.js"></script>
+<script src="4-bizcard.js"></script>
 <script>
 Array.prototype.forEach.call(document.querySelectorAll('img'),function(im){var s=im.getAttribute('src'); if(s==='logo.png'){im.src=LOGO}else if(s&&IMGS[s]){im.src=IMGS[s]}});
+Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function(im){im.src=BIZCARD});
 
 var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tanki','Paint & distemper','Wire & cable','Fan & lighting','Tools & general'];
 var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
