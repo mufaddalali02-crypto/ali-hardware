@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ali Hardware &amp; Electricals — Dharni</title>
+<title>Shubh Deepawali - Ali Hardware &amp; Electricals — Dharni</title>
 <meta name="description" content="Ali Hardware & Electricals, Chandralok Market ke paas, Main Road, Dharni. Hardware, electrical, plumbing, paint aur plastic ka saara saaman ek hi jagah.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -185,6 +185,33 @@ img.vc-face{width:100%;height:100%;object-fit:cover}
   .rv{opacity:1!important;transform:none!important;transition:none!important}
   .prod .ph img{transition:none}
 }
+
+/* DIWALI THEME */
+:root{--bg:#1a0707; --bg2:#240a09; --card:#2a0e0b; --card2:#34130d;
+  --gold:#f5a623; --gold2:#ffd36b; --gold-deep:#a3560f;
+  --silver:#f3d9b5; --silver2:#fff1dc; --silver-dim:#d1a77c;
+  --ink:#fff4e3; --muted:#d9b99a;
+  --hairline:rgba(255,190,110,.18); --hairgold:rgba(255,170,60,.42)}
+body{background:
+  radial-gradient(1100px 600px at 85% -10%, rgba(255,140,30,.22), transparent 60%),
+  radial-gradient(900px 520px at -10% 14%, rgba(200,30,30,.20), transparent 55%),
+  var(--bg)}
+header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
+.hero-ov{background:linear-gradient(180deg,rgba(40,8,6,.30) 0%,rgba(40,8,6,.42) 42%,rgba(26,7,7,.97) 100%)}
+.metal-gold{background-image:linear-gradient(100deg,#b45309 0%,#f5a623 22%,#fff0b3 40%,#ffc23d 52%,#c2570c 72%,#ffd36b 92%,#b45309 100%)}
+.badge,.hd-call{background:linear-gradient(145deg,#ffd36b,#f08a1c);color:#3a1204}
+.dw-ban{position:relative;margin:18px auto 4px;max-width:1120px;border-radius:18px;padding:20px 18px 18px;text-align:center;overflow:hidden;
+  background:linear-gradient(135deg,#7a0f10 0%,#b3261e 45%,#e8731a 100%);border:1.5px solid var(--hairgold);box-shadow:0 10px 30px rgba(180,40,20,.35)}
+.dw-ban h2{font-family:'Playfair Display',serif;font-size:clamp(26px,6.5vw,42px);font-weight:800;line-height:1.15;color:#fff1c2;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.dw-ban p{margin-top:6px;font-size:17px;color:#fff4e3}
+.dw-soon{display:inline-block;margin-top:12px;background:#ffd36b;color:#4a1305;font-weight:800;padding:8px 18px;border-radius:999px;font-size:16px}
+.dw-fire{display:inline-block;margin:12px 0 0 8px;background:rgba(0,0,0,.28);color:#ffe7a8;border:1.5px solid rgba(255,211,107,.6);font-weight:800;padding:7px 16px;border-radius:999px;font-size:15px;cursor:pointer;font-family:inherit}
+.dw-diyas{display:flex;justify-content:center;gap:22px;font-size:28px;margin-bottom:6px}
+.dw-diyas span{display:inline-block;animation:dwFlick 1.6s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffb02e)}
+.dw-diyas span:nth-child(2n){animation-delay:.5s}
+@keyframes dwFlick{from{transform:scale(1);opacity:.85}to{transform:scale(1.12);opacity:1}}
+#dwfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
+@media (prefers-reduced-motion:reduce){.dw-diyas span{animation:none!important}#dwfx{display:none}.dw-fire{display:none}}
 </style>
 </head>
 <body>
@@ -224,6 +251,15 @@ img.vc-face{width:100%;height:100%;object-fit:cover}
   </div>
 </div>
 
+
+<!-- DIWALI-OFFER: offer aane par neeche wali "dw-soon" line ki jagah offer ka text likho (hi/en dono) -->
+<div class="wrap"><div class="dw-ban" id="dwban">
+  <div class="dw-diyas" aria-hidden="true"><span>&#129684;</span><span>&#129684;</span><span>&#129684;</span><span>&#129684;</span><span>&#129684;</span></div>
+  <h2><span class="t-hi">Shubh Deepawali!</span><span class="t-en">Happy Diwali!</span></h2>
+  <p><span class="t-hi">Ali Hardware &amp; Electricals ki taraf se aapko aur parivar ko Deepawali ki hardik shubhkamnayein.</span><span class="t-en">Warm Diwali wishes to you and your family from Ali Hardware &amp; Electricals.</span></p>
+  <div class="dw-soon"><span class="t-hi">&#127879; Diwali offer jald aa raha hai</span><span class="t-en">&#127879; Diwali offer coming soon</span></div>
+  <button type="button" class="dw-fire" id="dwfire"><span class="t-hi">&#127878; Phatake chalao</span><span class="t-en">&#127878; Light crackers</span></button>
+</div></div>
 <div class="wrap">
   <div class="cta-row">
     <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span></a>
@@ -468,6 +504,42 @@ try{
 try{if('IntersectionObserver' in window){var po=new IntersectionObserver(function(es){es.forEach(function(e){e.target.style.animationPlayState=e.isIntersecting?'running':'paused'})});
 Array.prototype.forEach.call(document.querySelectorAll('.logo-coin,.vc-card'),function(el){po.observe(el)});}}catch(e){}
 Array.prototype.forEach.call(document.querySelectorAll('img'),function(i){i.decoding='async'});
+</script>
+<canvas id="dwfx" aria-hidden="true"></canvas>
+<script>
+(function(){
+var c=document.getElementById('dwfx');if(!c)return;
+var rm=false;try{rm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
+if(rm)return;
+var x=c.getContext('2d'),W=0,H=0,P=[],run=false,last=0,timer=null,COL=['#ffd36b','#ff8a1c','#ff4d3a','#fff1c2','#ffb02e','#ff6fa0'];
+function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+rs();addEventListener('resize',rs);
+function burst(px,py){
+  var col=COL[(Math.random()*COL.length)|0],n=28;
+  for(var i=0;i<n;i++){var a=i/n*6.283+Math.random()*.2,v=1.6+Math.random()*2.4;
+    P.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:col})}
+  if(!run){run=true;last=performance.now();requestAnimationFrame(tick)}
+}
+function tick(t){
+  var dt=Math.min((t-last)/16,3);last=t;
+  x.clearRect(0,0,W,H);
+  for(var i=P.length-1;i>=0;i--){var p=P[i];
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.045*dt;p.vx*=.985;p.l-=.016*dt;
+    if(p.l<=0){P.splice(i,1);continue}
+    x.globalAlpha=p.l;x.fillStyle=p.c;x.fillRect(p.x,p.y,2.4,2.4)}
+  x.globalAlpha=1;
+  if(P.length&&!document.hidden)requestAnimationFrame(tick);else{run=false;x.clearRect(0,0,W,H)}
+}
+function auto(){
+  if(!document.hidden&&P.length<80)burst(W*(.15+Math.random()*.7),H*(.12+Math.random()*.3));
+}
+function start(){if(!timer){auto();timer=setInterval(auto,2600)}}
+document.addEventListener('visibilitychange',function(){if(document.hidden){clearInterval(timer);timer=null}else start()});
+var b=document.getElementById('dwfire');
+if(b)b.addEventListener('click',function(){var r=b.getBoundingClientRect();
+  burst(r.left+r.width/2,Math.max(60,r.top-30));setTimeout(function(){burst(W*.25,H*.25)},250);setTimeout(function(){burst(W*.75,H*.2)},500)});
+start();
+})();
 </script>
 </body>
 </html>
