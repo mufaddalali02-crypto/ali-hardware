@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ali Hardware &amp; Electricals — Dharni</title>
+<meta name="description" content="Ali Hardware & Electricals, Chandralok Market ke paas, Main Road, Dharni. Hardware, electrical, plumbing, paint aur plastic ka saara saaman ek hi jagah.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c0f; --bg2:#12141a; --card:#171a21; --card2:#1d212b;
+  --gold:#d4af37; --gold2:#f0d37c; --gold-deep:#8f741f;
+  --silver:#c9ced8; --silver2:#eef1f6; --silver-dim:#8f96a3;
+  --ink:#f5f3ec; --muted:#a7a8b0;
+  --hairline:rgba(201,206,216,.14); --hairgold:rgba(212,175,55,.32);
+  --wa:#1fae53;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Mukta',system-ui,sans-serif;color:var(--ink);line-height:1.6;background:
+  radial-gradient(1200px 600px at 85% -10%, rgba(212,175,55,.09), transparent 60%),
+  radial-gradient(900px 500px at -10% 12%, rgba(201,206,216,.07), transparent 55%),
+  var(--bg);
+  padding-bottom:86px}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+/* bilingual spans */
+html[lang="hi"] .t-en{display:none!important}
+html[lang="en"] .t-hi{display:none!important}
+
+/* metallic text */
+.metal-gold{background:linear-gradient(100deg,#8f741f 0%,#d4af37 22%,#ffe9a8 40%,#f5d469 52%,#a5832a 72%,#e9c85c 92%,#8f741f 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shineGold 7s linear infinite}
+@keyframes shineGold{to{background-position:220% center}}
+.metal-silver{background:linear-gradient(100deg,#7d838f 0%,#c9ced8 25%,#ffffff 48%,#dfe4ec 60%,#878e9b 80%,#c9ced8 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shineGold 9s linear infinite}
+
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(11,12,15,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--hairline)}
+.hd{display:flex;align-items:center;gap:12px;padding:10px 0}
+.hd-logo{width:44px;height:44px;border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.5),0 0 0 1.5px var(--hairgold)}
+.hd-name{font-weight:800;font-size:16.5px;line-height:1.15;font-family:'Playfair Display',serif;letter-spacing:.3px}
+.hd-sub{font-size:12px;color:var(--silver-dim);line-height:1.2}
+.hd-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+.lang{display:flex;align-items:center;border:1.5px solid var(--hairgold);color:var(--gold2);background:rgba(212,175,55,.08);border-radius:999px;padding:7px 14px;font-weight:800;font-size:13px;cursor:pointer;font-family:inherit;letter-spacing:.5px}
+.lang:hover{background:rgba(212,175,55,.16)}
+.hd-call{display:flex;align-items:center;gap:8px;background:linear-gradient(145deg,#f0d37c,#c39a2b);color:#241a05;padding:9px 16px;border-radius:999px;font-weight:800;font-size:14px;box-shadow:0 6px 18px rgba(212,175,55,.28)}
+@media(max-width:560px){.hd-call .ct{display:none}.hd-call{padding:9px 12px}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--hairgold)}
+.hero img.ph{width:100%;height:min(86vw,560px);object-fit:cover;object-position:center 28%;animation:heroDrift 22s ease-in-out infinite alternate;filter:saturate(.92) contrast(1.03)}
+@keyframes heroDrift{from{transform:scale(1.02) translate(-.5%,0)}to{transform:scale(1.12) translate(.6%,-1.2%)}}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,9,12,.34) 0%,rgba(8,9,12,.42) 42%,rgba(8,9,12,.97) 100%)}
+.hero-tx{position:absolute;left:0;right:0;bottom:0;padding:26px 20px 74px}
+.badge{display:inline-block;background:linear-gradient(145deg,var(--gold2),#c39a2b);color:#241a05;font-weight:800;font-size:12px;padding:5px 15px;border-radius:999px;letter-spacing:1.6px;margin-bottom:12px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(31px,7.6vw,56px);font-weight:800;line-height:1.1;text-shadow:0 3px 22px rgba(0,0,0,.6)}
+.goldline{width:76px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--silver) 0%,var(--gold2) 55%,var(--gold) 100%);margin:14px 0 10px;box-shadow:0 2px 10px rgba(240,211,124,.45)}
+.hero p.tag{font-size:clamp(14px,3.6vw,19px);color:var(--silver2);font-weight:600;text-shadow:0 2px 12px rgba(0,0,0,.65);max-width:640px}
+.addr{margin-top:10px;font-size:13.5px;color:var(--silver);display:flex;align-items:center;gap:7px;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+
+/* logo coin overlapping hero */
+.brand{display:flex;justify-content:center;margin:-64px 0 4px;position:relative;z-index:5;perspective:1000px;animation:logoPop .8s cubic-bezier(.2,.9,.3,1.35) backwards}
+.logo-float{animation:logoBob 6s ease-in-out infinite}
+.logo-coin{position:relative;width:150px;height:150px;transform-style:preserve-3d;animation:coinSpin 7s linear infinite}
+.logo-coin .face{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:#fff;box-shadow:0 16px 38px rgba(0,0,0,.55),0 0 0 3px rgba(212,175,55,.55),0 0 26px rgba(212,175,55,.28);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.logo-coin .face.back{transform:rotateY(180deg)}
+@media(min-width:768px){.brand{margin-top:-80px}.logo-coin{width:188px;height:188px}}
+@keyframes coinSpin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+@keyframes logoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes logoPop{from{transform:scale(.35);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* CTA buttons */
+.cta-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:800;font-size:15px;box-shadow:0 8px 22px rgba(0,0,0,.45);transition:transform .16s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.5)}
+.btn:active{transform:scale(.96)}
+.btn-wa{background:linear-gradient(145deg,#2ac263,var(--wa));color:#fff}
+.btn-ph{background:linear-gradient(145deg,#f5f7fa,#c9ced8);color:#181a1f}
+.btn-map{border:1.5px solid var(--hairgold);color:var(--gold2);background:rgba(212,175,55,.07)}
+
+/* sections */
+section{padding:52px 0 8px}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:5px}
+.sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-h h2{font-size:clamp(23px,5.8vw,34px);font-weight:800;font-family:'Playfair Display',serif;letter-spacing:.3px}
+.sec-h .line{flex:1;height:1.5px;background:linear-gradient(90deg,var(--hairgold),transparent);border-radius:2px}
+.sec-sub{color:var(--muted);font-size:14.5px;margin-bottom:22px;max-width:640px}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gal figure{margin:0;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.45);border:1px solid var(--hairline);background:var(--card)}
+.gal img{width:100%;height:100%;object-fit:cover}
+.gal .gal-wide{grid-column:1/-1;height:200px}
+.gal .gal-tall{height:240px}
+@media(min-width:768px){.gal .gal-wide{height:300px}.gal .gal-tall{height:340px}}
+.gal figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 13px;font-size:12.5px;line-height:1.35;color:#fff;background:linear-gradient(transparent,rgba(5,6,8,.72));pointer-events:none}
+
+/* slideshow */
+.slidebox{position:relative}
+.sl-stage{position:relative;height:260px;perspective:1200px;transform-style:preserve-3d}
+@media(min-width:768px){.sl-stage{height:370px}}
+.sl{position:absolute;top:0;left:50%;width:min(76%,420px);height:100%;border-radius:16px;overflow:hidden;background:var(--card);border:1px solid var(--hairline);box-shadow:0 16px 34px rgba(0,0,0,.5);transition:transform .65s cubic-bezier(.25,.7,.25,1),opacity .65s ease,filter .65s ease}
+.sl img{width:100%;height:100%;object-fit:cover}
+.sl-cur{transform:translateX(-50%) rotateY(0) scale(1);opacity:1;z-index:3}
+.sl-prev{transform:translateX(-118%) rotateY(34deg) scale(.82);opacity:.5;z-index:2;filter:brightness(.75)}
+.sl-next{transform:translateX(18%) rotateY(-34deg) scale(.82);opacity:.5;z-index:2;filter:brightness(.75)}
+.sl-off{transform:translateX(-50%) rotateY(75deg) scale(.55);opacity:0;z-index:1;pointer-events:none}
+.sl-cap{position:absolute;left:0;right:0;bottom:0;padding:10px 14px;font-size:13.5px;font-weight:600;color:#fff;background:linear-gradient(transparent,rgba(5,6,8,.74))}
+.sl-ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:16px}
+.sl-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--hairgold);background:rgba(212,175,55,.08);color:var(--gold2);font-size:23px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s ease,background .18s ease}
+.sl-btn:hover{background:rgba(212,175,55,.18);transform:translateY(-2px)}
+.sl-btn:active{transform:scale(.9)}
+.sl-dots{display:flex;gap:7px}
+.sl-dot{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:rgba(201,206,216,.28);cursor:pointer;transition:all .2s}
+.sl-dot.on{background:var(--gold2);transform:scale(1.3)}
+
+/* category rows */
+.rows{border:1px solid var(--hairline);border-radius:18px;overflow:hidden;background:linear-gradient(170deg,var(--card),var(--bg2))}
+.rowi{display:flex;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hairline);font-weight:700;font-size:15px;transition:background .18s ease}
+.rowi:last-child{border-bottom:0}
+.rowi:hover{background:rgba(212,175,55,.06)}
+.rowi .num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#241a05;background:linear-gradient(145deg,var(--silver2),var(--silver));flex:none;box-shadow:inset 0 -2px 4px rgba(0,0,0,.18)}
+
+/* product grid */
+.prods{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:1100px}
+@media(min-width:760px){.prods{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1020px){.prods{grid-template-columns:repeat(4,1fr)}}
+.prod{background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--hairline);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;transform-style:preserve-3d}
+.prod:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.55),0 0 24px rgba(212,175,55,.14);border-color:var(--hairgold)}
+.prod .ph{aspect-ratio:1/1;overflow:hidden;background:#e8e4da}
+.prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease;will-change:transform}
+.prod:hover .ph img{transform:scale(1.07)}
+.prod .tx{padding:11px 13px 13px}
+.prod .tx .b{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#241a05;background:linear-gradient(145deg,var(--gold2),#c39a2b);display:inline-block;padding:3px 9px;border-radius:7px;margin-bottom:7px}
+.prod .tx .b.sil{color:#181a1f;background:linear-gradient(145deg,var(--silver2),var(--silver))}
+.prod .tx .n{font-size:13.5px;font-weight:700;line-height:1.35}
+.prod .num{float:right;font-size:11px;font-weight:800;color:var(--silver-dim)}
+
+/* visit / footer */
+.visit-card{margin-top:6px;border:1px solid var(--hairgold);border-radius:20px;padding:26px 22px;text-align:center;background:linear-gradient(160deg,rgba(212,175,55,.09),rgba(201,206,216,.05));box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.visit-card .a{font-weight:700;font-size:16px;color:var(--silver2)}
+.closing{margin:44px 0 8px;text-align:center;color:var(--muted);font-size:13.5px}
+.closing .rule{width:120px;height:1px;margin:0 auto 16px;background:linear-gradient(90deg,transparent,var(--hairgold),transparent)}
+.credit{margin-top:10px;font-size:12px;color:var(--silver-dim)}
+
+/* sticky bottom bar (mobile) */
+.bottombar{position:fixed;left:0;right:0;bottom:0;z-index:70;display:flex;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,12,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--hairline)}
+.bottombar .btn{flex:1;justify-content:center;padding:12px 10px;font-size:14.5px}
+@media(min-width:760px){.bottombar{display:none}body{padding-bottom:0}}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s cubic-bezier(.22,.7,.24,1)}
+.rv.rv-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  .hero img.ph,.brand,.logo-float,.logo-coin,.metal-gold,.metal-silver{animation:none!important}
+  .sl{transition:none!important}
+  .rv{opacity:1!important;transform:none!important;transition:none!important}
+  .prod .ph img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hd">
+    <img class="hd-logo" src="logo.png" alt="Ali Hardware logo">
+    <div>
+      <div class="hd-name metal-gold">Ali Hardware &amp; Electricals</div>
+      <div class="hd-sub">Main Road, Dharni</div>
+    </div>
+    <div class="hd-right">
+      <button type="button" class="lang" id="langBtn"><span class="t-hi">EN</span><span class="t-en">&#2361;&#2367;&#2306;&#2342;&#2368;</span></button>
+      <a class="hd-call" href="tel:+918308244597">&#128222; <span class="ct"><span class="t-hi">Call karein</span><span class="t-en">Call</span></span></a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <img class="ph" src="hero-shop.jpg" alt="Ali Hardware &amp; Electricals ki dukaan, Main Road, Dharni">
+  <div class="hero-ov"></div>
+  <div class="hero-tx wrap">
+    <span class="badge"><span class="t-hi">Dharni, Maharashtra</span><span class="t-en">Dharni, Maharashtra</span></span>
+    <h1 class="metal-gold">Ali Hardware &amp; Electricals</h1>
+    <div class="goldline"></div>
+    <p class="tag"><span class="t-hi">Plastic, electric, motor ke saaman ka ek hi thikaana - Chandralok Market ke paas, Main Road, Dharni.</span><span class="t-en">Plastic, electrical and motor supplies under one roof - near Chandralok Market, Main Road, Dharni.</span></p>
+    <div class="addr">&#128205; <span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span></div>
+  </div>
+</div>
+
+<div class="brand">
+  <div class="logo-float">
+    <div class="logo-coin">
+      <img class="face front" src="logo.png" alt="Ali Hardware &amp; Electricals ka logo">
+      <img class="face back" src="logo.png" alt="" aria-hidden="true">
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cta-row">
+    <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span></a>
+    <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
+    <a class="btn btn-map" href="https://maps.app.goo.gl/hWm7Vbf4yc8Sgi4M7">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
+  </div>
+</div>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Hamari dukaan</span><span class="t-en">Our shop</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Dukaan ke andar</span><span class="t-en">Inside the shop</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Hamari dukaan ki asli photos - bahar se aur andar se.</span><span class="t-en">Real photos of our shop - from outside and inside.</span></p>
+  <div class="gal">
+    <figure class="gal-wide"><img src="shop-outside.jpg" alt="Dukaan bahar se" loading="lazy"><figcaption><span class="t-hi">Dukaan bahar se - Main Road, Dharni</span><span class="t-en">The shop from outside - Main Road, Dharni</span></figcaption></figure>
+    <figure class="gal-tall"><img src="shop-inside-1.jpg" alt="Andar ka galiyara" loading="lazy"><figcaption><span class="t-hi">Andar ka poora stock</span><span class="t-en">Full stock inside</span></figcaption></figure>
+    <figure class="gal-tall"><img src="shop-inside-2.jpg" alt="Peechhe tak ka nazara" loading="lazy"><figcaption><span class="t-hi">Andar godown tak ka nazara</span><span class="t-en">All the way to the back</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Highlights</span><span class="t-en">Highlights</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Products ki jhalak</span><span class="t-en">Product highlights</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Photos apne aap badalti hain - side ke button se bhi dekh sakte hain.</span><span class="t-en">Photos change on their own - use the side buttons too.</span></p>
+  <div class="slidebox" id="slidebox">
+    <div class="sl-stage" id="slStage"></div>
+    <div class="sl-ctl">
+      <button type="button" class="sl-btn" id="slPrev" aria-label="Previous">&lsaquo;</button>
+      <div class="sl-dots" id="slDots"></div>
+      <button type="button" class="sl-btn" id="slNext" aria-label="Next">&rsaquo;</button>
+    </div>
+  </div>
+</section>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Categories</span><span class="t-en">Categories</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Kya kya milta hai</span><span class="t-en">What we stock</span></h2><div class="line"></div></div>
+  <div class="rows" id="catRows"></div>
+</section>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Asli photos</span><span class="t-en">Real photos</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span></p>
+  <div class="prods" id="prodGrid"></div>
+</section>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Stock</span><span class="t-en">Stock</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Aur bhi bahut kuch</span><span class="t-en">And much more</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">In categories ka poora stock milta hai - photo ke liye WhatsApp par poochhiye.</span><span class="t-en">Full stock in these categories too - ask on WhatsApp for photos.</span></p>
+  <div class="prods" id="moreGrid"></div>
+</section>
+
+<section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Ye bhi milta hai</span><span class="t-en">Also in stock</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Nayi categories</span><span class="t-en">More categories</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">In categories ki photos abhi sample hain - asli maal dukaan par dekhiye ya WhatsApp par photo mangvaiye.</span><span class="t-en">Photos in this section are samples for now - see the actual stock at the shop or ask for photos on WhatsApp.</span></p>
+  <div class="prods" id="tileGrid"></div>
+</section>
+
+<section class="wrap rv">
+  <div class="visit-card">
+    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan par aaiye</span><span class="t-en">Visit the shop</span></div>
+    <p class="a"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span></p>
+    <div class="cta-row">
+      <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span></a>
+      <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
+      <a class="btn btn-map" href="https://maps.app.goo.gl/hWm7Vbf4yc8Sgi4M7">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="closing wrap">
+  <div class="rule"></div>
+  <p><span class="t-hi">Keemat, offer ya timing ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices, offers or timings listed here - please ask on WhatsApp.</span></p>
+  <p class="credit">Ali Hardware &amp; Electricals &middot; Dharni</p>
+</div>
+
+<div class="bottombar">
+  <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp</span><span class="t-en">WhatsApp</span></a>
+  <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
+</div>
+
+<script src="3-images.js"></script>
+<script>
+Array.prototype.forEach.call(document.querySelectorAll('img'),function(im){var s=im.getAttribute('src'); if(s==='logo.png'){im.src=LOGO}else if(s&&IMGS[s]){im.src=IMGS[s]}});
+
+var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tanki','Paint & distemper','Wire & cable','Fan & lighting','Tools & general'];
+var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
+
+var PRODUCTS=[
+ {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe'},
+ {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan'},
+ {img:'bulb-goldmedal-wow.jpg',brand:'GOLDMEDAL',hi:'WOW LED bulb',en:'WOW LED bulb',alt:'Goldmedal WOW LED bulb'},
+ {img:'panel-goldmedal-atom.jpg',brand:'GOLDMEDAL',hi:'Atom-Mini panel light',en:'Atom-Mini panel light',alt:'Goldmedal Atom-Mini panel light'},
+ {img:'ledstrip-litbec-echo.jpg',brand:'LITBEC',hi:'Echo series LED strip',en:'Echo series LED strip',alt:'Litbec Echo series LED strip light'},
+ {img:'driver-litbec.jpg',brand:'LITBEC',hi:'LED driver (power supply)',en:'LED driver (power supply)',alt:'Litbec LED power supply / driver'},
+ {img:'wires-dormit.jpg',brand:'DORMIT',hi:'Wires & cables',en:'Wires & cables',alt:'Dormit wires and cables'},
+ {img:'paint-malak.jpg',brand:'MALAK',hi:'Active Plus distemper',en:'Active Plus distemper',alt:'Malak Active Plus acrylic distemper'},
+ {img:'paint-eshine.jpg',brand:'E-SHINE',hi:'Hi sheen emulsion',en:'Hi sheen emulsion',alt:'E-Shine hi sheen emulsion paint'},
+ {img:'ropes.jpg',brand:'GENERAL',hi:'Rassi - har size mein',en:'Ropes, all sizes',alt:'Rassi (ropes) har size mein'},
+ {img:'tasla-plastic.jpg',brand:'PLASTIC',hi:'Tasla & plastic saaman',en:'Tasla & plastic goods',alt:'Plastic tasla aur gamle'}
+];
+var MORE=[
+ {img:'gen-tank.jpg',brand:'POLYRAJ \u2022 AQUA PLAST',hi:'Paani ki tanki',en:'Water tanks',alt:'Paani ki tanki (water tanks)',sil:1},
+ {img:'gen-tools.jpg',brand:'HAR KAAM KE TOOLS',hi:'Tools & hardware',en:'Tools & hardware',alt:'Tools aur hardware saaman',sil:1}
+];
+var TILES=[
+ {img:'cat-motors.jpg',hi:'Motor',en:'Motors',alt:'Motor (sample photo)'},
+ {img:'cat-garden-pipe.jpg',hi:'Garden pipe',en:'Garden pipes',alt:'Garden pipe (sample photo)'},
+ {img:'cat-section-pipe.jpg',hi:'Section pipe',en:'Section pipes',alt:'Section pipe (sample photo)'},
+ {img:'cat-bathroom-kit.jpg',hi:'Bathroom tool kit',en:'Bathroom tool kits',alt:'Bathroom fittings kit (sample photo)'},
+ {img:'cat-door-kit.jpg',hi:'Door tool kit',en:'Door tool kits',alt:'Door hardware kit (sample photo)'},
+ {img:'cat-bath-accessories.jpg',hi:'Bath accessories',en:'Bath accessories',alt:'Bath accessories (sample photo)'},
+ {img:'cat-gi-products.jpg',hi:'GI saaman',en:'GI products',alt:'GI pipes and fittings (sample photo)'}
+];
+var SLIDE_IDX=[0,1,2,3,4,6,7,10];
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function card(p,n){
+  return '<div class="prod tilt"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
+    '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
+    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div></div>';
+}
+document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
+document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
+document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
+document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
+  return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span></div>';
+}).join('');
+
+/* language toggle */
+var langBtn=document.getElementById('langBtn');
+function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
+langBtn.addEventListener('click',function(){setLang(document.documentElement.lang==='hi'?'en':'hi')});
+try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi')setLang(saved)}catch(e){}
+
+/* slideshow */
+var stage=document.getElementById('slStage'),dots=document.getElementById('slDots');
+var n=SLIDE_IDX.length,cur=0,paused=false,timer=null;
+var SLIDES=SLIDE_IDX.map(function(i){return PRODUCTS[i]});
+stage.innerHTML=SLIDES.map(function(p){
+  return '<div class="sl"><img src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"><div class="sl-cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div>';
+}).join('');
+dots.innerHTML=SLIDES.map(function(p,i){return '<button type="button" class="sl-dot" data-i="'+i+'" aria-label="'+esc(p.en)+'"></button>'}).join('');
+var slEls=stage.children,dotEls=dots.children;
+function off(i){var d=(i-cur)%n;if(d<-Math.floor(n/2))d+=n;if(d>Math.floor(n/2))d-=n;return d}
+function render(){
+  for(var i=0;i<n;i++){
+    var d=off(i),el=slEls[i];
+    el.className='sl '+(d===0?'sl-cur':d===-1?'sl-prev':d===1?'sl-next':'sl-off');
+    el.setAttribute('aria-hidden',d!==0?'true':'false');
+    dotEls[i].className='sl-dot'+(i===cur?' on':'');
+  }
+}
+function go(d){cur=(cur+d+n)%n;render()}
+document.getElementById('slPrev').addEventListener('click',function(){go(-1)});
+document.getElementById('slNext').addEventListener('click',function(){go(1)});
+dots.addEventListener('click',function(e){var i=e.target.getAttribute('data-i');if(i!==null){cur=+i;render()}});
+var box=document.getElementById('slidebox');
+box.addEventListener('pointerenter',function(){paused=true});
+box.addEventListener('pointerleave',function(){paused=false});
+function reduced(){try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){return false}}
+if(!reduced()){timer=setInterval(function(){if(!paused)go(1)},3500)}
+render();
+
+/* pointer tilt on product photos (fine pointers only) */
+try{
+  var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine&&!reduced()){
+    Array.prototype.forEach.call(document.querySelectorAll('.prod .ph img'),function(img){
+      var raf=0;
+      img.addEventListener('pointermove',function(e){
+        var r=img.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-0.5, py=(e.clientY-r.top)/r.height-0.5;
+        if(raf)return;
+        raf=requestAnimationFrame(function(){raf=0;img.style.transform='perspective(700px) rotateX('+(-py*9).toFixed(2)+'deg) rotateY('+(px*11).toFixed(2)+'deg) scale(1.05)'});
+      });
+      img.addEventListener('pointerleave',function(){if(raf)cancelAnimationFrame(raf);raf=0;img.style.transform=''});
+    });
+  }
+}catch(e){}
+
+/* scroll reveal */
+try{
+  if('IntersectionObserver' in window&&!reduced()){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('rv-in');io.unobserve(en.target)}});
+    },{threshold:.08});
+    Array.prototype.forEach.call(document.querySelectorAll('.rv, .prod'),function(el){el.classList.add('rv');io.observe(el)});
+  }else{
+    Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){el.classList.add('rv-in')});
+  }
+}catch(e){}
+</script>
+</body>
+</html>
