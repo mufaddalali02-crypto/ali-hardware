@@ -265,6 +265,7 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
   <p><span class="t-hi">Ali Hardware &amp; Electricals ki taraf se aapko aur parivar ko Deepawali ki hardik shubhkamnayein.</span><span class="t-en">Warm Diwali wishes to you and your family from Ali Hardware &amp; Electricals.</span></p>
   <div class="dw-soon"><span class="t-hi">&#127879; Diwali offer jald aa raha hai</span><span class="t-en">&#127879; Diwali offer coming soon</span></div>
   <button type="button" class="dw-fire" id="dwfire"><span class="t-hi">&#127878; Phatake chalao</span><span class="t-en">&#127878; Light crackers</span></button>
+  <button type="button" class="dw-fire" id="dwsnd" aria-pressed="false"><span id="dwsndi">&#128263;</span> <span class="t-hi">Awaaz: Off</span><span class="t-en">Sound: Off</span></button>
 </div></div>
 <div class="wrap">
   <div class="cta-row">
@@ -525,11 +526,29 @@ var c=document.getElementById('dwfx');if(!c)return;
 try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return}catch(e){}
 var x=c.getContext('2d'),W=0,H=0,D=Math.min(window.devicePixelRatio||1,1.5),P=[],R=[],run=false,last=0,timer=null,MAX=260;
 var PAL=[['#ffd36b','#ff8a1c'],['#ff4d3a','#ffb02e'],['#ff6fa0','#ffe08a'],['#5ee6ff','#fff1c2'],['#8dff7a','#ffe36b'],['#c58bff','#ff9ad5'],['#ffffff','#ffd36b']];
+var AC=null,snd=false,NB=null;
+try{snd=localStorage.getItem('dwsnd')==='1'}catch(e){}
+function ac(){if(AC)return AC;try{var C=window.AudioContext||window.webkitAudioContext;AC=new C();
+  var m=AC.createGain();m.gain.value=.55;var cp=AC.createDynamicsCompressor();m.connect(cp);cp.connect(AC.destination);AC.m=m;
+  NB=AC.createBuffer(1,AC.sampleRate*1.2,AC.sampleRate);var d=NB.getChannelData(0);for(var i=0;i<d.length;i++)d[i]=Math.random()*2-1}catch(e){AC=null}return AC}
+function nz(t,dur,type,f0,f1,g){var a=AC,s=a.createBufferSource();s.buffer=NB;var f=a.createBiquadFilter();f.type=type;f.frequency.setValueAtTime(f0,t);if(f1)f.frequency.exponentialRampToValueAtTime(f1,t+dur);
+  var v=a.createGain();v.gain.setValueAtTime(0.0001,t);v.gain.exponentialRampToValueAtTime(g,t+Math.min(.04,dur/3));v.gain.exponentialRampToValueAtTime(.0001,t+dur);s.connect(f);f.connect(v);v.connect(a.m);s.start(t,Math.random()*.3,dur+.05)}
+function sWhoosh(){if(!snd||!ac())return;var t=AC.currentTime;nz(t,.7,'bandpass',350,2200,.16)}
+function sBoom(){if(!snd||!ac())return;var a=AC,t=a.currentTime;
+  var o=a.createOscillator(),g=a.createGain();o.type='sine';o.frequency.setValueAtTime(140,t);o.frequency.exponentialRampToValueAtTime(38,t+.45);
+  g.gain.setValueAtTime(.5,t);g.gain.exponentialRampToValueAtTime(.0001,t+.5);o.connect(g);g.connect(a.m);o.start(t);o.stop(t+.55);
+  nz(t,.35,'lowpass',1400,200,.4);
+  for(var i=0;i<9;i++)nz(t+.12+Math.random()*.7,.05,'highpass',3500,null,.12)}
+function setSnd(on){snd=on;try{localStorage.setItem('dwsnd',on?'1':'0')}catch(e){}
+  var b=document.getElementById('dwsnd');if(!b)return;b.setAttribute('aria-pressed',on?'true':'false');
+  document.getElementById('dwsndi').textContent=on?'\uD83D\uDD0A':'\uD83D\uDD07';
+  var h=b.querySelector('.t-hi'),e=b.querySelector('.t-en');if(h)h.textContent=on?'Awaaz: On':'Awaaz: Off';if(e)e.textContent=on?'Sound: On':'Sound: Off'}
 function rs(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
 rs();addEventListener('resize',rs);
 function rnd(a,b){return a+Math.random()*(b-a)}
-function rocket(tx,ty,pal){
-  R.push({x:tx+rnd(-30,30),y:H+6,tx:tx,ty:ty,vy:-rnd(9,11.5),pal:pal||PAL[(Math.random()*PAL.length)|0],t:[]});
+function rocket(tx,ty,pal,sd){
+  if(sd)sWhoosh();
+  R.push({sd:sd,x:tx+rnd(-30,30),y:H+6,tx:tx,ty:ty,vy:-rnd(9,11.5),pal:pal||PAL[(Math.random()*PAL.length)|0],t:[]});
   kick();
 }
 function boom(px,py,pal){
@@ -552,7 +571,7 @@ function tick(t){
   for(i=R.length-1;i>=0;i--){r=R[i];r.y+=r.vy*dt;r.vy*=.985;r.x+=(r.tx-r.x)*.02*dt;
     x.fillStyle='#ffe9a8';x.globalAlpha=.9;x.fillRect(r.x-1,r.y,2.4,2.4);
     for(var k=0;k<2;k++)P.push({x:r.x+rnd(-1,1),y:r.y+3,vx:rnd(-.3,.3),vy:rnd(.2,.9),l:.7,dc:.05,c:'#ffb02e',g:.02,s:1.6});
-    if(r.y<=r.ty||r.vy>-1.6){boom(r.x,r.y,r.pal);R.splice(i,1)}}
+    if(r.y<=r.ty||r.vy>-1.6){boom(r.x,r.y,r.pal);if(r.sd)sBoom();R.splice(i,1)}}
   for(i=P.length-1;i>=0;i--){p=P[i];
     p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=p.g*dt;p.vx*=.987;p.l-=p.dc*dt;
     if(p.l<=0){P.splice(i,1);continue}
@@ -564,11 +583,12 @@ function tick(t){
 function auto(){if(!document.hidden&&R.length<2&&P.length<150)rocket(W*rnd(.15,.85),H*rnd(.12,.4))}
 function start(){if(!timer){auto();timer=setInterval(auto,1900)}}
 document.addEventListener('visibilitychange',function(){if(document.hidden){clearInterval(timer);timer=null}else start()});
-function salvo(){rocket(W*.2,H*.25);setTimeout(function(){rocket(W*.8,H*.22)},200);setTimeout(function(){rocket(W*.5,H*.15)},420);setTimeout(function(){rocket(W*.35,H*.35)},650)}
-var b=document.getElementById('dwfire');if(b)b.addEventListener('click',function(e){e.stopPropagation();salvo()});
+function salvo(){rocket(W*.2,H*.25,0,1);setTimeout(function(){rocket(W*.8,H*.22,0,1)},250);setTimeout(function(){rocket(W*.5,H*.15,0,1)},520);setTimeout(function(){rocket(W*.35,H*.35,0,1)},800)}
+var b=document.getElementById('dwfire');if(b)b.addEventListener('click',function(e){e.stopPropagation();ac();if(!snd)setSnd(true);if(AC&&AC.state==='suspended')AC.resume();salvo()});
+var sb=document.getElementById('dwsnd');if(sb){setSnd(false);sb.addEventListener('click',function(e){e.stopPropagation();if(snd){setSnd(false)}else{ac();if(AC&&AC.state==='suspended')AC.resume();setSnd(true);sBoom()}})}
 document.addEventListener('pointerdown',function(e){
   if(e.target.closest&&e.target.closest('a,button,input,select,textarea,label,video'))return;
-  rocket(e.clientX,Math.max(40,e.clientY))},{passive:true});
+  if(snd&&AC&&AC.state==='suspended')AC.resume();rocket(e.clientX,Math.max(40,e.clientY),0,snd)},{passive:true});
 start();
 })();
 </script>
