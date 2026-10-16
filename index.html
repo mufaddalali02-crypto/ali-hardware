@@ -148,6 +148,16 @@ section{padding:52px 0 8px}
 .credit{margin-top:10px;font-size:13px;color:var(--silver-dim)}
 
 
+
+/* ad posters: 3D tilt cards */
+.posters{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;perspective:1100px}
+@media(min-width:760px){.posters{grid-template-columns:repeat(3,1fr)}}
+.poster{background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--hairgold);border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.5),0 0 22px rgba(212,175,55,.1);transition:transform .24s ease,box-shadow .24s ease;transform-style:preserve-3d}
+.poster:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.6),0 0 30px rgba(212,175,55,.2)}
+.poster .ph{overflow:hidden;background:#0e1015}
+.poster .ph img{width:100%;height:auto;transition:transform .4s ease;will-change:transform}
+.poster .cap{padding:10px 14px 13px;font-size:14.5px;font-weight:700;text-align:center}
+
 /* visiting card: 360-degree 3D spin */
 .vc-stage{display:flex;justify-content:center;perspective:1300px;padding:6px 0}
 .vc-card{position:relative;width:min(92%,520px);aspect-ratio:1100/618;transform-style:preserve-3d;animation:vcSpin 9s linear infinite}
@@ -277,6 +287,13 @@ img.vc-face{width:100%;height:100%;object-fit:cover}
 </section>
 
 <section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Ads</span><span class="t-en">Ads</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Hamare ads</span><span class="t-en">Our ads</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Hamari dukaan ke posters - computer par mouse ghumaiye, card 3D mein ghoomta hai.</span><span class="t-en">Posters from our shop - move your mouse on desktop, the cards tilt in 3D.</span></p>
+  <div class="posters" id="posterGrid"></div>
+</section>
+
+<section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Visiting card</span><span class="t-en">Visiting card</span></div>
   <div class="sec-h"><h2><span class="t-hi">Hamara card</span><span class="t-en">Our card</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Card apne aap ghoomta rehta hai - rokne ke liye uspar ruk jaiye.</span><span class="t-en">The card spins on its own - hover or hold to pause it.</span></p>
@@ -315,6 +332,7 @@ img.vc-face{width:100%;height:100%;object-fit:cover}
 
 <script src="3-images.js"></script>
 <script src="4-bizcard.js"></script>
+<script src="6-posters.js"></script>
 <script>
 Array.prototype.forEach.call(document.querySelectorAll('img'),function(im){var s=im.getAttribute('src'); if(s==='logo.png'){im.src=LOGO}else if(s&&IMGS[s]){im.src=IMGS[s]}});
 Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function(im){im.src=BIZCARD});
@@ -363,6 +381,17 @@ document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
   return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span></div>';
 }).join('');
 
+/* Ad posters - naya poster add karne ke liye bas yahan ek line jodo (aur posters.js mein uski image) */
+var POSTERS=[
+ {key:'parcos',hi:'Parcos switch boards',en:'Parcos switch boards'},
+ {key:'plasto-pipe-ad',hi:'Plasto pipe',en:'Plasto pipes'},
+ {key:'plasto-tank-ad',hi:'Plasto 500 LTR tank',en:'Plasto 500 LTR tank'},
+ {key:'motor-ad',hi:'Motors',en:'Motors'}
+];
+document.getElementById('posterGrid').innerHTML=POSTERS.map(function(p){
+  return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div>';
+}).join('');
+
 /* language toggle */
 var langBtn=document.getElementById('langBtn');
 function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
@@ -402,7 +431,7 @@ render();
 try{
   var fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
   if(fine&&!reduced()){
-    Array.prototype.forEach.call(document.querySelectorAll('.prod .ph img'),function(img){
+    Array.prototype.forEach.call(document.querySelectorAll('.prod .ph img, .poster .ph img'),function(img){
       var raf=0;
       img.addEventListener('pointermove',function(e){
         var r=img.getBoundingClientRect();
