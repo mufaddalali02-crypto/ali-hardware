@@ -253,6 +253,18 @@ header{background:rgba(28,11,4,.96)}
 .dw-ban h2{text-shadow:0 2px 6px rgba(0,0,0,.8),0 4px 22px rgba(0,0,0,.6)}
 .dw-ban p{color:#fff4e3;text-shadow:0 1px 4px rgba(0,0,0,.9)}
 .toran{height:24px;background:radial-gradient(circle at 12px 11px,#ffd23f 0 4px,#ffa200 5px 8px,#e56b00 9px 10px,transparent 11px) repeat-x;background-size:24px 24px;border-bottom:2px solid rgba(255,159,28,.35)}
+.gm{background:radial-gradient(500px 240px at 50% 0%,rgba(255,159,28,.28),transparent 70%),linear-gradient(160deg,#3a1307,#2b1306 60%,#4a1f08);border:1.5px solid var(--hairgold);border-radius:18px;padding:18px 16px;text-align:center;max-width:560px;margin:0 auto}
+.gm h3{font-family:'Playfair Display',serif;font-size:24px;color:var(--gold2)}
+.gm .gp{color:var(--muted);margin-top:4px;font-size:16px}
+.gm .gb{display:inline-block;margin-top:12px;background:linear-gradient(145deg,#ffd166,#f08a1c);color:#3a1204;border:0;border-radius:999px;padding:12px 24px;font:inherit;font-weight:800;font-size:17px;cursor:pointer}
+.gm .gs{display:flex;justify-content:space-between;font-weight:800;color:var(--gold2);margin-bottom:8px}
+.gm .gi{width:100%;max-width:300px;aspect-ratio:1/1;object-fit:cover;border-radius:14px;border:1.5px solid var(--hairgold);background:#1c0b04;margin:0 auto}
+.gm .go{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.gm .go button{padding:12px 8px;border-radius:12px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.3);color:var(--ink);font:inherit;font-size:15px;font-weight:700;cursor:pointer;min-height:56px}
+.gm .go button.ok{background:#1f8a3b;border-color:#1f8a3b}
+.gm .go button.no{background:#a3281c;border-color:#a3281c}
+.gm .gf{min-height:26px;margin-top:10px;font-weight:800;font-size:17px}
+.gm .gr{font-size:44px;margin:6px 0}
 .petals{position:fixed;inset:0;pointer-events:none;z-index:39;overflow:hidden}
 .petals i{position:absolute;top:-24px;width:12px;height:16px;border-radius:60% 40% 60% 40%;background:linear-gradient(135deg,#ffb703,#ff7b00);opacity:.85;will-change:transform;animation:petalFall 11s linear infinite}
 @keyframes petalFall{0%{transform:translate3d(0,-30px,0) rotate(0)}100%{transform:translate3d(60px,110vh,0) rotate(540deg)}}
@@ -397,6 +409,30 @@ header{background:rgba(28,11,4,.96)}
       <div class="vc-back-addr"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni</span><span class="t-en">Near Chandralok Market, Main Road, Dharni</span></div>
     </div>
   </div></div>
+</section>
+
+<section class="wrap rv" id="game">
+  <div class="eyebrow metal-gold"><span class="t-hi">Khel</span><span class="t-en">Game</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Saaman pehchano</span><span class="t-en">Guess the product</span></h2><div class="line"></div></div>
+  <div class="gm" id="gm">
+    <div id="g0">
+      <div class="gr" aria-hidden="true">&#127993;</div>
+      <p class="gp"><span class="t-hi">8 photo, 8 sawaal - dukaan ka saaman sahi pehchaniye!</span><span class="t-en">8 photos, 8 questions - can you name the shop's products?</span></p>
+      <button type="button" class="gb" id="gstart"><span class="t-hi">Khel shuru karein</span><span class="t-en">Start game</span></button>
+    </div>
+    <div id="g1" hidden>
+      <div class="gs"><span id="gq"></span><span id="gsc"></span></div>
+      <img class="gi" id="gimg" alt="" width="300" height="300">
+      <div class="go" id="gopts"></div>
+      <div class="gf" id="gfb" aria-live="polite"></div>
+    </div>
+    <div id="g2" hidden>
+      <div class="gr" aria-hidden="true">&#127993;</div>
+      <h3 id="gres"></h3>
+      <p class="gp" id="gmsg"></p>
+      <button type="button" class="gb" id="gagain"><span class="t-hi">Dobara khelein</span><span class="t-en">Play again</span></button>
+    </div>
+  </div>
 </section>
 
 <section class="wrap rv" id="reviews">
@@ -593,5 +629,41 @@ Array.prototype.forEach.call(document.querySelectorAll('.logo-coin,.vc-card'),fu
 Array.prototype.forEach.call(document.querySelectorAll('img'),function(i){i.decoding='async'});
 </script>
 <div class="petals" aria-hidden="true"><i style="left:4%;animation-delay:-0s;animation-duration:12s"></i><i style="left:13%;animation-delay:-5s;animation-duration:10s"></i><i style="left:22%;animation-delay:-2s;animation-duration:13s"></i><i style="left:31%;animation-delay:-8s;animation-duration:11s"></i><i style="left:40%;animation-delay:-3s;animation-duration:14s"></i><i style="left:49%;animation-delay:-9s;animation-duration:10s"></i><i style="left:58%;animation-delay:-1s;animation-duration:12s"></i><i style="left:67%;animation-delay:-6s;animation-duration:13s"></i><i style="left:76%;animation-delay:-4s;animation-duration:11s"></i><i style="left:85%;animation-delay:-10s;animation-duration:12s"></i><i style="left:93%;animation-delay:-7s;animation-duration:14s"></i></div>
+<script>
+(function(){
+var POOL=[1,2,4,6,7,11,14,16,17,18,20,15],N=8,q,sc,order,cur,busy;
+function $(i){return document.getElementById(i)}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function lbl(p){return '<span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span>'}
+function show(id){['g0','g1','g2'].forEach(function(k){$(k).hidden=(k!==id)})}
+function start(){order=shuf(POOL).slice(0,N);q=0;sc=0;show('g1');next()}
+function next(){
+  busy=false;var p=window.PRODUCTS[order[q]];cur=p;
+  $('gq').textContent=(q+1)+' / '+N;$('gsc').textContent='\u2B50 '+sc;$('gfb').textContent='';
+  var im=$('gimg');im.src=window.IMGS[p.img];im.alt='Ye kya saaman hai?';
+  var others=shuf(POOL.filter(function(i){return i!==order[q]})).slice(0,3);
+  var opts=shuf([order[q]].concat(others));
+  $('gopts').innerHTML=opts.map(function(i){return '<button type="button" data-i="'+i+'">'+lbl(window.PRODUCTS[i])+'</button>'}).join('');
+  if(q+1<N){var pre=new Image();pre.src=window.IMGS[window.PRODUCTS[order[q+1]].img]}
+}
+function pick(b){
+  if(busy)return;busy=true;var i=+b.getAttribute('data-i'),right=window.PRODUCTS[order[q]]===window.PRODUCTS[i];
+  var all=$('gopts').children;
+  for(var k=0;k<all.length;k++){if(+all[k].getAttribute('data-i')===order[q])all[k].className='ok'}
+  if(right){sc++;$('gfb').innerHTML='\u2705 <span class="t-hi">Sahi!</span><span class="t-en">Correct!</span>'}
+  else{b.className='no';$('gfb').innerHTML='\u274C <span class="t-hi">Galat - sahi jawab hara hai</span><span class="t-en">Wrong - the right answer is green</span>'}
+  $('gsc').textContent='\u2B50 '+sc;
+  setTimeout(function(){q++;if(q<N)next();else end()},1100)
+}
+function end(){
+  show('g2');$('gres').innerHTML='<span class="t-hi">Aapne '+sc+' / '+N+' sahi pehchane!</span><span class="t-en">You got '+sc+' / '+N+' right!</span>';
+  var hi=sc>=7?'Shabaash! Aap to dukaan ke saaman ke expert hain.':sc>=4?'Achha khela! Ek baar aur try karein.':'Koi baat nahi - dobara khelkar dekhiye.';
+  var en=sc>=7?'Well done! You really know the shop.':sc>=4?'Nice game! Try once more.':'No worries - give it another go.';
+  $('gmsg').innerHTML='<span class="t-hi">'+hi+'</span><span class="t-en">'+en+'</span>'}
+$('gstart').addEventListener('click',start);$('gagain').addEventListener('click',start);
+$('gopts').addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(b)pick(b)});
+})();
+</script>
 </body>
-</html>
+  </html>
