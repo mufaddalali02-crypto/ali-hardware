@@ -216,6 +216,16 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .qt .qg{margin-top:4px;font-weight:800;letter-spacing:2px;font-size:13px;color:#ffb02e;text-transform:uppercase}
 .qt q{display:block;margin-top:10px;font-family:'Playfair Display',serif;font-size:clamp(22px,5.4vw,34px);font-weight:700;line-height:1.35;quotes:none;background:linear-gradient(100deg,#ffd36b,#fff1c2 50%,#ffb02e);-webkit-background-clip:text;background-clip:text;color:transparent}
 .qt .qs{margin-top:10px;color:#f3c58a;font-size:15px;letter-spacing:.5px}
+.srch{margin:14px 0 4px;position:relative}
+.srch input{width:100%;padding:14px 16px 14px 44px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--ink);font:inherit;font-size:17px}
+.srch input::placeholder{color:var(--muted)}
+.srch:before{content:"\1F50D";position:absolute;left:15px;top:11px;font-size:18px}
+.nores{display:none;text-align:center;color:var(--muted);padding:14px}
+.wa-q{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;padding:8px 10px;border-radius:999px;background:#1fae53;color:#fff;font-weight:800;font-size:14px}
+.mapfr{width:100%;height:260px;border:0;border-radius:14px;margin-top:14px;filter:saturate(.9)}
+.qrbox{text-align:center}
+.qrbox .qrimg{width:200px;max-width:70%;margin:12px auto 0;background:#fff;padding:8px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.qrbox .qrimg svg{display:block;width:100%;height:auto}
 #dwfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
 @media (prefers-reduced-motion:reduce){.dw-diyas span{animation:none!important}#dwfx{display:none}.dw-fire{display:none}}
 </style>
@@ -319,6 +329,8 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
   <div class="eyebrow metal-gold"><span class="t-hi">Asli photos</span><span class="t-en">Real photos</span></div>
   <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span></p>
+  <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"></div>
+  <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span></div>
   <div class="prods" id="prodGrid"></div>
 </section>
 
@@ -357,6 +369,17 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
   </div></div>
 </section>
 
+<!-- HOURS-SECTION (abhi hidden): shop timing confirm hone par "hidden" hata kar timing likho. -->
+<section class="wrap rv" id="hours" hidden></section>
+
+<section class="wrap rv">
+  <div class="visit-card qrbox">
+    <div class="eyebrow metal-gold"><span class="t-hi">Scan karein</span><span class="t-en">Scan me</span></div>
+    <p class="a"><span class="t-hi">Phone se scan karke hamari website kholiye ya kisi ko bhejiye.</span><span class="t-en">Scan with your phone to open our website or share it.</span></p>
+    <div class="qrimg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code for Ali Hardware website"><rect x="-4" y="-4" width="41" height="41" fill="#fff"/><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM9 0h1v1h-1zM10 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM21 0h1v1h-1zM23 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM29 0h1v1h-1zM30 0h1v1h-1zM31 0h1v1h-1zM32 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM10 1h1v1h-1zM12 1h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM17 1h1v1h-1zM21 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 2h1v1h-1zM13 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM19 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM14 3h1v1h-1zM16 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM29 3h1v1h-1zM30 3h1v1h-1zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM15 4h1v1h-1zM17 4h1v1h-1zM18 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM30 4h1v1h-1zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM20 5h1v1h-1zM21 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM29 6h1v1h-1zM30 6h1v1h-1zM31 6h1v1h-1zM32 6h1v1h-1zM8 7h1v1h-1zM9 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM21 7h1v1h-1zM24 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM14 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM18 9h1v1h-1zM19 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM29 9h1v1h-1zM30 9h1v1h-1zM31 9h1v1h-1zM32 9h1v1h-1zM0 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM31 10h1v1h-1zM3 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM26 11h1v1h-1zM28 11h1v1h-1zM29 11h1v1h-1zM30 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM3 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM18 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM29 12h1v1h-1zM32 12h1v1h-1zM1 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM19 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM29 13h1v1h-1zM30 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM3 14h1v1h-1zM6 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM28 14h1v1h-1zM29 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM0 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM26 15h1v1h-1zM28 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM9 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM17 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM32 16h1v1h-1zM1 17h1v1h-1zM2 17h1v1h-1zM7 17h1v1h-1zM10 17h1v1h-1zM16 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM32 17h1v1h-1zM0 18h1v1h-1zM1 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM9 18h1v1h-1zM11 18h1v1h-1zM15 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM0 19h1v1h-1zM1 19h1v1h-1zM3 19h1v1h-1zM8 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM17 19h1v1h-1zM18 19h1v1h-1zM21 19h1v1h-1zM23 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM29 19h1v1h-1zM30 19h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM9 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM24 20h1v1h-1zM25 20h1v1h-1zM27 20h1v1h-1zM28 20h1v1h-1zM29 20h1v1h-1zM31 20h1v1h-1zM0 21h1v1h-1zM1 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM5 21h1v1h-1zM7 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM22 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM30 21h1v1h-1zM32 21h1v1h-1zM0 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM11 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM31 22h1v1h-1zM0 23h1v1h-1zM2 23h1v1h-1zM3 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM21 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM27 23h1v1h-1zM28 23h1v1h-1zM30 23h1v1h-1zM0 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM11 24h1v1h-1zM13 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM27 24h1v1h-1zM28 24h1v1h-1zM31 24h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM10 25h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM19 25h1v1h-1zM20 25h1v1h-1zM21 25h1v1h-1zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM0 26h1v1h-1zM1 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM9 26h1v1h-1zM12 26h1v1h-1zM13 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM18 26h1v1h-1zM22 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM11 27h1v1h-1zM13 27h1v1h-1zM15 27h1v1h-1zM20 27h1v1h-1zM21 27h1v1h-1zM22 27h1v1h-1zM23 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM29 27h1v1h-1zM30 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM26 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM29 28h1v1h-1zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h1v1h-1zM3 29h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM8 29h1v1h-1zM9 29h1v1h-1zM12 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM17 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM28 29h1v1h-1zM29 29h1v1h-1zM31 29h1v1h-1zM32 29h1v1h-1zM0 30h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM6 30h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM18 30h1v1h-1zM20 30h1v1h-1zM21 30h1v1h-1zM23 30h1v1h-1zM24 30h1v1h-1zM25 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM10 31h1v1h-1zM11 31h1v1h-1zM12 31h1v1h-1zM16 31h1v1h-1zM21 31h1v1h-1zM22 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM28 31h1v1h-1zM29 31h1v1h-1zM30 31h1v1h-1zM0 32h1v1h-1zM1 32h1v1h-1zM2 32h1v1h-1zM3 32h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM9 32h1v1h-1zM14 32h1v1h-1zM16 32h1v1h-1zM17 32h1v1h-1zM22 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM27 32h1v1h-1zM31 32h1v1h-1z" fill="#000"/></svg></div>
+  </div>
+</section>
+
 <section class="wrap rv">
   <div class="visit-card">
     <div class="eyebrow metal-gold"><span class="t-hi">Dukaan par aaiye</span><span class="t-en">Visit the shop</span></div>
@@ -366,6 +389,7 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
       <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
       <a class="btn btn-map" href="https://maps.app.goo.gl/hWm7Vbf4yc8Sgi4M7">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
     </div>
+    <iframe class="mapfr" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ali Hardware &amp; Electricals map" src="https://www.google.com/maps?q=Ali+Hardware+%26+Electricals+Chandralok+Market+Main+Road+Dharni&amp;output=embed"></iframe>
   </div>
 </section>
 
@@ -428,13 +452,19 @@ var SLIDE_IDX=[0,1,2,3,4,6,7,10,11,12,13,14,15,16,17,18,19,20];
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
-  return '<div class="prod tilt"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
+  var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
+  var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
+  return '<div class="prod tilt" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
-    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div></div>';
+    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span></a></div></div>';
 }
 document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
+(function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores');if(!inp)return;
+inp.addEventListener('input',function(){var q=inp.value.trim().toLowerCase(),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
+for(var i=0;i<all.length;i++){var ok=!q||all[i].getAttribute('data-s').indexOf(q)>-1;all[i].style.display=ok?'':'none';if(ok)shown++}
+nr.style.display=(q&&!shown)?'block':'none'})})();
 document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
   return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span></div>';
 }).join('');
