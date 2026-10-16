@@ -210,6 +210,9 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .dw-diyas span{display:inline-block;animation:dwFlick 1.6s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffb02e)}
 .dw-diyas span:nth-child(2n){animation-delay:.5s}
 @keyframes dwFlick{from{transform:scale(1);opacity:.85}to{transform:scale(1.12);opacity:1}}
+.qt{margin:22px auto 6px;max-width:860px;text-align:center;padding:22px 20px;border-top:1px solid var(--hairgold);border-bottom:1px solid var(--hairgold)}
+.qt q{display:block;font-family:'Playfair Display',serif;font-size:clamp(22px,5.4vw,34px);font-weight:700;line-height:1.35;quotes:none;color:var(--gold2)}
+.qt .qs{margin-top:8px;color:var(--muted);font-size:15px;letter-spacing:.5px}
 #dwfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
 @media (prefers-reduced-motion:reduce){.dw-diyas span{animation:none!important}#dwfx{display:none}.dw-fire{display:none}}
 </style>
@@ -267,6 +270,11 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
     <a class="btn btn-map" href="https://maps.app.goo.gl/hWm7Vbf4yc8Sgi4M7">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
   </div>
 </div>
+
+<section class="wrap rv"><div class="qt">
+  <q><span class="t-hi">&#8220;Aapka ghar, hamari zimmedari. Har nut-bolt se le kar har taar tak, bharosa Ali Hardware ka.&#8221;</span><span class="t-en">&#8220;Your home, our responsibility. From every nut and bolt to every wire, trust Ali Hardware.&#8221;</span></q>
+  <div class="qs">- Ali Hardware &amp; Electricals, Dharni</div>
+</div></section>
 
 <section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Hamari dukaan</span><span class="t-en">Our shop</span></div>
@@ -509,35 +517,53 @@ Array.prototype.forEach.call(document.querySelectorAll('img'),function(i){i.deco
 <script>
 (function(){
 var c=document.getElementById('dwfx');if(!c)return;
-var rm=false;try{rm=matchMedia('(prefers-reduced-motion: reduce)').matches}catch(e){}
-if(rm)return;
-var x=c.getContext('2d'),W=0,H=0,P=[],run=false,last=0,timer=null,COL=['#ffd36b','#ff8a1c','#ff4d3a','#fff1c2','#ffb02e','#ff6fa0'];
-function rs(){W=c.width=innerWidth;H=c.height=innerHeight}
+try{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return}catch(e){}
+var x=c.getContext('2d'),W=0,H=0,D=Math.min(window.devicePixelRatio||1,1.5),P=[],R=[],run=false,last=0,timer=null,MAX=260;
+var PAL=[['#ffd36b','#ff8a1c'],['#ff4d3a','#ffb02e'],['#ff6fa0','#ffe08a'],['#5ee6ff','#fff1c2'],['#8dff7a','#ffe36b'],['#c58bff','#ff9ad5'],['#ffffff','#ffd36b']];
+function rs(){W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
 rs();addEventListener('resize',rs);
-function burst(px,py){
-  var col=COL[(Math.random()*COL.length)|0],n=28;
-  for(var i=0;i<n;i++){var a=i/n*6.283+Math.random()*.2,v=1.6+Math.random()*2.4;
-    P.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:col})}
-  if(!run){run=true;last=performance.now();requestAnimationFrame(tick)}
+function rnd(a,b){return a+Math.random()*(b-a)}
+function rocket(tx,ty,pal){
+  R.push({x:tx+rnd(-30,30),y:H+6,tx:tx,ty:ty,vy:-rnd(9,11.5),pal:pal||PAL[(Math.random()*PAL.length)|0],t:[]});
+  kick();
 }
+function boom(px,py,pal){
+  var kind=(Math.random()*4)|0,n=kind==1?46:kind==3?30:54,sp=kind==1?4.2:rnd(3,5.2);
+  if(P.length>MAX)n=Math.floor(n/3);
+  for(var i=0;i<n;i++){
+    var a=i/n*6.283+rnd(-.05,.05),v=kind==0?sp*rnd(.3,1):sp*(kind==2?rnd(.6,1):1);
+    P.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,dc:kind==2?.008:.014,c:pal[i&1],g:kind==2?.075:.045,s:kind==2?2.2:2.6,w:kind==2});
+  }
+  for(var j=0;j<10&&P.length<MAX+60;j++){P.push({x:px,y:py,vx:rnd(-1.2,1.2),vy:rnd(-1.2,1.2),l:1.1,dc:.03,c:'#ffffff',g:.03,s:1.6,tw:1})}
+  flash=.22;
+}
+var flash=0;
+function kick(){if(!run){run=true;last=performance.now();requestAnimationFrame(tick)}}
 function tick(t){
-  var dt=Math.min((t-last)/16,3);last=t;
-  x.clearRect(0,0,W,H);
-  for(var i=P.length-1;i>=0;i--){var p=P[i];
-    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=.045*dt;p.vx*=.985;p.l-=.016*dt;
+  var dt=Math.min((t-last)/16.7,2.5);last=t;
+  x.globalCompositeOperation='destination-out';x.fillStyle='rgba(0,0,0,'+(.22*Math.min(dt,1.5))+')';x.fillRect(0,0,W,H);
+  x.globalCompositeOperation='lighter';
+  var i,p,r;
+  for(i=R.length-1;i>=0;i--){r=R[i];r.y+=r.vy*dt;r.vy*=.985;r.x+=(r.tx-r.x)*.02*dt;
+    x.fillStyle='#ffe9a8';x.globalAlpha=.9;x.fillRect(r.x-1,r.y,2.4,2.4);
+    for(var k=0;k<2;k++)P.push({x:r.x+rnd(-1,1),y:r.y+3,vx:rnd(-.3,.3),vy:rnd(.2,.9),l:.7,dc:.05,c:'#ffb02e',g:.02,s:1.6});
+    if(r.y<=r.ty||r.vy>-1.6){boom(r.x,r.y,r.pal);R.splice(i,1)}}
+  for(i=P.length-1;i>=0;i--){p=P[i];
+    p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=p.g*dt;p.vx*=.987;p.l-=p.dc*dt;
     if(p.l<=0){P.splice(i,1);continue}
-    x.globalAlpha=p.l;x.fillStyle=p.c;x.fillRect(p.x,p.y,2.4,2.4)}
+    x.globalAlpha=p.tw?Math.max(0,p.l)*(Math.random()<.5?1:.3):Math.min(1,p.l);
+    x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.s*(.5+p.l*.5),0,6.283);x.fill()}
   x.globalAlpha=1;
-  if(P.length&&!document.hidden)requestAnimationFrame(tick);else{run=false;x.clearRect(0,0,W,H)}
+  if(P.length||R.length)requestAnimationFrame(tick);else{run=false;x.clearRect(0,0,W,H)}
 }
-function auto(){
-  if(!document.hidden&&P.length<80)burst(W*(.15+Math.random()*.7),H*(.12+Math.random()*.3));
-}
-function start(){if(!timer){auto();timer=setInterval(auto,2600)}}
+function auto(){if(!document.hidden&&R.length<2&&P.length<150)rocket(W*rnd(.15,.85),H*rnd(.12,.4))}
+function start(){if(!timer){auto();timer=setInterval(auto,1900)}}
 document.addEventListener('visibilitychange',function(){if(document.hidden){clearInterval(timer);timer=null}else start()});
-var b=document.getElementById('dwfire');
-if(b)b.addEventListener('click',function(){var r=b.getBoundingClientRect();
-  burst(r.left+r.width/2,Math.max(60,r.top-30));setTimeout(function(){burst(W*.25,H*.25)},250);setTimeout(function(){burst(W*.75,H*.2)},500)});
+function salvo(){rocket(W*.2,H*.25);setTimeout(function(){rocket(W*.8,H*.22)},200);setTimeout(function(){rocket(W*.5,H*.15)},420);setTimeout(function(){rocket(W*.35,H*.35)},650)}
+var b=document.getElementById('dwfire');if(b)b.addEventListener('click',function(e){e.stopPropagation();salvo()});
+document.addEventListener('pointerdown',function(e){
+  if(e.target.closest&&e.target.closest('a,button,input,select,textarea,label,video'))return;
+  rocket(e.clientX,Math.max(40,e.clientY))},{passive:true});
 start();
 })();
 </script>
