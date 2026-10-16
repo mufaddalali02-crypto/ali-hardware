@@ -380,12 +380,17 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
   <div class="eyebrow metal-gold"><span class="t-hi">Hamare grahak</span><span class="t-en">Our customers</span></div>
   <div class="sec-h"><h2><span class="t-hi">Google reviews</span><span class="t-en">Google reviews</span></h2><div class="line"></div></div>
   <div class="rv-sum">&#9733; 5.0 &middot; <span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span></div>
-  <div class="rv-g"><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p><div class="by">Nasim &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p><div class="by">Rishabh &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best shop ever amazing &#128079;&#8221;</p><div class="by">Mufaddal &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p><div class="by">Hussain &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p><div class="by">Ammar &middot; via Google</div></div></div>
+  <div class="rv-g"><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p><div class="by">Nasim &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p><div class="by">Rishabh &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p><div class="by">Hussain &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p><div class="by">Ammar &middot; via Google</div></div></div>
   <p class="sec-sub" style="text-align:center;margin-top:12px"><a href="https://share.google/56C974OvKQ4Z5leWG" style="text-decoration:underline"><span class="t-hi">Sab reviews Google par dekhein</span><span class="t-en">See all reviews on Google</span></a></p>
 </section>
 
 <!-- HOURS-SECTION (abhi hidden): shop timing confirm hone par "hidden" hata kar timing likho. -->
-<section class="wrap rv" id="hours" hidden></section>
+<section class="wrap rv" id="hours">
+  <div class="visit-card" style="text-align:center">
+    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ka samay</span><span class="t-en">Shop hours</span></div>
+    <p class="a" style="font-size:22px;font-weight:800;color:var(--gold2)"><span class="t-hi">&#128339; Subah 6:30 se raat 9:30 tak</span><span class="t-en">&#128339; 6:30 AM to 9:30 PM</span></p>
+  </div>
+</section>
 
 <section class="wrap rv">
   <div class="visit-card qrbox">
@@ -410,7 +415,7 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 
 <div class="closing wrap">
   <div class="rule"></div>
-  <p><span class="t-hi">Keemat, offer ya timing ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices, offers or timings listed here - please ask on WhatsApp.</span></p>
+  <p><span class="t-hi">Keemat ya offer ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices or offers listed here - please ask on WhatsApp.</span></p>
   <p class="credit">Ali Hardware &amp; Electricals &middot; Dharni</p>
 </div>
 
@@ -631,9 +636,6 @@ document.addEventListener('visibilitychange',function(){if(document.hidden){clea
 function salvo(){rocket(W*.2,H*.25,0,1);setTimeout(function(){rocket(W*.8,H*.22,0,1)},250);setTimeout(function(){rocket(W*.5,H*.15,0,1)},520);setTimeout(function(){rocket(W*.35,H*.35,0,1)},800)}
 var b=document.getElementById('dwfire');if(b)b.addEventListener('click',function(e){e.stopPropagation();ac();if(!snd)setSnd(true);if(AC&&AC.state==='suspended')AC.resume();salvo()});
 var sb=document.getElementById('dwsnd');if(sb){setSnd(false);sb.addEventListener('click',function(e){e.stopPropagation();if(snd){setSnd(false)}else{ac();if(AC&&AC.state==='suspended')AC.resume();setSnd(true);sBoom()}})}
-document.addEventListener('pointerdown',function(e){
-  if(e.target.closest&&e.target.closest('a,button,input,select,textarea,label,video'))return;
-  if(snd&&AC&&AC.state==='suspended')AC.resume();rocket(e.clientX,Math.max(40,e.clientY),0,snd)},{passive:true});
 start();
 })();
 </script>
