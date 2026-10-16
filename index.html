@@ -210,9 +210,12 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .dw-diyas span{display:inline-block;animation:dwFlick 1.6s ease-in-out infinite alternate;filter:drop-shadow(0 0 8px #ffb02e)}
 .dw-diyas span:nth-child(2n){animation-delay:.5s}
 @keyframes dwFlick{from{transform:scale(1);opacity:.85}to{transform:scale(1.12);opacity:1}}
-.qt{margin:22px auto 6px;max-width:860px;text-align:center;padding:22px 20px;border-top:1px solid var(--hairgold);border-bottom:1px solid var(--hairgold)}
-.qt q{display:block;font-family:'Playfair Display',serif;font-size:clamp(22px,5.4vw,34px);font-weight:700;line-height:1.35;quotes:none;color:var(--gold2)}
-.qt .qs{margin-top:8px;color:var(--muted);font-size:15px;letter-spacing:.5px}
+.qt{position:relative;margin:22px auto 6px;max-width:860px;text-align:center;padding:26px 20px 22px;border-radius:18px;border:1.5px solid var(--hairgold);overflow:hidden;
+  background:radial-gradient(500px 220px at 50% 0%,rgba(255,170,40,.28),transparent 70%),linear-gradient(160deg,#3a0d0a,#2a0e0b 60%,#4a1a08)}
+.qt .qd{display:flex;justify-content:center;gap:16px;font-size:22px;filter:drop-shadow(0 0 8px #ffb02e)}
+.qt .qg{margin-top:4px;font-weight:800;letter-spacing:2px;font-size:13px;color:#ffb02e;text-transform:uppercase}
+.qt q{display:block;margin-top:10px;font-family:'Playfair Display',serif;font-size:clamp(22px,5.4vw,34px);font-weight:700;line-height:1.35;quotes:none;background:linear-gradient(100deg,#ffd36b,#fff1c2 50%,#ffb02e);-webkit-background-clip:text;background-clip:text;color:transparent}
+.qt .qs{margin-top:10px;color:#f3c58a;font-size:15px;letter-spacing:.5px}
 #dwfx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:40}
 @media (prefers-reduced-motion:reduce){.dw-diyas span{animation:none!important}#dwfx{display:none}.dw-fire{display:none}}
 </style>
@@ -272,6 +275,8 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 </div>
 
 <section class="wrap rv"><div class="qt">
+  <div class="qd" aria-hidden="true"><span>&#129684;</span><span>&#10024;</span><span>&#129684;</span></div>
+  <div class="qg"><span class="t-hi">Shubh Deepawali</span><span class="t-en">Happy Diwali</span></div>
   <q><span class="t-hi">&#8220;Aapka ghar, hamari zimmedari. Har nut-bolt se le kar har taar tak, bharosa Ali Hardware ka.&#8221;</span><span class="t-en">&#8220;Your home, our responsibility. From every nut and bolt to every wire, trust Ali Hardware.&#8221;</span></q>
   <div class="qs">- Ali Hardware &amp; Electricals, Dharni</div>
 </div></section>
