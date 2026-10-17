@@ -250,6 +250,21 @@ section{padding:52px 0 8px}
 .poster .ph img{width:100%;height:auto;transition:transform .4s ease}
 .poster .cap{padding:10px 14px 13px;font-size:14.5px;font-weight:700;text-align:center}
 
+
+/* photo slides strip (Parcos + Malak) */
+.psw{position:relative;margin-top:14px}
+.pshow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px}
+.pshow::-webkit-scrollbar{display:none}
+.psl{flex:0 0 min(80%,400px);scroll-snap-align:center;margin:0;position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--hairline);background:var(--card)}
+.psl img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
+.psl figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 12px 10px;font-size:12.5px;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75))}
+.psnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:38px;height:38px;border-radius:50%;border:1px solid var(--hairgold);background:rgba(10,10,14,.62);color:var(--gold2);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.psnav.prev{left:8px}.psnav.next{right:8px}
+.psdots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.psdots button{width:8px;height:8px;border-radius:50%;border:0;padding:0;background:var(--muted);opacity:.4;cursor:pointer}
+.psdots button.on{opacity:1;background:var(--gold)}
+@media (prefers-reduced-motion:reduce){.pshow{scroll-behavior:auto}}
+
 /* visiting card: 360-degree 3D spin */
 .vc-stage{display:flex;justify-content:center;perspective:1300px;padding:6px 0}
 .vc-card{position:relative;width:min(92%,520px);aspect-ratio:1100/618;transform-style:preserve-3d;animation:vcSpin 9s linear infinite}
@@ -635,6 +650,18 @@ header{background:rgba(28,11,4,.96)}
 </section>
 
 <section class="wrap rv">
+  <div class="eyebrow metal-gold"><span class="t-hi">Photo slides</span><span class="t-en">Photo slides</span><span class="t-mr">फोटो स्लाइड्स</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Parcos &amp; Malak paint</span><span class="t-en">Parcos &amp; Malak paint</span><span class="t-mr">Parcos आणि Malak पेंट</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Parcos aur Malak Map Active Plus ke photos - side swipe karke dekhein.</span><span class="t-en">Photos of Parcos and Malak Map Active Plus - swipe sideways to see them.</span><span class="t-mr">Parcos आणि Malak Map Active Plus चे फोटो - बाजूने स्वाइप करून पाहा.</span></p>
+  <div class="psw">
+    <button type="button" class="psnav prev" id="psPrev" aria-label="Pichhla photo">&#10094;</button>
+    <div class="pshow" id="pshow"></div>
+    <button type="button" class="psnav next" id="psNext" aria-label="Agla photo">&#10095;</button>
+  </div>
+  <div class="psdots" id="psDots"></div>
+</section>
+
+<section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Visiting card</span><span class="t-en">Visiting card</span><span class="t-mr">Visiting card</span></div>
   <div class="sec-h"><h2><span class="t-hi">Hamara card</span><span class="t-en">Our card</span><span class="t-mr">आमचे कार्ड</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Card apne aap ghoomta rehta hai - rokne ke liye uspar ruk jaiye.</span><span class="t-en">The card spins on its own - hover or hold to pause it.</span><span class="t-mr">कार्ड आपोआप फिरत असते - थांबवण्यासाठी त्यावर थांबा.</span></p>
@@ -801,7 +828,7 @@ document.getElementById('rvfForm').addEventListener('submit',function(ev){
   <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></a>
 </div>
 
-<script>var IMGS={"tdk-capacitor.jpg": "img/40-46-p-tdk-capacitor.webp", "fusion-pro.jpg": "img/41-47-p-fusion-pro.webp", "fevicol-sh.jpg": "img/42-48-p-fevicol-sh.webp", "surya-plus.jpg": "img/43-49-p-surya-plus.webp", "surya-cem.jpg": "img/45-50-p-surya-cem.webp", "fan-goldmedal.jpg": "img/46-51-p-fan-goldmedal.webp", "bulb-goldmedal-wow.jpg": "img/7-18-p-bulb-goldmedal-wow.webp", "cat-bath-accessories.jpg": "img/32-4-cat-bath-accessories.webp", "cat-bathroom-kit.jpg": "img/12-20-p-cat-bathroom-kit.webp", "cat-door-kit.jpg": "img/13-21-p-cat-door-kit.webp", "cat-garden-pipe.jpg": "img/14-22-p-cat-garden-pipe.webp", "cat-gi-products.jpg": "img/15-23-p-cat-gi-products.webp", "cat-motors.jpg": "img/16-24-p-cat-motors.webp", "cat-section-pipe.jpg": "img/17-25-p-cat-section-pipe.webp", "driver-litbec.jpg": "img/18-26-p-driver-litbec.webp", "fan-goldmedal-speedo.jpg": "img/19-27-p-fan-goldmedal-speedo.webp", "gen-tank.jpg": "img/20-28-p-gen-tank.webp", "gen-tools.jpg": "img/21-29-p-gen-tools.webp", "hero-shop.jpg": "img/24-30-p-hero-shop.webp", "ledstrip-litbec-echo.jpg": "img/25-31-p-ledstrip-litbec-echo.webp", "paint-eshine.jpg": "img/26-32-p-paint-eshine.webp", "paint-malak.jpg": "img/27-33-p-paint-malak.webp", "panel-goldmedal-atom.jpg": "img/28-34-p-panel-goldmedal-atom.webp", "plasto-pipe.jpg": "img/29-35-p-plasto-pipe.webp", "ropes.jpg": "img/34-40-p-ropes.webp", "rassi-12mm.jpg": "img/51-56-p-rassi-12mm.webp", "parde-rod.jpg": "img/52-57-p-parde-rod.webp", "centring-nails.jpg": "img/5-16-p-centring-nails.webp", "drip-joiner.jpg": "img/53-59-p-drip-connectors.webp", "apcolite-enamel.jpg": "img/8-19-p-apcolite-enamel.webp", "shop-inside-1.jpg": "img/35-41-p-shop-inside-1.webp", "shop-inside-2.jpg": "img/36-42-p-shop-inside-2.webp", "shop-outside.jpg": "img/37-43-p-shop-outside.webp", "tasla-plastic.jpg": "img/38-44-p-tasla-plastic.webp", "aqua-plast-pipes.jpg": "img/50-55-p-aqua-plast-pipes.webp", "polo-health-faucet.jpg": "img/47-52-p-polo-health-faucet.webp", "rr-alarm-bell.jpg": "img/11-2-rr-alarm-bell.webp", "rr-ivaa-switch.jpg": "img/49-54-p-rr-ivaa-switch.webp", "wires-dormit.jpg": "img/39-45-p-wires-dormit.webp", "guru-garden-pipe.jpg": "img/48-53-p-guru-garden-pipe.webp", "tractor-brand-lime-colour.jpg": "img/3-1-tractor-brand-lime-colour.webp", "line-dori.jpg": "img/10-2-line-dori.webp", "lal-qila-cement-colour.jpg": "img/23-3-lal-qila-cement-colour.webp", "arkwell-upvc-ball-valve.jpg": "img/31-4-arkwell-upvc-ball-valve.webp", "panther-copper-adhesive.jpg": "img/2-1-panther-copper-adhesive.webp", "bulbond-xtra-adhesive.jpg": "img/9-2-bulbond-xtra-adhesive.webp", "astral-vetra-lv401.jpg": "img/22-3-astral-vetra-lv401.webp", "upvc-valve-63mm.jpg": "img/33-4-upvc-valve-63mm.webp", "white-cat-hcl.jpg": "img/44-5-white-cat-hcl.webp", "weldfit-ptfe-tape.jpg": "img/54-6-weldfit-ptfe-tape.webp", "drfixit-pidiproof-lw101.jpg": "img/55-7-drfixit-pidiproof-lw101.webp", "zplus-ball-valve-20mm.jpg": "img/4-1-zplus-ball-valve-20mm.webp"};var LOGO='img/1-logo.png';var BIZCARD='img/6-17-p-bizcard.webp';var POSTER_IMGS={"parcos": "img/30-37-p-poster-parcos.webp"};</script>
+<script>var IMGS={"tdk-capacitor.jpg": "img/40-46-p-tdk-capacitor.webp", "fusion-pro.jpg": "img/41-47-p-fusion-pro.webp", "fevicol-sh.jpg": "img/42-48-p-fevicol-sh.webp", "surya-plus.jpg": "img/43-49-p-surya-plus.webp", "surya-cem.jpg": "img/45-50-p-surya-cem.webp", "fan-goldmedal.jpg": "img/46-51-p-fan-goldmedal.webp", "bulb-goldmedal-wow.jpg": "img/7-18-p-bulb-goldmedal-wow.webp", "cat-bath-accessories.jpg": "img/32-4-cat-bath-accessories.webp", "cat-bathroom-kit.jpg": "img/12-20-p-cat-bathroom-kit.webp", "cat-door-kit.jpg": "img/13-21-p-cat-door-kit.webp", "cat-garden-pipe.jpg": "img/14-22-p-cat-garden-pipe.webp", "cat-gi-products.jpg": "img/15-23-p-cat-gi-products.webp", "cat-motors.jpg": "img/16-24-p-cat-motors.webp", "cat-section-pipe.jpg": "img/17-25-p-cat-section-pipe.webp", "driver-litbec.jpg": "img/18-26-p-driver-litbec.webp", "fan-goldmedal-speedo.jpg": "img/19-27-p-fan-goldmedal-speedo.webp", "gen-tank.jpg": "img/20-28-p-gen-tank.webp", "gen-tools.jpg": "img/21-29-p-gen-tools.webp", "hero-shop.jpg": "img/24-30-p-hero-shop.webp", "ledstrip-litbec-echo.jpg": "img/25-31-p-ledstrip-litbec-echo.webp", "paint-eshine.jpg": "img/26-32-p-paint-eshine.webp", "paint-malak.jpg": "img/27-33-p-paint-malak.webp", "panel-goldmedal-atom.jpg": "img/28-34-p-panel-goldmedal-atom.webp", "plasto-pipe.jpg": "img/29-35-p-plasto-pipe.webp", "ropes.jpg": "img/34-40-p-ropes.webp", "rassi-12mm.jpg": "img/51-56-p-rassi-12mm.webp", "parde-rod.jpg": "img/52-57-p-parde-rod.webp", "centring-nails.jpg": "img/5-16-p-centring-nails.webp", "drip-joiner.jpg": "img/53-59-p-drip-connectors.webp", "apcolite-enamel.jpg": "img/8-19-p-apcolite-enamel.webp", "shop-inside-1.jpg": "img/35-41-p-shop-inside-1.webp", "shop-inside-2.jpg": "img/36-42-p-shop-inside-2.webp", "shop-outside.jpg": "img/37-43-p-shop-outside.webp", "tasla-plastic.jpg": "img/38-44-p-tasla-plastic.webp", "aqua-plast-pipes.jpg": "img/50-55-p-aqua-plast-pipes.webp", "polo-health-faucet.jpg": "img/47-52-p-polo-health-faucet.webp", "rr-alarm-bell.jpg": "img/11-2-rr-alarm-bell.webp", "rr-ivaa-switch.jpg": "img/49-54-p-rr-ivaa-switch.webp", "wires-dormit.jpg": "img/39-45-p-wires-dormit.webp", "guru-garden-pipe.jpg": "img/48-53-p-guru-garden-pipe.webp", "tractor-brand-lime-colour.jpg": "img/3-1-tractor-brand-lime-colour.webp", "line-dori.jpg": "img/10-2-line-dori.webp", "lal-qila-cement-colour.jpg": "img/23-3-lal-qila-cement-colour.webp", "arkwell-upvc-ball-valve.jpg": "img/31-4-arkwell-upvc-ball-valve.webp", "panther-copper-adhesive.jpg": "img/2-1-panther-copper-adhesive.webp", "bulbond-xtra-adhesive.jpg": "img/9-2-bulbond-xtra-adhesive.webp", "astral-vetra-lv401.jpg": "img/22-3-astral-vetra-lv401.webp", "upvc-valve-63mm.jpg": "img/33-4-upvc-valve-63mm.webp", "white-cat-hcl.jpg": "img/44-5-white-cat-hcl.webp", "weldfit-ptfe-tape.jpg": "img/54-6-weldfit-ptfe-tape.webp", "drfixit-pidiproof-lw101.jpg": "img/55-7-drfixit-pidiproof-lw101.webp", "zplus-ball-valve-20mm.jpg": "img/4-1-zplus-ball-valve-20mm.webp", "thor-bulb-50w.jpg": "img/54-60-p-thor-bulb-50w.webp", "soap-dispenser.jpg": "img/55-61-p-soap-dispenser.webp"};var LOGO='img/1-logo.png';var BIZCARD='img/6-17-p-bizcard.webp';var POSTER_IMGS={"parcos": "img/30-37-p-poster-parcos.webp"};</script>
 <script>
 Array.prototype.forEach.call(document.querySelectorAll('img'),function(im){var s=im.getAttribute('src'); if(s==='logo.png'){im.src=LOGO}else if(s&&IMGS[s]){im.src=IMGS[s]}});
 Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function(im){im.src=BIZCARD});
@@ -849,7 +876,9 @@ var PRODUCTS=[
  {img:'white-cat-hcl.jpg',brand:'WHITE CAT',hi:'HCL - Hydrochloric Acid (1 kg, special grade)',en:'HCL - Hydrochloric Acid (1 kg, special grade)',alt:'White Cat HCL Hydrochloric Acid 1 kg can, special grade',cat:'adh'},
  {img:'weldfit-ptfe-tape.jpg',brand:'WELD FIT',hi:'PTFE thread seal tape (teflon tape)',en:'PTFE thread seal tape (teflon tape)',alt:'Weld Fit PTFE thread seal tape (teflon tape) boxes',cat:'pipe'},
  {img:'drfixit-pidiproof-lw101.jpg',brand:'DR. FIXIT',hi:'Pidiproof LW+ 101 (tonic for cement)',en:'Pidiproof LW+ 101 (tonic for cement)',alt:'Dr. Fixit Pidiproof LW+ 101 tonic for cement jar',cat:'adh'},
- {img:'zplus-ball-valve-20mm.jpg',brand:'Z+',hi:'Ball valve (20 mm, 3/4 inch)',en:'Ball valve (20 mm, 3/4 inch)',alt:'Z+ ball valve 20mm 3/4 inch boxes',cat:'pipe'}
+ {img:'zplus-ball-valve-20mm.jpg',brand:'Z+',hi:'Ball valve (20 mm, 3/4 inch)',en:'Ball valve (20 mm, 3/4 inch)',alt:'Z+ ball valve 20mm 3/4 inch boxes',cat:'pipe'},
+ {img:'thor-bulb-50w.jpg',brand:'GOLDMEDAL',hi:'THOR LED bulb (50W, B22 cap)',en:'THOR LED bulb (50W, B22 cap)',alt:'Goldmedal THOR LED bulb 50W with box, 90% energy saving, B22 cap',cat:'elec'},
+ {img:'soap-dispenser.jpg',brand:'GENERAL',hi:'Liquid soap dispenser (2 chamber, wall mount)',en:'Double soap & shampoo dispenser (wall mounted)',alt:'White wall-mounted two-chamber liquid soap and shampoo dispenser with chrome push button',cat:'hw'}
 ];
 var MORE=[
  {img:'gen-tank.jpg',brand:'POLYRAJ \u2022 AQUA PLAST',hi:'Paani ki tanki',en:'Water tanks',alt:'Paani ki tanki (water tanks)',sil:1,cat:'pipe'},
@@ -941,6 +970,41 @@ var POSTERS=[
 document.getElementById('posterGrid').innerHTML=POSTERS.map(function(p){
   return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div></div>';
 }).join('');
+
+
+/* Photo slides strip - Parcos + Malak (swipe, arrows, dots) */
+var PSLIDES=[
+ {img:POSTER_IMGS['parcos'],hi:'Parcos switch boards',en:'Parcos switch boards'},
+ {img:IMGS['paint-malak.jpg'],hi:'Malak Active Plus distemper',en:'Malak Active Plus distemper'},
+ {img:'img/56-62-p-malak-poster.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/57-63-p-malak-1.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/58-64-p-malak-2.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/59-65-p-malak-3.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/60-66-p-malak-4.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/61-67-p-malak-5.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/62-68-p-malak-6.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/63-69-p-malak-7.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'},
+ {img:'img/64-70-p-malak-8.webp',hi:'Malak Map Active Plus',en:'Malak Map Active Plus'}
+];
+(function(){
+var strip=document.getElementById('pshow'),dots=document.getElementById('psDots');
+if(!strip||!dots)return;
+strip.innerHTML=PSLIDES.map(function(p){return '<figure class="psl"><img loading="lazy" src="'+p.img+'" alt="'+esc(p.en)+'"><figcaption><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></figcaption></figure>'}).join('');
+dots.innerHTML=PSLIDES.map(function(_,i){return '<button type="button" data-i="'+i+'" aria-label="Photo '+(i+1)+'"></button>'}).join('');
+var dbs=dots.querySelectorAll('button');
+function cur(){var sl=strip.querySelector('.psl');if(!sl)return 0;return Math.round(strip.scrollLeft/(sl.offsetWidth+12))}
+function mark(){var c=Math.max(0,Math.min(PSLIDES.length-1,cur()));for(var i=0;i<dbs.length;i++)dbs[i].classList.toggle('on',i===c)}
+function go(i){var sl=strip.querySelector('.psl');if(!sl)return;i=(i+PSLIDES.length)%PSLIDES.length;strip.scrollTo({left:i*(sl.offsetWidth+12),behavior:'smooth'})}
+strip.addEventListener('scroll',function(){window.requestAnimationFrame(mark)});
+dots.addEventListener('click',function(e){var b=e.target.closest('button');if(b)go(+b.getAttribute('data-i'))});
+document.getElementById('psPrev').addEventListener('click',function(){go(cur()-1)});
+document.getElementById('psNext').addEventListener('click',function(){go(cur()+1)});
+mark();
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+ var auto=setInterval(function(){if(document.hidden)return;go(cur()+1)},4500);
+ strip.addEventListener('pointerdown',function(){clearInterval(auto);auto=null},{once:true});
+}
+})();
 
 /* "Mere liye kya chahiye?" guide */
 (function(){
