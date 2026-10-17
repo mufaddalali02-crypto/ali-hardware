@@ -1212,6 +1212,9 @@ document.addEventListener('click',function(e){
     <div class="w-title metal-gold w-shine"><span class="t-hi">Namaste!</span><span class="t-en">Namaste!</span><span class="t-mr">Namaskar!</span></div>
     <p class="w-sub"><span class="t-hi">Aapka naam? (optional)</span><span class="t-en">Your name? (optional)</span><span class="t-mr">&#2340;&#2369;&#2350;&#2330;&#2375; &#2344;&#2366;&#2357;? (optional)</span></p>
     <input id="wnm" type="text" maxlength="30" autocomplete="off" placeholder="Naam / Name / &#2344;&#2366;&#2357;">
+    <input id="wph" type="tel" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="Mobile number (optional) - 98XXXXXXXX">
+    <div class="w-consent"><span class="t-hi">Number sirf Ali Hardware ko dikhega.</span><span class="t-en">Number is visible only to Ali Hardware.</span><span class="t-mr">&#2344;&#2306;&#2348;&#2352; &#2347;&#2325;&#2381;&#2340; Ali Hardware &#2354;&#2366; &#2342;&#2367;&#2360;&#2375;&#2354;.</span></div>
+    <div class="w-err" id="werr" role="alert"></div>
     <button class="w-go" id="wgo" type="button"><span class="t-hi">Shuru karein</span><span class="t-en">Let's start</span><span class="t-mr">&#2360;&#2369;&#2352;&#2370; &#2325;&#2352;&#2366;</span></button>
     <button class="w-skip" id="wsk" type="button"><span class="t-hi">Skip</span><span class="t-en">Skip</span><span class="t-mr">&#2360;&#2381;&#2325;&#2367;&#2346;</span></button>
     <div class="w-note"><span class="t-hi">Naam sirf aapke phone me rehta hai.</span><span class="t-en">Your name stays only on your phone.</span><span class="t-mr">&#2344;&#2366;&#2357; &#2347;&#2325;&#2381;&#2340; &#2340;&#2369;&#2350;&#2330;&#2381;&#2351;&#2366; &#2347;&#2379;&#2344;&#2350;&#2343;&#2381;&#2351;&#2375; &#2352;&#2366;&#2361;&#2368;&#2354;.</span></div>
@@ -1237,6 +1240,9 @@ document.addEventListener('click',function(e){
 #wnm{width:100%;box-sizing:border-box;padding:13px 15px;border-radius:12px;border:1px solid var(--hairgold);background:rgba(255,255,255,.05);color:var(--ink);font:inherit;font-size:16px;text-align:center;margin-bottom:12px}
 .w-go{width:100%;padding:13px;border-radius:999px;border:0;background:linear-gradient(145deg,var(--gold2),#c39a2b);color:#241a05;font:inherit;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 6px 18px rgba(212,175,55,.3)}
 .w-skip{margin-top:12px;background:none;border:0;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;text-decoration:underline}
+#wph{width:100%;box-sizing:border-box;padding:13px 15px;border-radius:12px;border:1px solid var(--hairgold);background:rgba(255,255,255,.05);color:var(--ink);font:inherit;font-size:16px;text-align:center;margin-bottom:6px}
+.w-consent{font-size:12.5px;color:var(--silver-dim);margin-bottom:10px}
+.w-err{color:#f87171;font-size:13px;min-height:17px;margin-bottom:6px}
 .w-note{margin-top:12px;font-size:12px;color:var(--silver-dim)}
 .w-big{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;line-height:1.45;padding:14px 4px}
 .w-spark{font-size:34px;animation:wPop .5s both}
@@ -1271,7 +1277,23 @@ function finish(nm){
   ov.classList.remove('open');
   if(window.__ahOnWelcomeDone)window.__ahOnWelcomeDone();
 }
-document.getElementById('wgo').addEventListener('click',function(){showWelcome(inp.value.trim())});
+document.getElementById('wgo').addEventListener('click',function(){
+  var nm=inp.value.trim();
+  var p=document.getElementById('wph').value.replace(/\D/g,'');
+  if(p.length>10&&p.slice(0,2)==='91')p=p.slice(2);
+  if(p.length===11&&p[0]==='0')p=p.slice(1);
+  var err=document.getElementById('werr');
+  if(p){
+    if(!/^[6-9]\d{9}$/.test(p)){err.textContent='10 digit ka sahi mobile number likhein / Enter a valid 10-digit mobile';return}
+    if(nm.length<2){err.textContent='Number ke saath naam bhi likhein / Please enter your name too';return}
+    err.textContent='';
+    try{localStorage.setItem('ah-visitor-v1','done')}catch(e){}
+    try{fetch(window.AH_LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',name:nm,phone:p})}).catch(function(){})}catch(e){}
+  }else{
+    try{localStorage.setItem('ah-visitor-v1','skip')}catch(e){}
+  }
+  showWelcome(nm);
+});
 document.getElementById('wsk').addEventListener('click',function(){showWelcome('')});
 inp.addEventListener('keydown',function(e){if(e.key==='Enter')showWelcome(inp.value.trim())});
 })();
