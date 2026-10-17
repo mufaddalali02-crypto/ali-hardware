@@ -473,6 +473,13 @@ header{background:rgba(28,11,4,.96)}
       </div>
       <figcaption><span class="t-hi">Super Texmo openwell pump - heavy duty</span><span class="t-en">Super Texmo openwell pump - heavy duty</span></figcaption>
     </figure>
+    <figure class="vd-card">
+      <div class="vd-wrap">
+        <video controls preload="none" playsinline poster="img/2-orient-poster.webp" src="img/1-v4-final.mp4"></video>
+        <span class="vd-badge">0:28</span>
+      </div>
+      <figcaption><span class="t-hi">Orient 18W LED bulb - High Glo</span><span class="t-en">Orient 18W LED bulb - High Glo</span></figcaption>
+    </figure>
   </div>
 </section>
 
@@ -1016,7 +1023,7 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 </div>
 <script>
 (function(){
-  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(r){if(r&&r.update)r.update()}).catch(function(){})})}
   var dp=null,btn=document.getElementById('ahIns'),ov=document.getElementById('ahInsOv');
   if(!btn||!ov)return;
   function standalone(){return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true}
@@ -1034,4 +1041,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-          </html>
+  </html>
