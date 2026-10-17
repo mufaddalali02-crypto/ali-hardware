@@ -301,6 +301,17 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .vsmic:hover{background:rgba(212,175,55,.18)}
 .vsmic.on{background:#c0392b;border-color:#c0392b;color:#fff;animation:vspulse 1.1s ease-in-out infinite}
 @keyframes vspulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.45)}50%{box-shadow:0 0 0 9px rgba(192,57,43,0)}}
+.gdBtn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin:10px 0 0;padding:14px;border-radius:999px;border:1.5px solid var(--hairgold);background:linear-gradient(145deg,var(--gold),var(--gold-deep));color:#1c0b04;font:inherit;font-weight:800;font-size:16px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.45)}
+.gdOv{position:fixed;inset:0;z-index:95;background:rgba(0,0,0,.68);display:flex;align-items:flex-end;justify-content:center}
+.gdCard{width:100%;max-width:560px;max-height:86vh;overflow:auto;background:var(--card);border:1.5px solid var(--hairgold);border-radius:20px 20px 0 0;padding:20px 16px 22px}
+.gdCard h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:4px}
+.gdSub{color:var(--muted);font-size:14px;margin-bottom:16px}
+.gdOpt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:15px 16px;margin-bottom:10px;border-radius:14px;border:1.5px solid var(--hairgold);background:rgba(212,175,55,.06);color:var(--ink);font:inherit;font-size:16.5px;font-weight:700;cursor:pointer}
+.gdOpt:hover{background:rgba(212,175,55,.14)}
+.gdOpt .gi{font-size:24px}
+.gdBack{background:none;border:0;color:var(--gold2);font:inherit;font-size:14px;font-weight:700;cursor:pointer;padding:4px 0 12px}
+.gdChip{display:inline-block;background:rgba(212,175,55,.1);border:1px solid var(--hairgold);border-radius:999px;padding:8px 14px;margin:0 8px 8px 0;font-size:14.5px;font-weight:600;color:var(--ink)}
+.gdWa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:13px;border-radius:999px;border:0;background:linear-gradient(145deg,#2ac263,var(--wa));color:#fff;font:inherit;font-weight:800;font-size:15.5px;cursor:pointer;text-decoration:none}
 .cats{display:flex;gap:8px;overflow-x:auto;padding:10px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 .ct{flex:none;padding:9px 16px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
@@ -521,6 +532,7 @@ header{background:rgba(28,11,4,.96)}
   <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span><span class="t-mr">दुकानातील काही उत्पादने</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span><span class="t-mr">हे खरे फोटो आमच्या दुकानातील आहेत. किंमत जाणून घेण्यासाठी WhatsApp वर विचारा.</span></p>
   <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"><button type="button" class="vsmic" id="vsMic" hidden aria-label="Voice search">&#127908;</button></div>
+  <button type="button" class="gdBtn" id="gdBtn">&#129517; <span class="t-hi">Mere liye kya chahiye?</span><span class="t-en">What do I need?</span><span class="t-mr">माझ्यासाठी काय हवे?</span></button>
   <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span><span class="t-mr">सर्व</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span><span class="t-mr">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span><span class="t-mr">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span><span class="t-mr">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span><span class="t-mr">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span><span class="t-mr">उरलेले साहित्य</span></button></div>
   <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span><span class="t-mr">काही सापडले नाही - WhatsApp वर विचारा.</span></div>
   <div class="prods" id="prodGrid"></div>
@@ -807,6 +819,52 @@ document.getElementById('posterGrid').innerHTML=POSTERS.map(function(p){
   return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div></div>';
 }).join('');
 
+/* "Mere liye kya chahiye?" guide */
+(function(){
+var G={
+plumb:{ic:'\u{1F527}',hi:'Nal / pipeline ka kaam',en:'Plumbing work',mr:'नळ / पाइपलाइनचे काम',opts:[
+ {hi:'Nal se leakage hai',en:'Tap / pipe leakage',mr:'नळ गळती आहे',items:['PTFE thread seal tape (teflon tape)','Health faucet (jet spray set)','UPVC ball valve (1/2 inch, 15 mm)']},
+ {hi:'Nayi pipe fitting',en:'New pipe fitting',mr:'नवी पाइप फिटिंग',items:['UPVC & CPVC pipe','Drip pipe joiner (jodne wala)','PTFE thread seal tape (teflon tape)','UPVC valve (63 mm)']},
+ {hi:'Garden pipe chahiye',en:'Garden pipe',mr:'गार्डन पाइप हवा',items:['Guru garden pipe (1/2 inch, 100 ft)']},
+ {hi:'Tanki ka overflow band karna hai',en:'Stop tank overflow',mr:'टाकीचा ओव्हरफ्लो थांबवायचा',items:['Paani bachao alarm bell']}]},
+elec:{ic:'\u{1F4A1}',hi:'Bijli / wiring ka kaam',en:'Electrical work',mr:'वीज / वायरिंगचे काम',opts:[
+ {hi:'Nayi light / bulb lagana hai',en:'New light / bulb',mr:'नवी लाइट / बल्ब लावायचा',items:['WOW LED bulb','Atom-Mini panel light','Echo series LED strip','LED driver (power supply)']},
+ {hi:'Switch / board chahiye',en:'Switch / board',mr:'स्विच / बोर्ड हवा',items:['ivaa modular switch']},
+ {hi:'Fan lagana hai',en:'New fan',mr:'पंखा लावायचा',items:['Speedo Air ceiling fan','Ceiling fan (Volt 400 / Speedo Air)']},
+ {hi:'Motor nahi chal rahi',en:'Motor not starting',mr:'मोटार चालू होत नाही',items:['Motor capacitor (TDK 36µF, 450 V)']}]},
+paint:{ic:'\u{1F3A8}',hi:'Paint / rang ka kaam',en:'Painting work',mr:'पेंट / रंगाचे काम',opts:[
+ {hi:'Deewar ka paint',en:'Wall paint',mr:'भिंतीचे पेंट',items:['Active Plus distemper','Hi sheen emulsion']},
+ {hi:'White wash karna hai',en:'White wash',mr:'व्हाइट वॉश करायचे',items:['Surya Cem white wash (5 Kg)','Surya Plus premium basecoat (5 Kg)']},
+ {hi:'Aluminium / lohe ka paint',en:'Aluminium / metal paint',mr:'अ‍ॅल्युमिनियम / लोखंडाचे पेंट',items:['Fusion Pro Enamel (aluminium paint, 1 Ltr)','Premium Enamel (Gloss)']},
+ {hi:'Cement colour chahiye',en:'Cement colour',mr:'सिमेंट कलर हवा',items:['Cement colour - sandal (1 kg)','Lime colour (pink, blue, green)']}]},
+adh:{ic:'\u{1FA79}',hi:'Chipkane / jodne ka kaam',en:'Sticking / joining work',mr:'चिकटवण्याचे / जोडण्याचे काम',opts:[
+ {hi:'Lakdi chipkana hai',en:'Wood gluing',mr:'लाकूड चिकटवायचे',items:['Fevicol SH (woodworking adhesive)']},
+ {hi:'Turant chipkane wala',en:'Instant adhesive',mr:'लगेच चिकटणारे',items:['LV 401 instant adhesive','Copper synthetic resin adhesive (500 g)','Xtra synthetic resin adhesive (500 g)']},
+ {hi:'Pipe ke dhage leak ho rahe',en:'Thread leak',mr:'धाग्यांतून गळती',items:['PTFE thread seal tape (teflon tape)']}]}
+};
+function T(o){return '<span class="t-hi">'+o.hi+'</span><span class="t-en">'+o.en+'</span><span class="t-mr">'+o.mr+'</span>'}
+var ov=null;
+function open(){if(ov)return;ov=document.createElement('div');ov.className='gdOv';ov.innerHTML='<div class="gdCard" id="gdCard"></div>';document.body.appendChild(ov);ov.addEventListener('click',function(e){if(e.target===ov)close()});step1()}
+function close(){if(ov){ov.remove();ov=null}}
+function step1(){var c=document.getElementById('gdCard');
+c.innerHTML='<h3>'+T({hi:'Mere liye kya chahiye?',en:'What do I need?',mr:'माझ्यासाठी काय हवे?'})+'</h3><div class="gdSub">'+T({hi:'2 sawaal - aur hum bata denge kya saaman chahiye',en:'2 questions - we will tell you what you need',mr:'2 प्रश्न - आम्ही सांगू काय लागेल'})+'</div>'
++Object.keys(G).map(function(k){return '<button type="button" class="gdOpt" data-k="'+k+'"><span class="gi">'+G[k].ic+'</span>'+T(G[k])+'</button>'}).join('')
++'<a class="gdBack" href="https://wa.me/918261896180" target="_blank" rel="noopener">'+T({hi:'Samajh nahi aa raha? WhatsApp par poochho \u203a',en:'Not sure? Ask on WhatsApp \u203a',mr:'समजत नाही? WhatsApp वर विचारा \u203a'})+'</a>';
+c.querySelectorAll('.gdOpt').forEach(function(b){b.addEventListener('click',function(){step2(b.getAttribute('data-k'))})})}
+function step2(k){var c=document.getElementById('gdCard'),g=G[k];
+c.innerHTML='<button type="button" class="gdBack" id="gdBk">\u2039 '+T({hi:'Wapas',en:'Back',mr:'मागे'})+'</button><h3>'+g.ic+' '+T(g)+'</h3><div class="gdSub">'+T({hi:'Kaam chuniye:',en:'Pick the job:',mr:'काम निवडा:'})+'</div>'
++g.opts.map(function(o,i){return '<button type="button" class="gdOpt" data-i="'+i+'">'+T(o)+'</button>'}).join('');
+c.querySelector('#gdBk').addEventListener('click',step1);
+c.querySelectorAll('.gdOpt').forEach(function(b){b.addEventListener('click',function(){result(G[k].opts[+b.getAttribute('data-i')])})})}
+function result(o){var c=document.getElementById('gdCard');
+var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe ye saaman chahiye:\n- '+o.items.join('\n- '));
+c.innerHTML='<button type="button" class="gdBack" id="gdBk">\u2039 '+T({hi:'Wapas',en:'Back',mr:'मागे'})+'</button><h3>'+T({hi:'Aapko ye chahiye:',en:'You need:',mr:'तुम्हाला हे हवे:'})+'</h3><div class="gdSub">'+T(o)+'</div><div>'
++o.items.map(function(x){return '<span class="gdChip">'+x+'</span>'}).join('')+'</div>'
++'<a class="gdWa" href="'+wa+'" target="_blank" rel="noopener">\u{1F4AC} '+T({hi:'Ye list WhatsApp par bhejo',en:'Send this list on WhatsApp',mr:'ही यादी WhatsApp वर पाठवा'})+'</a>';
+c.querySelector('#gdBk').addEventListener('click',step1)}
+document.getElementById('gdBtn').addEventListener('click',open);
+})()
+
 /* language toggle */
 var langBtn=document.getElementById('langBtn');
 function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
@@ -1075,4 +1133,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-  </html>
+</html>
