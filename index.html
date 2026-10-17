@@ -296,6 +296,11 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .srch input{width:100%;padding:14px 16px 14px 44px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--ink);font:inherit;font-size:17px}
 .srch input::placeholder{color:var(--muted)}
 .srch:before{content:"\1F50D";position:absolute;left:15px;top:11px;font-size:18px}
+.srch input{padding-right:56px}
+.vsmic{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1.5px solid var(--hairgold);background:rgba(212,175,55,.1);color:var(--gold2);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit;padding:0}
+.vsmic:hover{background:rgba(212,175,55,.18)}
+.vsmic.on{background:#c0392b;border-color:#c0392b;color:#fff;animation:vspulse 1.1s ease-in-out infinite}
+@keyframes vspulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,.45)}50%{box-shadow:0 0 0 9px rgba(192,57,43,0)}}
 .cats{display:flex;gap:8px;overflow-x:auto;padding:10px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 .ct{flex:none;padding:9px 16px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
@@ -515,7 +520,7 @@ header{background:rgba(28,11,4,.96)}
   <div class="eyebrow metal-gold"><span class="t-hi">Asli photos</span><span class="t-en">Real photos</span><span class="t-mr">खरे फोटो</span></div>
   <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span><span class="t-mr">दुकानातील काही उत्पादने</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span><span class="t-mr">हे खरे फोटो आमच्या दुकानातील आहेत. किंमत जाणून घेण्यासाठी WhatsApp वर विचारा.</span></p>
-  <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"></div>
+  <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"><button type="button" class="vsmic" id="vsMic" hidden aria-label="Voice search">&#127908;</button></div>
   <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span><span class="t-mr">सर्व</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span><span class="t-mr">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span><span class="t-mr">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span><span class="t-mr">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span><span class="t-mr">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span><span class="t-mr">उरलेले साहित्य</span></button></div>
   <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span><span class="t-mr">काही सापडले नाही - WhatsApp वर विचारा.</span></div>
   <div class="prods" id="prodGrid"></div>
@@ -752,16 +757,44 @@ document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
 (function(){var nt=document.getElementById('nayaTrack');if(!nt)return;var last=PRODUCTS.slice(-6);nt.innerHTML=last.map(function(p,i){return card(p,PRODUCTS.length-6+i+1)}).join('')})();
 (function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores'),cur='all';if(!inp)return;
-window.applyProdFilter=function(){var q=inp.value.trim().toLowerCase(),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
+var DEVMAP=[['पाईप','pipe'],['पाइप','pipe'],['पंखा','fan'],['बल्ब','bulb'],['लाइट','light'],['स्ट्रिप','strip'],['एलईडी','led'],['तार','wire'],['वायर','wire'],['रस्सी','rassi'],['रॉड','rod'],['पर्दा','parde'],['परदा','parde'],['इनेमल','enamel'],['पेंट','paint'],['रंग','colour'],['डिस्टेंपर','distemper'],['इमल्शन','emulsion'],['व्हाइटवॉश','white'],['बेसकोट','basecoat'],['फेविकॉल','fevicol'],['गोंद','adhesive'],['ग्लू','adhesive'],['कील','nail'],['कीळ','nail'],['स्विच','switch'],['वाल्व','valve'],['वॉल्व','valve'],['टंकी','tank'],['टाकी','tank'],['मोटर','motor'],['मोटार','motor'],['कैपेसिटर','capacitor'],['कॅपेसिटर','capacitor'],['टेप','tape'],['टेफ्लॉन','teflon'],['फॉसेट','faucet'],['नल','faucet'],['नळ','faucet'],['पंप','pump'],['अलार्म','alarm'],['बेल','bell'],['एसिड','acid'],['सिमेंट','cement'],['सीमेंट','cement'],['गार्डन','garden'],['जॉइनर','joiner'],['टूल्स','tools'],['हथौड़ा','tools'],['प्लास्टिक','plastic'],['डोरी','dori'],['तसला','tasla'],['टस्ला','tasla'],['लाइम','lime'],['वॉश','wash']];
+var FILL={'दिखाओ':1,'दिखावा':1,'दाखवा':1,'चाहिए':1,'चाहिये':1,'पाहिजे':1,'बताओ':1,'सांगा':1,'मुझे':1,'मला':1,'का':1,'की':1,'के':1,'को':1,'चा':1,'ची':1,'चे':1,'है':1,'आहे':1,'दे':1,'द्या':1,'i':1,'me':1,'please':1,'show':1,'want':1,'need':1,'dikhao':1,'chahiye':1,'batao':1};
+function normQ(v){var q=(v||'').trim().toLowerCase();if(!q)return '';
+var toks=q.split(/\s+/),out=[];
+for(var i=0;i<toks.length;i++){var t=toks[i];
+for(var j=0;j<DEVMAP.length;j++){if(t.indexOf(DEVMAP[j][0])>-1)t=t.split(DEVMAP[j][0]).join(DEVMAP[j][1])}
+if(FILL[t])continue;out.push(t)}
+return out.length?out.join(' '):q}
+window.applyProdFilter=function(){var q=normQ(inp.value),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
 for(var i=0;i<all.length;i++){var el=all[i],c=el.getAttribute('data-cat');
 var okc=(el.closest('#tileGrid'))?true:(cur==='all'||c===cur);
-var ok=okc&&(!q||el.getAttribute('data-s').indexOf(q)>-1);el.style.display=ok?'':'none';if(ok)shown++}
+var ok=okc&&(!q||q.split(' ').every(function(t){return el.getAttribute('data-s').indexOf(t)>-1}));el.style.display=ok?'':'none';if(ok)shown++}
 nr.style.display=((q||cur!=='all')&&!shown)?'block':'none'};
 inp.addEventListener('input',window.applyProdFilter);
 var tabs=document.getElementById('catTabs');
 if(tabs){tabs.addEventListener('click',function(e){var b=e.target.closest('.ct');if(!b)return;cur=b.getAttribute('data-c');
 var all=tabs.querySelectorAll('.ct');for(var i=0;i<all.length;i++)all[i].classList.toggle('on',all[i]===b);
 window.applyProdFilter()})}})();
+/* voice search (free browser speech API - mic hidden jahan support nahi) */
+(function(){
+var mic=document.getElementById('vsMic'),inp2=document.getElementById('psearch');
+if(!mic||!inp2)return;
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR)return;
+mic.hidden=false;
+var rec=null,on=false;
+function stopUI(){on=false;mic.classList.remove('on');mic.innerHTML='&#127908;'}
+mic.addEventListener('click',function(){
+if(on){try{rec.stop()}catch(e){}return}
+rec=new SR();
+var l=document.documentElement.lang;
+rec.lang=(l==='mr'?'mr-IN':(l==='en'?'en-IN':'hi-IN'));
+rec.interimResults=false;rec.maxAlternatives=1;
+rec.onresult=function(e){var t=(e.results[0]&&e.results[0][0]&&e.results[0][0].transcript)||'';inp2.value=t;inp2.dispatchEvent(new Event('input',{bubbles:true}))};
+rec.onend=stopUI;rec.onerror=stopUI;
+try{rec.start();on=true;mic.classList.add('on');mic.textContent='\u23FA'}catch(e){stopUI()}
+});
+})();
 document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
   return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span><span class="t-mr">'+esc(c)+'</span></div>';
 }).join('');
