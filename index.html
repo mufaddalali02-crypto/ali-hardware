@@ -389,6 +389,16 @@ html[data-theme="light"] header .hd-name{background-image:linear-gradient(100deg
 .dw-offer::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);transform:translateX(-130%);animation:offerSheen 4.4s ease-in-out infinite;pointer-events:none}
 @keyframes offerSheen{0%,55%{transform:translateX(-130%)}85%,100%{transform:translateX(130%)}}
 @media (prefers-reduced-motion:reduce){header .hd-name,.dw-offer::after{animation:none}}
+/* open/closed live badge (IST 6:30-21:30) */
+.obadge{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700;background:rgba(22,163,74,.14);border:1px solid rgba(34,197,94,.55);color:#4ade80;width:max-content}
+.obadge .ob-dot{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:obPulse 2s ease-in-out infinite;flex:none}
+.obadge .ob-closed{display:none}
+.obadge.closed{background:rgba(220,38,38,.14);border-color:rgba(248,113,113,.55);color:#f87171}
+.obadge.closed .ob-dot{background:#ef4444;box-shadow:0 0 6px #ef4444;animation:none}
+.obadge.closed .ob-open{display:none}
+.obadge.closed .ob-closed{display:inline}
+@keyframes obPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.65}}
+@media (prefers-reduced-motion:reduce){.obadge .ob-dot{animation:none}}
 /* Dussehra overrides */
 :root{--bg:#1c0b04; --bg2:#261006; --card:#2b1306; --card2:#361a09;
   --gold:#ff9f1c; --gold2:#ffd166; --gold-deep:#b45309;
@@ -468,6 +478,7 @@ header{background:rgba(28,11,4,.96)}
     <div class="goldline"></div>
     <p class="tag"><span class="t-hi">Plastic, electric, motor ke saaman ka ek hi thikaana - Chandralok Market ke paas, Main Road, Dharni.</span><span class="t-en">Plastic, electrical and motor supplies under one roof - near Chandralok Market, Main Road, Dharni.</span><span class="t-mr">प्लास्टिक, इलेक्ट्रिक, मोटर साहित्याचे एकच ठिकाण - चंद्रलोक मार्केटजवळ, मेन रोड, धारणी.</span></p>
     <div class="addr">&#128205; <span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span><span class="t-mr">चंद्रलोक मार्केटजवळ, मेन रोड, धारणी (महा.)</span></div>
+<div id="openBadge" class="obadge"><span class="ob-dot"></span><span class="ob-open"><span class="t-hi">Abhi khula hai &middot; 6:30 AM - 9:30 PM</span><span class="t-en">Open now &middot; 6:30 AM - 9:30 PM</span><span class="t-mr">आत्ता उघडे आहे &middot; सकाळी ६:३० - रात्री ९:३०</span></span><span class="ob-closed"><span class="t-hi">Band hai &middot; subah 6:30 baje khulega</span><span class="t-en">Closed &middot; opens 6:30 AM</span><span class="t-mr">बंद आहे &middot; सकाळी ६:३० वाजता उघडेल</span></span></div>
   </div>
 </div>
 
@@ -923,6 +934,7 @@ var langBtn=document.getElementById('langBtn');
 function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
 langBtn.addEventListener('click',function(){var l=document.documentElement.lang;setLang(l==='hi'?'en':(l==='en'?'mr':'hi'))});
 try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi'||saved==='mr')setLang(saved)}catch(e){}
+;(function(){var ob=document.getElementById('openBadge');if(!ob)return;function obTick(){try{var ist=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));var mins=ist.getHours()*60+ist.getMinutes();ob.classList.toggle('closed',!(mins>=390&&mins<1170))}catch(e){}}obTick();setInterval(obTick,30000)})();
 
 /* dark/light theme toggle (default dark) */
 (function(){
@@ -1225,4 +1237,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-                </html>
+  </html>
