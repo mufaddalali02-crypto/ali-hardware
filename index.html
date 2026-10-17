@@ -434,6 +434,7 @@ header{background:rgba(28,11,4,.96)}
 .gm .gr{font-size:44px;margin:6px 0}
 .add-q{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;padding:8px 10px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(255,159,28,.12);color:var(--gold2);font:inherit;font-weight:800;font-size:14px;cursor:pointer}
 .add-q.on{background:var(--gold);color:#3a1204;border-color:var(--gold)}
+.sh-q{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:8px;padding:8px 10px;border-radius:999px;border:1.5px solid var(--hairline);background:rgba(201,206,216,.08);color:var(--silver2);font:inherit;font-weight:800;font-size:14px;cursor:pointer}
 .lbar{position:fixed;left:12px;right:12px;bottom:92px;z-index:70;display:none;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#d9560f,#f28c1b);color:#fff;padding:12px 16px;border-radius:999px;font-weight:800;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,.5);border:0;font-family:inherit;cursor:pointer}
 @media(min-width:760px){.lbar{bottom:20px;left:auto;right:20px;max-width:320px}}
 .lsh{position:fixed;inset:0;z-index:90;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center}
@@ -832,12 +833,21 @@ function card(p,n){
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
   return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'">'+stk+'</div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
-    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a></div></div>';
+    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a><button type="button" class="sh-q">&#8599; <span class="t-hi">Share karo</span><span class="t-en">Share</span><span class="t-mr">&#2358;&#2375;&#2309;&#2352; &#2325;&#2352;&#2366;</span></button></div></div>';
 }
 document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
 (function(){var nt=document.getElementById('nayaTrack');if(!nt)return;var last=PRODUCTS.slice(-6);nt.innerHTML=last.map(function(p,i){return card(p,PRODUCTS.length-6+i+1)}).join('')})();
+/* SHARE button: native share sheet jahan ho, warna WhatsApp */
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('.sh-q');if(!b)return;
+var cardEl=b.closest('.prod'),l=document.documentElement.lang;
+var nmEl=cardEl?cardEl.querySelector('.n .t-'+(['hi','en','mr'].indexOf(l)>-1?l:'en')):null;
+var nm=nmEl?nmEl.textContent:'Ali Hardware & Electricals';
+var msg=nm+' - Ali Hardware & Electricals, Main Road, Dharni';
+var url='https://mufaddalali02-crypto.github.io/ali-hardware/';
+if(navigator.share){navigator.share({title:'Ali Hardware & Electricals',text:msg,url:url}).catch(function(){})}
+else{window.open('https://wa.me/?text='+encodeURIComponent(msg+'\n'+url),'_blank','noopener')}});
 (function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores'),cur='all';if(!inp)return;
 var DEVMAP=[['पाईप','pipe'],['पाइप','pipe'],['पंखा','fan'],['बल्ब','bulb'],['लाइट','light'],['स्ट्रिप','strip'],['एलईडी','led'],['तार','wire'],['वायर','wire'],['रस्सी','rassi'],['रॉड','rod'],['पर्दा','parde'],['परदा','parde'],['इनेमल','enamel'],['पेंट','paint'],['रंग','colour'],['डिस्टेंपर','distemper'],['इमल्शन','emulsion'],['व्हाइटवॉश','white'],['बेसकोट','basecoat'],['फेविकॉल','fevicol'],['गोंद','adhesive'],['ग्लू','adhesive'],['कील','nail'],['कीळ','nail'],['स्विच','switch'],['वाल्व','valve'],['वॉल्व','valve'],['टंकी','tank'],['टाकी','tank'],['मोटर','motor'],['मोटार','motor'],['कैपेसिटर','capacitor'],['कॅपेसिटर','capacitor'],['टेप','tape'],['टेफ्लॉन','teflon'],['फॉसेट','faucet'],['नल','faucet'],['नळ','faucet'],['पंप','pump'],['अलार्म','alarm'],['बेल','bell'],['एसिड','acid'],['सिमेंट','cement'],['सीमेंट','cement'],['गार्डन','garden'],['जॉइनर','joiner'],['टूल्स','tools'],['हथौड़ा','tools'],['प्लास्टिक','plastic'],['डोरी','dori'],['तसला','tasla'],['टस्ला','tasla'],['लाइम','lime'],['वॉश','wash']];
 var FILL={'दिखाओ':1,'दिखावा':1,'दाखवा':1,'चाहिए':1,'चाहिये':1,'पाहिजे':1,'बताओ':1,'सांगा':1,'मुझे':1,'मला':1,'का':1,'की':1,'के':1,'को':1,'चा':1,'ची':1,'चे':1,'है':1,'आहे':1,'दे':1,'द्या':1,'i':1,'me':1,'please':1,'show':1,'want':1,'need':1,'dikhao':1,'chahiye':1,'batao':1};
