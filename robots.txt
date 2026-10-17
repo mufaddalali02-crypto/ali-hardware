@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mufaddalali02-crypto.github.io/ali-hardware/sitemap.xml
