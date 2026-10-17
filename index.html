@@ -86,8 +86,9 @@ a{text-decoration:none;color:inherit}
 .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
 /* bilingual spans */
-html[lang="hi"] .t-en{display:none!important}
-html[lang="en"] .t-hi{display:none!important}
+html[lang="hi"] .t-en,html[lang="hi"] .t-mr{display:none!important}
+html[lang="en"] .t-hi,html[lang="en"] .t-mr{display:none!important}
+html[lang="mr"] .t-hi,html[lang="mr"] .t-en{display:none!important}
 
 /* metallic text */
 .metal-gold{background:linear-gradient(100deg,#8f741f 0%,#d4af37 22%,#ffe9a8 40%,#f5d469 52%,#a5832a 72%,#e9c85c 92%,#8f741f 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -383,8 +384,8 @@ header{background:rgba(28,11,4,.96)}
       <div class="hd-sub">Main Road, Dharni</div>
     </div>
     <div class="hd-right">
-      <button type="button" class="lang" id="langBtn"><span class="t-hi">EN</span><span class="t-en">&#2361;&#2367;&#2306;&#2342;&#2368;</span></button>
-      <a class="hd-call" href="tel:+918308244597">&#128222; <span class="ct"><span class="t-hi">Call karein</span><span class="t-en">Call</span></span></a>
+      <button type="button" class="lang" id="langBtn" aria-label="Language / Bhasha"><span class="t-hi">EN</span><span class="t-en">MR</span><span class="t-mr">HI</span></button>
+      <a class="hd-call" href="tel:+918308244597">&#128222; <span class="ct"><span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></span></a>
     </div>
   </div>
 </header>
@@ -394,11 +395,11 @@ header{background:rgba(28,11,4,.96)}
   <img class="ph" fetchpriority="high" decoding="async" src="img/24-30-p-hero-shop.webp" alt="Ali Hardware &amp; Electricals ki dukaan, Main Road, Dharni">
   <div class="hero-ov"></div>
   <div class="hero-tx wrap">
-    <span class="badge"><span class="t-hi">Dharni, Maharashtra</span><span class="t-en">Dharni, Maharashtra</span></span>
+    <span class="badge"><span class="t-hi">Dharni, Maharashtra</span><span class="t-en">Dharni, Maharashtra</span><span class="t-mr">धारणी, महाराष्ट्र</span></span>
     <h1 class="metal-gold">Ali Hardware &amp; Electricals</h1>
     <div class="goldline"></div>
-    <p class="tag"><span class="t-hi">Plastic, electric, motor ke saaman ka ek hi thikaana - Chandralok Market ke paas, Main Road, Dharni.</span><span class="t-en">Plastic, electrical and motor supplies under one roof - near Chandralok Market, Main Road, Dharni.</span></p>
-    <div class="addr">&#128205; <span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span></div>
+    <p class="tag"><span class="t-hi">Plastic, electric, motor ke saaman ka ek hi thikaana - Chandralok Market ke paas, Main Road, Dharni.</span><span class="t-en">Plastic, electrical and motor supplies under one roof - near Chandralok Market, Main Road, Dharni.</span><span class="t-mr">प्लास्टिक, इलेक्ट्रिक, मोटर साहित्याचे एकच ठिकाण - चंद्रलोक मार्केटजवळ, मेन रोड, धारणी.</span></p>
+    <div class="addr">&#128205; <span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span><span class="t-mr">चंद्रलोक मार्केटजवळ, मेन रोड, धारणी (महा.)</span></div>
   </div>
 </div>
 
@@ -415,85 +416,85 @@ header{background:rgba(28,11,4,.96)}
 <!-- DUSSEHRA-OFFER: offer badalna ho to neeche "dw-offer" ka text (hi/en dono) badlo -->
 <div class="wrap"><div class="dw-ban" id="dwban">
   <div class="dw-diyas" aria-hidden="true"><span>&#127993;</span><span>&#127993;</span><span>&#127993;</span><span>&#127993;</span><span>&#127993;</span></div>
-  <h2><span class="t-hi">Shubh Dussehra!</span><span class="t-en">Happy Dussehra!</span></h2>
-  <p><span class="t-hi">Burai par achhai ki jeet ka tyohaar - Ali Hardware &amp; Electricals ki taraf se aapko aur parivar ko Dussehra ki hardik shubhkamnayein.</span><span class="t-en">The festival of good winning over evil - warm Dussehra wishes to you and your family from Ali Hardware &amp; Electricals.</span></p>
-  <div class="dw-offer"><div class="ol"><span class="t-hi">&#127873; Dussehra offer</span><span class="t-en">&#127873; Dussehra offer</span></div><div class="ot"><span class="t-hi">1 HP ki motor lene par ek press free</span><span class="t-en">Buy a 1 HP motor, get a press free</span></div></div>
+  <h2><span class="t-hi">Shubh Dussehra!</span><span class="t-en">Happy Dussehra!</span><span class="t-mr">दसऱ्याच्या हार्दिक शुभेच्छा!</span></h2>
+  <p><span class="t-hi">Burai par achhai ki jeet ka tyohaar - Ali Hardware &amp; Electricals ki taraf se aapko aur parivar ko Dussehra ki hardik shubhkamnayein.</span><span class="t-en">The festival of good winning over evil - warm Dussehra wishes to you and your family from Ali Hardware &amp; Electricals.</span><span class="t-mr">वाईटावर चांगल्याचा विजय म्हणजे दसरा - Ali Hardware &amp; Electricals कडून आपणा सर्वांना व कुटुंबीयांना दसऱ्याच्या हार्दिक शुभेच्छा.</span></p>
+  <div class="dw-offer"><div class="ol"><span class="t-hi">&#127873; Dussehra offer</span><span class="t-en">&#127873; Dussehra offer</span><span class="t-mr">&#127873; दसरा ऑफर</span></div><div class="ot"><span class="t-hi">1 HP ki motor lene par ek press free</span><span class="t-en">Buy a 1 HP motor, get a press free</span><span class="t-mr">1 HP ची मोटार घेतल्यावर एक प्रेस फ्री</span></div></div>
 </div></div>
 <div class="wrap">
   <div class="cta-row">
-    <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span></a>
-    <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
-    <a class="btn btn-map" href="https://share.google/56C974OvKQ4Z5leWG">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
-    <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=21.5516021%2C76.8900016" target="_blank" rel="noopener">&#128739; <span class="t-hi">Dukaan ka route</span><span class="t-en">Get directions</span></a>
+    <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span><span class="t-mr">WhatsApp करा</span></a>
+    <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></a>
+    <a class="btn btn-map" href="https://share.google/56C974OvKQ4Z5leWG">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span><span class="t-mr">नकाशा उघडा</span></a>
+    <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=21.5516021%2C76.8900016" target="_blank" rel="noopener">&#128739; <span class="t-hi">Dukaan ka route</span><span class="t-en">Get directions</span><span class="t-mr">दुकानाचा रस्ता</span></a>
   </div>
 </div>
 
 <section class="wrap rv"><div class="qt">
   <div class="qd" aria-hidden="true"><span>&#127993;</span><span>&#10024;</span><span>&#127993;</span></div>
-  <div class="qg"><span class="t-hi">Shubh Dussehra</span><span class="t-en">Happy Dussehra</span></div>
-  <q><span class="t-hi">Har Zaroorat Ka Saamaan, Bharose Ka Doosra Naam!<br>Ali Hardware &amp; Electricals wishes you a Happy Dussehra!</span><span class="t-en">Har Zaroorat Ka Saamaan, Bharose Ka Doosra Naam!<br>Ali Hardware &amp; Electricals wishes you a Happy Dussehra!</span></q>
+  <div class="qg"><span class="t-hi">Shubh Dussehra</span><span class="t-en">Happy Dussehra</span><span class="t-mr">दसऱ्याच्या शुभेच्छा</span></div>
+  <q><span class="t-hi">Har Zaroorat Ka Saamaan, Bharose Ka Doosra Naam!<br>Ali Hardware &amp; Electricals wishes you a Happy Dussehra!</span><span class="t-en">Har Zaroorat Ka Saamaan, Bharose Ka Doosra Naam!<br>Ali Hardware &amp; Electricals wishes you a Happy Dussehra!</span><span class="t-mr">Har Zaroorat Ka Saamaan, Bharose Ka Doosra Naam!<br>Ali Hardware &amp; Electricals wishes you a Happy Dussehra!</span></q>
 </div></section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Hamari dukaan</span><span class="t-en">Our shop</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Dukaan ke andar</span><span class="t-en">Inside the shop</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Hamari dukaan ki asli photos - bahar se aur andar se.</span><span class="t-en">Real photos of our shop - from outside and inside.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Hamari dukaan</span><span class="t-en">Our shop</span><span class="t-mr">आमचे दुकान</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Dukaan ke andar</span><span class="t-en">Inside the shop</span><span class="t-mr">दुकानाच्या आत</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Hamari dukaan ki asli photos - bahar se aur andar se.</span><span class="t-en">Real photos of our shop - from outside and inside.</span><span class="t-mr">आमच्या दुकानाच्या खऱ्या फोटो - बाहेरून आणि आतून.</span></p>
   <div class="gal">
-    <figure class="gal-wide"><img src="img/37-43-p-shop-outside.webp" alt="Dukaan bahar se" loading="lazy"><figcaption><span class="t-hi">Dukaan bahar se - Main Road, Dharni</span><span class="t-en">The shop from outside - Main Road, Dharni</span></figcaption></figure>
-    <figure class="gal-tall"><img src="img/35-41-p-shop-inside-1.webp" alt="Andar ka galiyara" loading="lazy"><figcaption><span class="t-hi">Andar ka poora stock</span><span class="t-en">Full stock inside</span></figcaption></figure>
-    <figure class="gal-tall"><img src="img/36-42-p-shop-inside-2.webp" alt="Peechhe tak ka nazara" loading="lazy"><figcaption><span class="t-hi">Andar godown tak ka nazara</span><span class="t-en">All the way to the back</span></figcaption></figure>
+    <figure class="gal-wide"><img src="img/37-43-p-shop-outside.webp" alt="Dukaan bahar se" loading="lazy"><figcaption><span class="t-hi">Dukaan bahar se - Main Road, Dharni</span><span class="t-en">The shop from outside - Main Road, Dharni</span><span class="t-mr">दुकान बाहेरून - मेन रोड, धारणी</span></figcaption></figure>
+    <figure class="gal-tall"><img src="img/35-41-p-shop-inside-1.webp" alt="Andar ka galiyara" loading="lazy"><figcaption><span class="t-hi">Andar ka poora stock</span><span class="t-en">Full stock inside</span><span class="t-mr">आतला संपूर्ण स्टॉक</span></figcaption></figure>
+    <figure class="gal-tall"><img src="img/36-42-p-shop-inside-2.webp" alt="Peechhe tak ka nazara" loading="lazy"><figcaption><span class="t-hi">Andar godown tak ka nazara</span><span class="t-en">All the way to the back</span><span class="t-mr">गोदामापर्यंतचा देखावा</span></figcaption></figure>
   </div>
 </section>
 
 
 <!-- VIDEO-SECTION: jab dukaan ki video mile, yahan ek <section> add karo - <video controls playsinline poster="..."> tag, mp4 file repo mein (25MB se chhoti web upload ke liye; badi ho to compress karo). -->
 <section class="wrap rv" id="videos">
-  <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ki videos</span><span class="t-en">Shop videos</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Video gallery</span><span class="t-en">Video gallery</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Dukaan aur saaman ki videos - side swipe karke dekhein, play dabakar chalayein. Video tabhi load hoti hai jab aap play karein.</span><span class="t-en">Videos of the shop and products - swipe sideways and tap play. Videos load only when you play them.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ki videos</span><span class="t-en">Shop videos</span><span class="t-mr">दुकानाच्या व्हिडिओ</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Video gallery</span><span class="t-en">Video gallery</span><span class="t-mr">व्हिडिओ गॅलरी</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Dukaan aur saaman ki videos - side swipe karke dekhein, play dabakar chalayein. Video tabhi load hoti hai jab aap play karein.</span><span class="t-en">Videos of the shop and products - swipe sideways and tap play. Videos load only when you play them.</span><span class="t-mr">दुकान व साहित्याच्या व्हिडिओ - बाजूने स्वाइप करून पाहा, प्ले दाबून चालवा. व्हिडिओ फक्त तुम्ही प्ले केल्यावरच लोड होते.</span></p>
   <div class="vd-track">
     <figure class="vd-card">
       <div class="vd-wrap">
         <video controls preload="none" playsinline poster="img/2-tank-poster.webp" src="img/1-tank-alarm-hq.mp4"></video>
         <span class="vd-badge">0:30</span>
       </div>
-      <figcaption><span class="t-hi">Tank overflow alarm - pani barbaad hone se bachaye</span><span class="t-en">Tank overflow alarm - stops water wastage</span></figcaption>
+      <figcaption><span class="t-hi">Tank overflow alarm - pani barbaad hone se bachaye</span><span class="t-en">Tank overflow alarm - stops water wastage</span><span class="t-mr">टाकी ओव्हरफ्लो अलार्म - पाण्याचा अपव्यय थांबवा</span></figcaption>
     </figure>
     <figure class="vd-card">
       <div class="vd-wrap">
         <video controls preload="none" playsinline poster="img/4-tap-poster.webp" src="img/3-tap-leakage-hq.mp4"></video>
         <span class="vd-badge">0:31</span>
       </div>
-      <figcaption><span class="t-hi">Nal leakage ka solution - quality taps</span><span class="t-en">Tap leakage solution - quality taps</span></figcaption>
+      <figcaption><span class="t-hi">Nal leakage ka solution - quality taps</span><span class="t-en">Tap leakage solution - quality taps</span><span class="t-mr">नळ गळतीचे समाधान - दर्जेदार नळ</span></figcaption>
     </figure>
     <figure class="vd-card">
       <div class="vd-wrap">
         <video controls preload="none" playsinline poster="img/6-texmo-poster.webp" src="img/5-texmo-pump-hq.mp4"></video>
         <span class="vd-badge">0:28</span>
       </div>
-      <figcaption><span class="t-hi">Super Texmo openwell pump - heavy duty</span><span class="t-en">Super Texmo openwell pump - heavy duty</span></figcaption>
+      <figcaption><span class="t-hi">Super Texmo openwell pump - heavy duty</span><span class="t-en">Super Texmo openwell pump - heavy duty</span><span class="t-mr">Super Texmo openwell pump - heavy duty</span></figcaption>
     </figure>
     <figure class="vd-card">
       <div class="vd-wrap">
         <video controls preload="none" playsinline poster="img/2-orient-poster.webp" src="img/1-v4-final.mp4"></video>
         <span class="vd-badge">0:28</span>
       </div>
-      <figcaption><span class="t-hi">Orient 18W LED bulb - High Glo</span><span class="t-en">Orient 18W LED bulb - High Glo</span></figcaption>
+      <figcaption><span class="t-hi">Orient 18W LED bulb - High Glo</span><span class="t-en">Orient 18W LED bulb - High Glo</span><span class="t-mr">Orient 18W LED bulb - High Glo</span></figcaption>
     </figure>
   </div>
 </section>
 
 <!-- NAYA-MAAL: ye section PRODUCTS list ke latest 6 items apne aap dikhata hai - naya card add karte hi ye update ho jata hai, kuch alag se badalna nahi. -->
 <section class="wrap rv" id="naya">
-  <div class="eyebrow metal-gold"><span class="t-hi">Naya maal aaya</span><span class="t-en">New stock</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Naya maal aaya</span><span class="t-en">Just arrived</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Dukaan par aaya latest stock - side swipe karke dekhein.</span><span class="t-en">Latest stock at the shop - swipe sideways to see.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Naya maal aaya</span><span class="t-en">New stock</span><span class="t-mr">नवा माल आला</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Naya maal aaya</span><span class="t-en">Just arrived</span><span class="t-mr">नवा माल आला</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Dukaan par aaya latest stock - side swipe karke dekhein.</span><span class="t-en">Latest stock at the shop - swipe sideways to see.</span><span class="t-mr">दुकानात आलेला नवीन स्टॉक - बाजूने स्वाइप करून पाहा.</span></p>
   <div class="vd-track" id="nayaTrack"></div>
 </section>
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Highlights</span><span class="t-en">Highlights</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Products ki jhalak</span><span class="t-en">Product highlights</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Photos apne aap badalti hain - side ke button se bhi dekh sakte hain.</span><span class="t-en">Photos change on their own - use the side buttons too.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Highlights</span><span class="t-en">Highlights</span><span class="t-mr">Highlights</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Products ki jhalak</span><span class="t-en">Product highlights</span><span class="t-mr">उत्पादनांची झलक</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Photos apne aap badalti hain - side ke button se bhi dekh sakte hain.</span><span class="t-en">Photos change on their own - use the side buttons too.</span><span class="t-mr">फोटो आपोआप बदलतात - बाजूच्या बटणानेही पाहू शकता.</span></p>
   <div class="slidebox" id="slidebox">
     <div class="sl-stage" id="slStage"></div>
     <div class="sl-ctl">
@@ -505,64 +506,64 @@ header{background:rgba(28,11,4,.96)}
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Categories</span><span class="t-en">Categories</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Kya kya milta hai</span><span class="t-en">What we stock</span></h2><div class="line"></div></div>
+  <div class="eyebrow metal-gold"><span class="t-hi">Categories</span><span class="t-en">Categories</span><span class="t-mr">प्रकार</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Kya kya milta hai</span><span class="t-en">What we stock</span><span class="t-mr">काय काय मिळते</span></h2><div class="line"></div></div>
   <div class="rows" id="catRows"></div>
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Asli photos</span><span class="t-en">Real photos</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Asli photos</span><span class="t-en">Real photos</span><span class="t-mr">खरे फोटो</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span><span class="t-mr">दुकानातील काही उत्पादने</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span><span class="t-mr">हे खरे फोटो आमच्या दुकानातील आहेत. किंमत जाणून घेण्यासाठी WhatsApp वर विचारा.</span></p>
   <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"></div>
-  <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span></button></div>
-  <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span></div>
+  <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span><span class="t-mr">सर्व</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span><span class="t-mr">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span><span class="t-mr">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span><span class="t-mr">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span><span class="t-mr">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span><span class="t-mr">उरलेले साहित्य</span></button></div>
+  <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span><span class="t-mr">काही सापडले नाही - WhatsApp वर विचारा.</span></div>
   <div class="prods" id="prodGrid"></div>
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Stock</span><span class="t-en">Stock</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Aur bhi bahut kuch</span><span class="t-en">And much more</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">In categories ka poora stock milta hai - photo ke liye WhatsApp par poochhiye.</span><span class="t-en">Full stock in these categories too - ask on WhatsApp for photos.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Stock</span><span class="t-en">Stock</span><span class="t-mr">स्टॉक</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Aur bhi bahut kuch</span><span class="t-en">And much more</span><span class="t-mr">आणि बरेच काही</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">In categories ka poora stock milta hai - photo ke liye WhatsApp par poochhiye.</span><span class="t-en">Full stock in these categories too - ask on WhatsApp for photos.</span><span class="t-mr">या प्रकारांमध्येही पूर्ण स्टॉक मिळतो - फोटोंसाठी WhatsApp वर विचारा.</span></p>
   <div class="prods" id="moreGrid"></div>
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Ye bhi milta hai</span><span class="t-en">Also in stock</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Nayi categories</span><span class="t-en">More categories</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">In categories ki photos abhi sample hain - asli maal dukaan par dekhiye ya WhatsApp par photo mangvaiye.</span><span class="t-en">Photos in this section are samples for now - see the actual stock at the shop or ask for photos on WhatsApp.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Ye bhi milta hai</span><span class="t-en">Also in stock</span><span class="t-mr">हेही मिळते</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Nayi categories</span><span class="t-en">More categories</span><span class="t-mr">अधिक प्रकार</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">In categories ki photos abhi sample hain - asli maal dukaan par dekhiye ya WhatsApp par photo mangvaiye.</span><span class="t-en">Photos in this section are samples for now - see the actual stock at the shop or ask for photos on WhatsApp.</span><span class="t-mr">या विभागातील फोटो सध्या नमुना आहेत - खरा माल दुकानात पाहा किंवा WhatsApp वर फोटो मागवा.</span></p>
   <div class="prods" id="tileGrid"></div>
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Ads</span><span class="t-en">Ads</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Hamare ads</span><span class="t-en">Our ads</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Hamari dukaan ke posters - computer par mouse ghumaiye, card 3D mein ghoomta hai.</span><span class="t-en">Posters from our shop - move your mouse on desktop, the cards tilt in 3D.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Ads</span><span class="t-en">Ads</span><span class="t-mr">जाहिराती</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Hamare ads</span><span class="t-en">Our ads</span><span class="t-mr">आमच्या जाहिराती</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Hamari dukaan ke posters - computer par mouse ghumaiye, card 3D mein ghoomta hai.</span><span class="t-en">Posters from our shop - move your mouse on desktop, the cards tilt in 3D.</span><span class="t-mr">आमच्या दुकानाचे पोस्टर्स - कॉम्प्युटरवर माऊस फिरवा, कार्ड 3D मध्ये फिरते.</span></p>
   <div class="posters" id="posterGrid"></div>
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Visiting card</span><span class="t-en">Visiting card</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Hamara card</span><span class="t-en">Our card</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Card apne aap ghoomta rehta hai - rokne ke liye uspar ruk jaiye.</span><span class="t-en">The card spins on its own - hover or hold to pause it.</span></p>
+  <div class="eyebrow metal-gold"><span class="t-hi">Visiting card</span><span class="t-en">Visiting card</span><span class="t-mr">Visiting card</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Hamara card</span><span class="t-en">Our card</span><span class="t-mr">आमचे कार्ड</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Card apne aap ghoomta rehta hai - rokne ke liye uspar ruk jaiye.</span><span class="t-en">The card spins on its own - hover or hold to pause it.</span><span class="t-mr">कार्ड आपोआप फिरत असते - थांबवण्यासाठी त्यावर थांबा.</span></p>
   <div class="vc-stage"><div class="vc-card">
     <img class="vc-face front" data-biz src="" alt="Ali Hardware &amp; Electricals ka visiting card">
     <div class="vc-face back">
       <img class="vc-back-logo" src="img/1-logo.png" alt="">
       <div class="vc-back-name metal-gold">Ali Hardware &amp; Electricals</div>
-      <div class="vc-back-addr"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni</span><span class="t-en">Near Chandralok Market, Main Road, Dharni</span></div>
+      <div class="vc-back-addr"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni</span><span class="t-en">Near Chandralok Market, Main Road, Dharni</span><span class="t-mr">चंद्रलोक मार्केटजवळ, मेन रोड, धारणी</span></div>
     </div>
   </div></div>
 </section>
 
 <section class="wrap rv" id="game">
-  <div class="eyebrow metal-gold"><span class="t-hi">Khel</span><span class="t-en">Game</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Saaman pehchano</span><span class="t-en">Guess the product</span></h2><div class="line"></div></div>
+  <div class="eyebrow metal-gold"><span class="t-hi">Khel</span><span class="t-en">Game</span><span class="t-mr">खेळ</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Saaman pehchano</span><span class="t-en">Guess the product</span><span class="t-mr">साहित्य ओळखा</span></h2><div class="line"></div></div>
   <div class="gm" id="gm">
     <div id="g0">
       <div class="gr" aria-hidden="true">&#127993;</div>
-      <p class="gp"><span class="t-hi">8 photo, 8 sawaal - dukaan ka saaman sahi pehchaniye!</span><span class="t-en">8 photos, 8 questions - can you name the shop's products?</span></p>
-      <button type="button" class="gb" id="gstart"><span class="t-hi">Khel shuru karein</span><span class="t-en">Start game</span></button>
+      <p class="gp"><span class="t-hi">8 photo, 8 sawaal - dukaan ka saaman sahi pehchaniye!</span><span class="t-en">8 photos, 8 questions - can you name the shop's products?</span><span class="t-mr">8 फोटो, 8 प्रश्न - दुकानातले साहित्य बरोबर ओळखा!</span></p>
+      <button type="button" class="gb" id="gstart"><span class="t-hi">Khel shuru karein</span><span class="t-en">Start game</span><span class="t-mr">खेळ सुरू करा</span></button>
     </div>
     <div id="g1" hidden>
       <div class="gs"><span id="gq"></span><span id="gsc"></span></div>
@@ -587,32 +588,32 @@ header{background:rgba(28,11,4,.96)}
 <circle cx="82" cy="16" r="5" fill="#ffd166" stroke="#b45309" stroke-width="2.4"/>
 <path d="M80.5 16 l1.5 0 M82 14.5 l0 3" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
 </svg>
-<div class="gbub"><span class="t-hi">Wah! Ekdum sahi! Aap to saaman ke asli expert ho! &#127942;</span><span class="t-en">Amazing! You really are a product expert! &#127942;</span></div>
+<div class="gbub"><span class="t-hi">Wah! Ekdum sahi! Aap to saaman ke asli expert ho! &#127942;</span><span class="t-en">Amazing! You really are a product expert! &#127942;</span><span class="t-mr">वाह! एकदम बरोबर! तुम्ही तर साहित्याचे खरे तज्ञ आहात! &#127942;</span></div>
 </div>
       <div class="gr" aria-hidden="true" style="display:none"></div>
       <h3 id="gres"></h3>
       <p class="gp" id="gmsg"></p>
-      <button type="button" class="gb" id="gagain"><span class="t-hi">Dobara khelein</span><span class="t-en">Play again</span></button>
+      <button type="button" class="gb" id="gagain"><span class="t-hi">Dobara khelein</span><span class="t-en">Play again</span><span class="t-mr">पुन्हा खेळा</span></button>
     </div>
   </div>
 </section>
 
 <section class="wrap rv" id="reviews">
-  <div class="eyebrow metal-gold"><span class="t-hi">Hamare grahak</span><span class="t-en">Our customers</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Google reviews</span><span class="t-en">Google reviews</span></h2><div class="line"></div></div>
-  <div class="rv-sum"><div class="big">5.0</div><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="cnt"><span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span></div></div>
+  <div class="eyebrow metal-gold"><span class="t-hi">Hamare grahak</span><span class="t-en">Our customers</span><span class="t-mr">आमचे ग्राहक</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Google reviews</span><span class="t-en">Google reviews</span><span class="t-mr">Google reviews</span></h2><div class="line"></div></div>
+  <div class="rv-sum"><div class="big">5.0</div><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="cnt"><span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span><span class="t-mr">Google वर 28 reviews</span></div></div>
   <div class="rv-g"><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#7b1fa2">N</div><div><div class="rv-nm">Nasim</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#00897b">R</div><div><div class="rv-nm">Rishabh</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#e64a19">H</div><div><div class="rv-nm">Hussain</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#3949ab">A</div><div><div class="rv-nm">Ammar</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p></div></div>
-  <p class="sec-sub" style="text-align:center;margin-top:12px"><a href="https://share.google/56C974OvKQ4Z5leWG" style="text-decoration:underline"><span class="t-hi">Sab reviews Google par dekhein</span><span class="t-en">See all reviews on Google</span></a></p>
+  <p class="sec-sub" style="text-align:center;margin-top:12px"><a href="https://share.google/56C974OvKQ4Z5leWG" style="text-decoration:underline"><span class="t-hi">Sab reviews Google par dekhein</span><span class="t-en">See all reviews on Google</span><span class="t-mr">सर्व reviews Google वर पाहा</span></a></p>
 
   <div class="rvf">
-    <div class="eyebrow metal-gold" style="margin-bottom:6px"><span class="t-hi">Apna review likhein</span><span class="t-en">Write your review</span></div>
-    <h3><span class="t-hi">Aapka anubhav kaisa raha?</span><span class="t-en">How was your experience?</span></h3>
-    <p class="rvf-sub"><span class="t-hi">Review WhatsApp par dukaan ko jayega - owner ke approval ke baad yahan dikhega.</span><span class="t-en">Your review goes to the shop on WhatsApp - it appears here after the owner approves it.</span></p>
+    <div class="eyebrow metal-gold" style="margin-bottom:6px"><span class="t-hi">Apna review likhein</span><span class="t-en">Write your review</span><span class="t-mr">तुमचा review लिहा</span></div>
+    <h3><span class="t-hi">Aapka anubhav kaisa raha?</span><span class="t-en">How was your experience?</span><span class="t-mr">तुमचा अनुभव कसा होता?</span></h3>
+    <p class="rvf-sub"><span class="t-hi">Review WhatsApp par dukaan ko jayega - owner ke approval ke baad yahan dikhega.</span><span class="t-en">Your review goes to the shop on WhatsApp - it appears here after the owner approves it.</span><span class="t-mr">Review WhatsApp वर दुकानात जाईल - मालकाच्या मंजुरीनंतर तो येथे दिसेल.</span></p>
     <form id="rvfForm" autocomplete="off">
       <input id="rvfName" type="text" maxlength="40" placeholder="Aapka naam / Your name" required>
       <div class="rvf-stars" id="rvfStars" role="radiogroup" aria-label="star rating"><span data-i="1">&#9733;</span><span data-i="2">&#9733;</span><span data-i="3">&#9733;</span><span data-i="4">&#9733;</span><span data-i="5">&#9733;</span></div>
       <textarea id="rvfText" rows="3" maxlength="500" placeholder="Apna review yahan likhein... / Write your review..." required></textarea>
-      <button type="submit" class="rvf-btn">&#128172; <span class="t-hi">WhatsApp par bhejein</span><span class="t-en">Send on WhatsApp</span></button>
+      <button type="submit" class="rvf-btn">&#128172; <span class="t-hi">WhatsApp par bhejein</span><span class="t-en">Send on WhatsApp</span><span class="t-mr">WhatsApp वर पाठवा</span></button>
     </form>
   </div>
   <script>(function(){
@@ -636,28 +637,28 @@ document.getElementById('rvfForm').addEventListener('submit',function(ev){
 <!-- HOURS-SECTION (abhi hidden): shop timing confirm hone par "hidden" hata kar timing likho. -->
 <section class="wrap rv" id="hours">
   <div class="visit-card" style="text-align:center">
-    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ka samay</span><span class="t-en">Shop hours</span></div>
-    <p class="a" style="font-size:22px;font-weight:800;color:var(--gold2)"><span class="t-hi">&#128339; Subah 6:30 se raat 9:30 tak</span><span class="t-en">&#128339; 6:30 AM to 9:30 PM</span></p>
+    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ka samay</span><span class="t-en">Shop hours</span><span class="t-mr">दुकानाची वेळ</span></div>
+    <p class="a" style="font-size:22px;font-weight:800;color:var(--gold2)"><span class="t-hi">&#128339; Subah 6:30 se raat 9:30 tak</span><span class="t-en">&#128339; 6:30 AM to 9:30 PM</span><span class="t-mr">&#128339; सकाळी 6:30 ते रात्री 9:30</span></p>
   </div>
 </section>
 
 <section class="wrap rv">
   <div class="visit-card qrbox">
-    <div class="eyebrow metal-gold"><span class="t-hi">Scan karein</span><span class="t-en">Scan me</span></div>
-    <p class="a"><span class="t-hi">Phone se scan karke hamari website kholiye ya kisi ko bhejiye.</span><span class="t-en">Scan with your phone to open our website or share it.</span></p>
+    <div class="eyebrow metal-gold"><span class="t-hi">Scan karein</span><span class="t-en">Scan me</span><span class="t-mr">स्कॅन करा</span></div>
+    <p class="a"><span class="t-hi">Phone se scan karke hamari website kholiye ya kisi ko bhejiye.</span><span class="t-en">Scan with your phone to open our website or share it.</span><span class="t-mr">फोनने स्कॅन करून आमची वेबसाइट उघडा किंवा कोणाला पाठवा.</span></p>
     <div class="qrimg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 41 41" shape-rendering="crispEdges" role="img" aria-label="QR code for Ali Hardware website"><rect x="-4" y="-4" width="41" height="41" fill="#fff"/><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM9 0h1v1h-1zM10 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM21 0h1v1h-1zM23 0h1v1h-1zM26 0h1v1h-1zM27 0h1v1h-1zM28 0h1v1h-1zM29 0h1v1h-1zM30 0h1v1h-1zM31 0h1v1h-1zM32 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM10 1h1v1h-1zM12 1h1v1h-1zM13 1h1v1h-1zM14 1h1v1h-1zM15 1h1v1h-1zM17 1h1v1h-1zM21 1h1v1h-1zM24 1h1v1h-1zM26 1h1v1h-1zM32 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 2h1v1h-1zM13 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM19 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM26 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM32 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM14 3h1v1h-1zM16 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM26 3h1v1h-1zM28 3h1v1h-1zM29 3h1v1h-1zM30 3h1v1h-1zM32 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM15 4h1v1h-1zM17 4h1v1h-1zM18 4h1v1h-1zM21 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM26 4h1v1h-1zM28 4h1v1h-1zM29 4h1v1h-1zM30 4h1v1h-1zM32 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM15 5h1v1h-1zM16 5h1v1h-1zM20 5h1v1h-1zM21 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM32 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM29 6h1v1h-1zM30 6h1v1h-1zM31 6h1v1h-1zM32 6h1v1h-1zM8 7h1v1h-1zM9 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM21 7h1v1h-1zM24 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM10 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM14 8h1v1h-1zM15 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM18 9h1v1h-1zM19 9h1v1h-1zM21 9h1v1h-1zM23 9h1v1h-1zM26 9h1v1h-1zM27 9h1v1h-1zM29 9h1v1h-1zM30 9h1v1h-1zM31 9h1v1h-1zM32 9h1v1h-1zM0 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM15 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM30 10h1v1h-1zM31 10h1v1h-1zM3 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM11 11h1v1h-1zM12 11h1v1h-1zM14 11h1v1h-1zM16 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM26 11h1v1h-1zM28 11h1v1h-1zM29 11h1v1h-1zM30 11h1v1h-1zM0 12h1v1h-1zM1 12h1v1h-1zM3 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM9 12h1v1h-1zM10 12h1v1h-1zM12 12h1v1h-1zM18 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM28 12h1v1h-1zM29 12h1v1h-1zM32 12h1v1h-1zM1 13h1v1h-1zM3 13h1v1h-1zM4 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM12 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM19 13h1v1h-1zM21 13h1v1h-1zM23 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM29 13h1v1h-1zM30 13h1v1h-1zM31 13h1v1h-1zM32 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM3 14h1v1h-1zM6 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM11 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM17 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM25 14h1v1h-1zM26 14h1v1h-1zM28 14h1v1h-1zM29 14h1v1h-1zM30 14h1v1h-1zM31 14h1v1h-1zM0 15h1v1h-1zM7 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM20 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM26 15h1v1h-1zM28 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM0 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM9 16h1v1h-1zM11 16h1v1h-1zM12 16h1v1h-1zM17 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM27 16h1v1h-1zM28 16h1v1h-1zM32 16h1v1h-1zM1 17h1v1h-1zM2 17h1v1h-1zM7 17h1v1h-1zM10 17h1v1h-1zM16 17h1v1h-1zM17 17h1v1h-1zM19 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM32 17h1v1h-1zM0 18h1v1h-1zM1 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM9 18h1v1h-1zM11 18h1v1h-1zM15 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM27 18h1v1h-1zM28 18h1v1h-1zM30 18h1v1h-1zM31 18h1v1h-1zM0 19h1v1h-1zM1 19h1v1h-1zM3 19h1v1h-1zM8 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1zM17 19h1v1h-1zM18 19h1v1h-1zM21 19h1v1h-1zM23 19h1v1h-1zM25 19h1v1h-1zM27 19h1v1h-1zM28 19h1v1h-1zM29 19h1v1h-1zM30 19h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM9 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM19 20h1v1h-1zM22 20h1v1h-1zM24 20h1v1h-1zM25 20h1v1h-1zM27 20h1v1h-1zM28 20h1v1h-1zM29 20h1v1h-1zM31 20h1v1h-1zM0 21h1v1h-1zM1 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM5 21h1v1h-1zM7 21h1v1h-1zM8 21h1v1h-1zM9 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM18 21h1v1h-1zM19 21h1v1h-1zM20 21h1v1h-1zM22 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM26 21h1v1h-1zM30 21h1v1h-1zM32 21h1v1h-1zM0 22h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM11 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM31 22h1v1h-1zM0 23h1v1h-1zM2 23h1v1h-1zM3 23h1v1h-1zM12 23h1v1h-1zM13 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM21 23h1v1h-1zM24 23h1v1h-1zM25 23h1v1h-1zM27 23h1v1h-1zM28 23h1v1h-1zM30 23h1v1h-1zM0 24h1v1h-1zM4 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM9 24h1v1h-1zM11 24h1v1h-1zM13 24h1v1h-1zM14 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM27 24h1v1h-1zM28 24h1v1h-1zM31 24h1v1h-1zM8 25h1v1h-1zM9 25h1v1h-1zM10 25h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM19 25h1v1h-1zM20 25h1v1h-1zM21 25h1v1h-1zM24 25h1v1h-1zM28 25h1v1h-1zM30 25h1v1h-1zM31 25h1v1h-1zM32 25h1v1h-1zM0 26h1v1h-1zM1 26h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM9 26h1v1h-1zM12 26h1v1h-1zM13 26h1v1h-1zM14 26h1v1h-1zM15 26h1v1h-1zM18 26h1v1h-1zM22 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM26 26h1v1h-1zM28 26h1v1h-1zM30 26h1v1h-1zM31 26h1v1h-1zM0 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM11 27h1v1h-1zM13 27h1v1h-1zM15 27h1v1h-1zM20 27h1v1h-1zM21 27h1v1h-1zM22 27h1v1h-1zM23 27h1v1h-1zM24 27h1v1h-1zM28 27h1v1h-1zM29 27h1v1h-1zM30 27h1v1h-1zM31 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM3 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM14 28h1v1h-1zM15 28h1v1h-1zM18 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM22 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM26 28h1v1h-1zM27 28h1v1h-1zM28 28h1v1h-1zM29 28h1v1h-1zM32 28h1v1h-1zM0 29h1v1h-1zM2 29h1v1h-1zM3 29h1v1h-1zM4 29h1v1h-1zM6 29h1v1h-1zM8 29h1v1h-1zM9 29h1v1h-1zM12 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM17 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM28 29h1v1h-1zM29 29h1v1h-1zM31 29h1v1h-1zM32 29h1v1h-1zM0 30h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM6 30h1v1h-1zM8 30h1v1h-1zM9 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM18 30h1v1h-1zM20 30h1v1h-1zM21 30h1v1h-1zM23 30h1v1h-1zM24 30h1v1h-1zM25 30h1v1h-1zM26 30h1v1h-1zM27 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM10 31h1v1h-1zM11 31h1v1h-1zM12 31h1v1h-1zM16 31h1v1h-1zM21 31h1v1h-1zM22 31h1v1h-1zM25 31h1v1h-1zM26 31h1v1h-1zM28 31h1v1h-1zM29 31h1v1h-1zM30 31h1v1h-1zM0 32h1v1h-1zM1 32h1v1h-1zM2 32h1v1h-1zM3 32h1v1h-1zM4 32h1v1h-1zM5 32h1v1h-1zM6 32h1v1h-1zM8 32h1v1h-1zM9 32h1v1h-1zM14 32h1v1h-1zM16 32h1v1h-1zM17 32h1v1h-1zM22 32h1v1h-1zM23 32h1v1h-1zM24 32h1v1h-1zM27 32h1v1h-1zM31 32h1v1h-1z" fill="#000"/></svg></div>
   </div>
 </section>
 
 <section class="wrap rv">
   <div class="visit-card">
-    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan par aaiye</span><span class="t-en">Visit the shop</span></div>
-    <p class="a"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span></p>
+    <div class="eyebrow metal-gold"><span class="t-hi">Dukaan par aaiye</span><span class="t-en">Visit the shop</span><span class="t-mr">दुकानाला भेट द्या</span></div>
+    <p class="a"><span class="t-hi">Chandralok Market ke paas, Main Road, Dharni (MH)</span><span class="t-en">Near Chandralok Market, Main Road, Dharni (MH)</span><span class="t-mr">चंद्रलोक मार्केटजवळ, मेन रोड, धारणी (महा.)</span></p>
     <div class="cta-row">
-      <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span></a>
-      <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
-      <a class="btn btn-map" href="https://share.google/56C974OvKQ4Z5leWG">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span></a>
-    <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=21.5516021%2C76.8900016" target="_blank" rel="noopener">&#128739; <span class="t-hi">Dukaan ka route</span><span class="t-en">Get directions</span></a>
+      <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp karein</span><span class="t-en">WhatsApp</span><span class="t-mr">WhatsApp करा</span></a>
+      <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></a>
+      <a class="btn btn-map" href="https://share.google/56C974OvKQ4Z5leWG">&#128205; <span class="t-hi">Map kholein</span><span class="t-en">Open map</span><span class="t-mr">नकाशा उघडा</span></a>
+    <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&amp;destination=21.5516021%2C76.8900016" target="_blank" rel="noopener">&#128739; <span class="t-hi">Dukaan ka route</span><span class="t-en">Get directions</span><span class="t-mr">दुकानाचा रस्ता</span></a>
     </div>
     <iframe class="mapfr" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ali Hardware &amp; Electricals map" src="https://maps.google.com/maps?q=Ali+Hardware+%26+Electricals&amp;ll=21.5516021,76.8900016&amp;z=17&amp;output=embed"></iframe>
   </div>
@@ -665,13 +666,13 @@ document.getElementById('rvfForm').addEventListener('submit',function(ev){
 
 <div class="closing wrap">
   <div class="rule"></div>
-  <p><span class="t-hi">Keemat ya offer ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices or offers listed here - please ask on WhatsApp.</span></p>
+  <p><span class="t-hi">Keemat ya offer ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices or offers listed here - please ask on WhatsApp.</span><span class="t-mr">किंमत किंवा ऑफरची माहिती येथे नाही - कृपया WhatsApp वर विचारा.</span></p>
   <p class="credit">Ali Hardware &amp; Electricals &middot; Dharni</p>
 </div>
 
 <div class="bottombar">
-  <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp</span><span class="t-en">WhatsApp</span></a>
-  <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span></a>
+  <a class="btn btn-wa" href="https://wa.me/918261896180?text=Namaste%2C%20mujhe%20Ali%20Hardware%20%26%20Electricals%20ke%20products%20ke%20baare%20mein%20jaankari%20chahiye.">&#128172; <span class="t-hi">WhatsApp</span><span class="t-en">WhatsApp</span><span class="t-mr">WhatsApp</span></a>
+  <a class="btn btn-ph" href="tel:+918308244597">&#128222; <span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></a>
 </div>
 
 <script>var IMGS={"tdk-capacitor.jpg": "img/40-46-p-tdk-capacitor.webp", "fusion-pro.jpg": "img/41-47-p-fusion-pro.webp", "fevicol-sh.jpg": "img/42-48-p-fevicol-sh.webp", "surya-plus.jpg": "img/43-49-p-surya-plus.webp", "surya-cem.jpg": "img/45-50-p-surya-cem.webp", "fan-goldmedal.jpg": "img/46-51-p-fan-goldmedal.webp", "bulb-goldmedal-wow.jpg": "img/7-18-p-bulb-goldmedal-wow.webp", "cat-bath-accessories.jpg": "img/32-4-cat-bath-accessories.webp", "cat-bathroom-kit.jpg": "img/12-20-p-cat-bathroom-kit.webp", "cat-door-kit.jpg": "img/13-21-p-cat-door-kit.webp", "cat-garden-pipe.jpg": "img/14-22-p-cat-garden-pipe.webp", "cat-gi-products.jpg": "img/15-23-p-cat-gi-products.webp", "cat-motors.jpg": "img/16-24-p-cat-motors.webp", "cat-section-pipe.jpg": "img/17-25-p-cat-section-pipe.webp", "driver-litbec.jpg": "img/18-26-p-driver-litbec.webp", "fan-goldmedal-speedo.jpg": "img/19-27-p-fan-goldmedal-speedo.webp", "gen-tank.jpg": "img/20-28-p-gen-tank.webp", "gen-tools.jpg": "img/21-29-p-gen-tools.webp", "hero-shop.jpg": "img/24-30-p-hero-shop.webp", "ledstrip-litbec-echo.jpg": "img/25-31-p-ledstrip-litbec-echo.webp", "paint-eshine.jpg": "img/26-32-p-paint-eshine.webp", "paint-malak.jpg": "img/27-33-p-paint-malak.webp", "panel-goldmedal-atom.jpg": "img/28-34-p-panel-goldmedal-atom.webp", "plasto-pipe.jpg": "img/29-35-p-plasto-pipe.webp", "ropes.jpg": "img/34-40-p-ropes.webp", "rassi-12mm.jpg": "img/51-56-p-rassi-12mm.webp", "parde-rod.jpg": "img/52-57-p-parde-rod.webp", "centring-nails.jpg": "img/5-16-p-centring-nails.webp", "drip-joiner.jpg": "img/53-59-p-drip-connectors.webp", "apcolite-enamel.jpg": "img/8-19-p-apcolite-enamel.webp", "shop-inside-1.jpg": "img/35-41-p-shop-inside-1.webp", "shop-inside-2.jpg": "img/36-42-p-shop-inside-2.webp", "shop-outside.jpg": "img/37-43-p-shop-outside.webp", "tasla-plastic.jpg": "img/38-44-p-tasla-plastic.webp", "aqua-plast-pipes.jpg": "img/50-55-p-aqua-plast-pipes.webp", "polo-health-faucet.jpg": "img/47-52-p-polo-health-faucet.webp", "rr-alarm-bell.jpg": "img/11-2-rr-alarm-bell.webp", "rr-ivaa-switch.jpg": "img/49-54-p-rr-ivaa-switch.webp", "wires-dormit.jpg": "img/39-45-p-wires-dormit.webp", "guru-garden-pipe.jpg": "img/48-53-p-guru-garden-pipe.webp", "tractor-brand-lime-colour.jpg": "img/3-1-tractor-brand-lime-colour.webp", "line-dori.jpg": "img/10-2-line-dori.webp", "lal-qila-cement-colour.jpg": "img/23-3-lal-qila-cement-colour.webp", "arkwell-upvc-ball-valve.jpg": "img/31-4-arkwell-upvc-ball-valve.webp", "panther-copper-adhesive.jpg": "img/2-1-panther-copper-adhesive.webp", "bulbond-xtra-adhesive.jpg": "img/9-2-bulbond-xtra-adhesive.webp", "astral-vetra-lv401.jpg": "img/22-3-astral-vetra-lv401.webp", "upvc-valve-63mm.jpg": "img/33-4-upvc-valve-63mm.webp", "white-cat-hcl.jpg": "img/44-5-white-cat-hcl.webp", "weldfit-ptfe-tape.jpg": "img/54-6-weldfit-ptfe-tape.webp", "drfixit-pidiproof-lw101.jpg": "img/55-7-drfixit-pidiproof-lw101.webp", "zplus-ball-valve-20mm.jpg": "img/4-1-zplus-ball-valve-20mm.webp"};var LOGO='img/1-logo.png';var BIZCARD='img/6-17-p-bizcard.webp';var POSTER_IMGS={"parcos": "img/30-37-p-poster-parcos.webp"};</script>
@@ -744,7 +745,7 @@ function card(p,n){
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
   return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
-    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span></a></div></div>';
+    '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a></div></div>';
 }
 document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
@@ -762,7 +763,7 @@ if(tabs){tabs.addEventListener('click',function(e){var b=e.target.closest('.ct')
 var all=tabs.querySelectorAll('.ct');for(var i=0;i<all.length;i++)all[i].classList.toggle('on',all[i]===b);
 window.applyProdFilter()})}})();
 document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
-  return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span></div>';
+  return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span><span class="t-mr">'+esc(c)+'</span></div>';
 }).join('');
 
 /* Ad posters - naya poster add karne ke liye bas yahan ek line jodo (aur posters.js mein uski image) */
@@ -770,21 +771,21 @@ var POSTERS=[
  {key:'parcos',hi:'Parcos switch boards',en:'Parcos switch boards'}
 ];
 document.getElementById('posterGrid').innerHTML=POSTERS.map(function(p){
-  return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div>';
+  return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div></div>';
 }).join('');
 
 /* language toggle */
 var langBtn=document.getElementById('langBtn');
 function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
-langBtn.addEventListener('click',function(){setLang(document.documentElement.lang==='hi'?'en':'hi')});
-try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi')setLang(saved)}catch(e){}
+langBtn.addEventListener('click',function(){var l=document.documentElement.lang;setLang(l==='hi'?'en':(l==='en'?'mr':'hi'))});
+try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi'||saved==='mr')setLang(saved)}catch(e){}
 
 /* slideshow */
 var stage=document.getElementById('slStage'),dots=document.getElementById('slDots');
 var n=SLIDE_IDX.length,cur=0,paused=false,timer=null;
 var SLIDES=SLIDE_IDX.map(function(i){return PRODUCTS[i]});
 stage.innerHTML=SLIDES.map(function(p){
-  return '<div class="sl"><img src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"><div class="sl-cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div></div>';
+  return '<div class="sl"><img src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"><div class="sl-cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div></div>';
 }).join('');
 dots.innerHTML=SLIDES.map(function(p,i){return '<button type="button" class="sl-dot" data-i="'+i+'" aria-label="'+esc(p.en)+'"></button>'}).join('');
 var slEls=stage.children,dotEls=dots.children;
@@ -850,7 +851,7 @@ var POOL=window.PRODUCTS.map(function(_,i){return i}),N=8,q,sc,order,cur,busy;
 function $(i){return document.getElementById(i)}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
-function lbl(p){return '<span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span>'}
+function lbl(p){return '<span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span>'}
 function show(id){['g0','g1','g2'].forEach(function(k){$(k).hidden=(k!==id)})}
 function start(){order=shuf(POOL).slice(0,N);q=0;sc=0;show('g1');next()}
 function next(){
@@ -866,25 +867,25 @@ function pick(b){
   if(busy)return;busy=true;var i=+b.getAttribute('data-i'),right=window.PRODUCTS[order[q]]===window.PRODUCTS[i];
   var all=$('gopts').children;
   for(var k=0;k<all.length;k++){if(+all[k].getAttribute('data-i')===order[q])all[k].className='ok'}
-  if(right){sc++;$('gfb').innerHTML='\u2705 <span class="t-hi">Sahi!</span><span class="t-en">Correct!</span>'}
-  else{b.className='no';$('gfb').innerHTML='\u274C <span class="t-hi">Galat - sahi jawab hara hai</span><span class="t-en">Wrong - the right answer is green</span>'}
+  if(right){sc++;$('gfb').innerHTML='\u2705 <span class="t-hi">Sahi!</span><span class="t-en">Correct!</span><span class="t-mr">बरोबर!</span>'}
+  else{b.className='no';$('gfb').innerHTML='\u274C <span class="t-hi">Galat - sahi jawab hara hai</span><span class="t-en">Wrong - the right answer is green</span><span class="t-mr">चूक - बरोबर उत्तर हिरवे आहे</span>'}
   $('gsc').textContent='\u2B50 '+sc;
   setTimeout(function(){q++;if(q<N)next();else end()},1100)
 }
 function end(){
-  show('g2');document.getElementById('gwin').style.display=sc>=7?'flex':'none';$('gres').innerHTML='<span class="t-hi">Aapne '+sc+' / '+N+' sahi pehchane!</span><span class="t-en">You got '+sc+' / '+N+' right!</span>';
+  show('g2');document.getElementById('gwin').style.display=sc>=7?'flex':'none';$('gres').innerHTML='<span class="t-hi">Aapne '+sc+' / '+N+' sahi pehchane!</span><span class="t-en">You got '+sc+' / '+N+' right!</span><span class="t-mr">तुम्ही '+sc+' / '+N+' बरोबर ओळखले!</span>';
   var hi=sc>=7?'Shabaash! Aap to dukaan ke saaman ke expert hain.':sc>=4?'Achha khela! Ek baar aur try karein.':'Koi baat nahi - dobara khelkar dekhiye.';
   var en=sc>=7?'Well done! You really know the shop.':sc>=4?'Nice game! Try once more.':'No worries - give it another go.';
-  $('gmsg').innerHTML='<span class="t-hi">'+hi+'</span><span class="t-en">'+en+'</span>'}
+  $('gmsg').innerHTML='<span class="t-hi">'+hi+'</span><span class="t-en">'+en+'</span><span class="t-mr">'+hi+'</span>'}
 $('gstart').addEventListener('click',start);$('gagain').addEventListener('click',start);
 $('gopts').addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(b)pick(b)});
 })();
 </script>
-<button type="button" class="lbar" id="lbar"><span>&#128220; <span class="t-hi">Meri list</span><span class="t-en">My list</span> (<span id="lcnt">0</span>)</span><span><span class="t-hi">Dekhein &rsaquo;</span><span class="t-en">View &rsaquo;</span></span></button>
+<button type="button" class="lbar" id="lbar"><span>&#128220; <span class="t-hi">Meri list</span><span class="t-en">My list</span><span class="t-mr">माझी यादी</span> (<span id="lcnt">0</span>)</span><span><span class="t-hi">Dekhein &rsaquo;</span><span class="t-en">View &rsaquo;</span><span class="t-mr">पाहा &rsaquo;</span></span></button>
 <div class="lsh" id="lsh"><div class="lpn" role="dialog" aria-label="My list">
-  <h3><span class="t-hi">Meri list</span><span class="t-en">My list</span></h3>
+  <h3><span class="t-hi">Meri list</span><span class="t-en">My list</span><span class="t-mr">माझी यादी</span></h3>
   <ol id="llist"></ol>
-  <div class="la"><button type="button" id="lclose"><span class="t-hi">Band karein</span><span class="t-en">Close</span></button><a id="lsend" href="#" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe bhejein</span><span class="t-en">Send on WhatsApp</span></a></div>
+  <div class="la"><button type="button" id="lclose"><span class="t-hi">Band karein</span><span class="t-en">Close</span><span class="t-mr">बंद करा</span></button><a id="lsend" href="#" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe bhejein</span><span class="t-en">Send on WhatsApp</span><span class="t-mr">WhatsApp वर पाठवा</span></a></div>
 </div></div>
 <script>
 (function(){
@@ -896,7 +897,7 @@ function sync(){
   var all=document.querySelectorAll('.add-q');
   for(var i=0;i<all.length;i++){var on=L.indexOf(all[i].getAttribute('data-nm'))>-1;all[i].className='add-q'+(on?' on':'');
     all[i].querySelector('.ic').innerHTML=on?'&#10003;':'&#10133;';
-    all[i].querySelector('.t-hi').textContent=on?'List mein hai':'List mein jodein';all[i].querySelector('.t-en').textContent=on?'In my list':'Add to my list'}
+    all[i].querySelector('.t-hi').textContent=on?'List mein hai':'List mein jodein';all[i].querySelector('.t-en').textContent=on?'In my list':'Add to my list';var _m=all[i].querySelector('.t-mr');if(_m)_m.textContent=on?'यादीत आहे':'यादीत जोडा'}
 }
 function render(){
   $('llist').innerHTML=L.map(function(n,i){return '<li><span>'+esc(n)+'</span><button type="button" data-r="'+i+'" aria-label="Remove">&#10005;</button></li>'}).join('');
@@ -936,14 +937,14 @@ document.addEventListener('click',function(e){
 .lg-row button{flex:1;padding:10px;border-radius:12px;border:1px solid var(--hairgold);background:none;color:var(--ink);font:inherit;cursor:pointer}
 </style>
 <div class="lg-ov" id="lgov" role="dialog" aria-modal="true" aria-labelledby="lgt"><form class="lg-card" id="lgf" autocomplete="on" novalidate>
-<h3 id="lgt"><span class="t-hi">Swagat hai!</span><span class="t-en">Welcome!</span></h3>
-<p><span class="t-hi">Apna naam aur number bata dein, taaki hum aapki madad kar sakein.</span><span class="t-en">Share your name and number so we can help you.</span></p>
-<label for="lgn"><span class="t-hi">Naam</span><span class="t-en">Name</span></label><input id="lgn" name="name" maxlength="60" autocomplete="name">
-<label for="lgp"><span class="t-hi">Mobile number</span><span class="t-en">Mobile number</span></label><input id="lgp" name="tel" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" placeholder="98XXXXXXXX">
+<h3 id="lgt"><span class="t-hi">Swagat hai!</span><span class="t-en">Welcome!</span><span class="t-mr">स्वागत आहे!</span></h3>
+<p><span class="t-hi">Apna naam aur number bata dein, taaki hum aapki madad kar sakein.</span><span class="t-en">Share your name and number so we can help you.</span><span class="t-mr">तुमचे नाव व नंबर सांगा, म्हणजे आम्ही तुम्हाला मदत करू शकू.</span></p>
+<label for="lgn"><span class="t-hi">Naam</span><span class="t-en">Name</span><span class="t-mr">नाव</span></label><input id="lgn" name="name" maxlength="60" autocomplete="name">
+<label for="lgp"><span class="t-hi">Mobile number</span><span class="t-en">Mobile number</span><span class="t-mr">मोबाईल नंबर</span></label><input id="lgp" name="tel" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" placeholder="98XXXXXXXX">
 <div class="lg-err" id="lge" role="alert"></div>
-<button class="lg-go" type="submit"><span class="t-hi">Aage badhein</span><span class="t-en">Continue</span></button>
-<button class="lg-skip" type="button" id="lgs"><span class="t-hi">Skip karein</span><span class="t-en">Skip</span></button>
-<div class="lg-note"><span class="t-hi">Aapka number sirf dukaan ko milega.</span><span class="t-en">Your number goes only to the shop.</span></div>
+<button class="lg-go" type="submit"><span class="t-hi">Aage badhein</span><span class="t-en">Continue</span><span class="t-mr">पुढे जा</span></button>
+<button class="lg-skip" type="button" id="lgs"><span class="t-hi">Skip karein</span><span class="t-en">Skip</span><span class="t-mr">स्किप करा</span></button>
+<div class="lg-note"><span class="t-hi">Aapka number sirf dukaan ko milega.</span><span class="t-en">Your number goes only to the shop.</span><span class="t-mr">तुमचा नंबर फक्त दुकानाला मिळेल.</span></div>
 </form></div>
 <div class="lg-ov lg-pan" id="lgpan" role="dialog" aria-modal="true"><div class="lg-card">
 <h3>Owner panel</h3>
@@ -1012,13 +1013,13 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 .gwin .gbub:after{content:"";position:absolute;left:-10px;bottom:14px;border:6px solid transparent;border-right:10px solid var(--gold)}
 .gwin svg{flex:0 0 auto}
 </style>
-<button class="ah-ins" id="ahIns" type="button">&#128242; <span class="t-hi">App install karein</span><span class="t-en">Install app</span></button>
+<button class="ah-ins" id="ahIns" type="button">&#128242; <span class="t-hi">App install karein</span><span class="t-en">Install app</span><span class="t-mr">अॅप इन्स्टॉल करा</span></button>
 <div class="ah-ins-ov" id="ahInsOv" role="dialog" aria-modal="true">
   <div class="ah-ins-card">
-    <h3><span class="t-hi">App kaise install karein</span><span class="t-en">How to install the app</span></h3>
-    <p><b>Android (Chrome):</b> <span class="t-hi">Upar &#8942; teen dots dabayein, phir "Add to Home screen" ya "Install app" chunein.</span><span class="t-en">Tap the &#8942; menu at the top, then "Add to Home screen" or "Install app".</span></p>
-    <p><b>iPhone (Safari):</b> <span class="t-hi">Neeche Share button dabayein, phir "Add to Home Screen" chunein.</span><span class="t-en">Tap the Share button below, then "Add to Home Screen".</span></p>
-    <button class="ah-ins-close" id="ahInsClose" type="button"><span class="t-hi">Band karein</span><span class="t-en">Close</span></button>
+    <h3><span class="t-hi">App kaise install karein</span><span class="t-en">How to install the app</span><span class="t-mr">अॅप कसे इन्स्टॉल करावे</span></h3>
+    <p><b>Android (Chrome):</b> <span class="t-hi">Upar &#8942; teen dots dabayein, phir "Add to Home screen" ya "Install app" chunein.</span><span class="t-en">Tap the &#8942; menu at the top, then "Add to Home screen" or "Install app".</span><span class="t-mr">वर &#8942; तीन डॉट्स दाबा, नंतर "Add to Home screen" किंवा "Install app" निवडा.</span></p>
+    <p><b>iPhone (Safari):</b> <span class="t-hi">Neeche Share button dabayein, phir "Add to Home Screen" chunein.</span><span class="t-en">Tap the Share button below, then "Add to Home Screen".</span><span class="t-mr">खाली Share बटण दाबा, नंतर "Add to Home Screen" निवडा.</span></p>
+    <button class="ah-ins-close" id="ahInsClose" type="button"><span class="t-hi">Band karein</span><span class="t-en">Close</span><span class="t-mr">बंद करा</span></button>
   </div>
 </div>
 <script>
