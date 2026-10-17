@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -215,7 +215,10 @@ section{padding:52px 0 8px}
 @media(min-width:1020px){.prods{grid-template-columns:repeat(4,1fr)}}
 .prod{background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--hairline);border-radius:18px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;transform-style:preserve-3d}
 .prod:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(0,0,0,.55),0 0 24px rgba(212,175,55,.14);border-color:var(--hairgold)}
-.prod .ph{aspect-ratio:1/1;overflow:hidden;background:#e8e4da}
+.prod .ph{aspect-ratio:1/1;overflow:hidden;background:#e8e4da};position:relative}
+.stk{position:absolute;top:8px;left:8px;display:inline-block;padding:4px 11px;border-radius:999px;font-size:11.5px;font-weight:800;letter-spacing:.3px;color:#fff;box-shadow:0 3px 10px rgba(0,0,0,.45)}
+.stk.in{background:linear-gradient(145deg,#2ac263,#1a9448)}
+.stk.out{background:linear-gradient(145deg,#e05a4e,#b3261e)
 .prod .ph img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
 .prod:hover .ph img{transform:scale(1.07)}
 .prod.tilt-on{transition:none;will-change:transform;position:relative;z-index:2}
@@ -399,11 +402,6 @@ html[data-theme="light"] header .hd-name{background-image:linear-gradient(100deg
 .obadge.closed .ob-closed{display:inline}
 @keyframes obPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.65}}
 @media (prefers-reduced-motion:reduce){.obadge .ob-dot{animation:none}}
-/* per-product stock tag - sirf tab dikhta hai jab item me stock:'in'/'out' set ho */
-.prod .ph{position:relative}
-.stk{position:absolute;top:8px;left:8px;z-index:2;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px}
-.stk.in{background:rgba(22,163,74,.9);color:#fff}
-.stk.out{background:rgba(220,38,38,.9);color:#fff}
 /* Dussehra overrides */
 :root{--bg:#1c0b04; --bg2:#261006; --card:#2b1306; --card2:#361a09;
   --gold:#ff9f1c; --gold2:#ffd166; --gold-deep:#b45309;
@@ -768,7 +766,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function
 var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tanki','Paint & distemper','Wire & cable','Fan & lighting','Tools & general'];
 var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
 
-// STOCK TAG: kisi bhi item me stock:'in' (Stock me hai) ya stock:'out' (Khatam) jodo - tag sirf tabhi dikhta hai. Field nahi = koi tag nahi.
+// STOCK TAG: kisi bhi product mein stock:'in' (Stock me hai) ya stock:'out' (Khatam) likh do - tag apne aap dikhne lagega. Na likho to kuch nahi dikhta (default).
 var PRODUCTS=[
  {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe',cat:'pipe'},
  {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan',cat:'elec'},
@@ -827,10 +825,12 @@ var SLIDE_IDX=[0,1,2,3,4,6,7,10,11,12,13,14,15,16,17,18,19,20];
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
+  var stk='';
+  if(p.stock==='in')stk='<span class="stk in"><span class="t-hi">&#10003; Stock me hai</span><span class="t-en">&#10003; In stock</span><span class="t-mr">&#10003; &#2360;&#2381;&#2335;&#2377;&#2325;&#2350;&#2343;&#2381;&#2351;&#2375; &#2310;&#2361;&#2375;</span></span>';
+  else if(p.stock==='out')stk='<span class="stk out"><span class="t-hi">Khatam</span><span class="t-en">Out of stock</span><span class="t-mr">&#2360;&#2306;&#2346;&#2354;&#2375;</span></span>';
   var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
-  var stk=p.stock==='in'?'<span class="stk in"><span class="t-hi">Stock me hai</span><span class="t-en">In stock</span><span class="t-mr">स्टॉकमध्ये आहे</span></span>':(p.stock==='out'?'<span class="stk out"><span class="t-hi">Khatam</span><span class="t-en">Out of stock</span><span class="t-mr">संपला</span></span>':'');
-  return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph">'+stk+'<img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
+  return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'">'+stk+'</div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
     '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a></div></div>';
 }
