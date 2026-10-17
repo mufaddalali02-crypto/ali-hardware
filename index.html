@@ -353,8 +353,7 @@ header{background:rgba(28,11,4,.96)}
 <section class="wrap rv"><div class="qt">
   <div class="qd" aria-hidden="true"><span>&#127993;</span><span>&#10024;</span><span>&#127993;</span></div>
   <div class="qg"><span class="t-hi">Shubh Dussehra</span><span class="t-en">Happy Dussehra</span></div>
-  <q><span class="t-hi">&#8220;Aapka ghar, hamari zimmedari. Har nut-bolt se le kar har taar tak, bharosa Ali Hardware ka.&#8221;</span><span class="t-en">&#8220;Your home, our responsibility. From every nut and bolt to every wire, trust Ali Hardware.&#8221;</span></q>
-  <div class="qs">- Ali Hardware &amp; Electricals, Dharni</div>
+  <q><span class="t-hi">Burai Ka Ho Ant, Khushiyon Ki Ho Shuruaat!<br>Har Ghar Mein Khushhaali, Har Chehre Par Muskaan,<br>Ali Hardware &amp; Electricals Ki Taraf Se,<br>Dussehra Ho Aapke Naam! &#127993;</span><span class="t-en">May evil come to an end and happiness begin!<br>May every home prosper and every face smile,<br>From Ali Hardware &amp; Electricals,<br>may this Dussehra be yours! &#127993;</span></q>
 </div></section>
 
 <section class="wrap rv">
@@ -450,7 +449,25 @@ header{background:rgba(28,11,4,.96)}
       <div class="gf" id="gfb" aria-live="polite"></div>
     </div>
     <div id="g2" hidden>
-      <div class="gr" aria-hidden="true">&#127993;</div>
+      <div class="gwin" id="gwin">
+<svg width="92" height="92" viewBox="0 0 92 92" aria-hidden="true">
+<defs><linearGradient id="gb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#ff9f1c"/></linearGradient></defs>
+<ellipse cx="46" cy="86" rx="26" ry="5" fill="rgba(0,0,0,.35)"/>
+<path d="M46 14 L72 29 L72 59 L46 74 L20 59 L20 29 Z" fill="url(#gb1)" stroke="#b45309" stroke-width="3"/>
+<circle cx="46" cy="44" r="15" fill="#1c0b04"/>
+<circle cx="46" cy="44" r="10" fill="#fff4e3"/>
+<circle cx="42.5" cy="42" r="2.6" fill="#1c0b04"/>
+<circle cx="49.5" cy="42" r="2.6" fill="#1c0b04"/>
+<path d="M41 47.5 Q46 52 51 47.5" stroke="#1c0b04" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+<path d="M20 34 Q8 30 10 20" stroke="#ff9f1c" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M10 20 l-4 -6 M10 20 l5 -5" stroke="#ff9f1c" stroke-width="4" fill="none" stroke-linecap="round"/>
+<path d="M72 34 Q84 30 82 20" stroke="#ff9f1c" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="82" cy="16" r="5" fill="#ffd166" stroke="#b45309" stroke-width="2.4"/>
+<path d="M80.5 16 l1.5 0 M82 14.5 l0 3" stroke="#b45309" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
+<div class="gbub"><span class="t-hi">Wah! Ekdum sahi! Aap to saaman ke asli expert ho! &#127942;</span><span class="t-en">Amazing! You really are a product expert! &#127942;</span></div>
+</div>
+      <div class="gr" aria-hidden="true" style="display:none"></div>
       <h3 id="gres"></h3>
       <p class="gp" id="gmsg"></p>
       <button type="button" class="gb" id="gagain"><span class="t-hi">Dobara khelein</span><span class="t-en">Play again</span></button>
@@ -686,7 +703,7 @@ function pick(b){
   setTimeout(function(){q++;if(q<N)next();else end()},1100)
 }
 function end(){
-  show('g2');$('gres').innerHTML='<span class="t-hi">Aapne '+sc+' / '+N+' sahi pehchane!</span><span class="t-en">You got '+sc+' / '+N+' right!</span>';
+  show('g2');document.getElementById('gwin').style.display=sc>=7?'flex':'none';$('gres').innerHTML='<span class="t-hi">Aapne '+sc+' / '+N+' sahi pehchane!</span><span class="t-en">You got '+sc+' / '+N+' right!</span>';
   var hi=sc>=7?'Shabaash! Aap to dukaan ke saaman ke expert hain.':sc>=4?'Achha khela! Ek baar aur try karein.':'Koi baat nahi - dobara khelkar dekhiye.';
   var en=sc>=7?'Well done! You really know the shop.':sc>=4?'Nice game! Try once more.':'No worries - give it another go.';
   $('gmsg').innerHTML='<span class="t-hi">'+hi+'</span><span class="t-en">'+en+'</span>'}
@@ -820,6 +837,11 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 .ah-ins-card p{margin:8px 0;font-size:15px;line-height:1.5;color:var(--muted)}
 .ah-ins-card b{color:var(--ink)}
 .ah-ins-close{margin-top:14px;width:100%;padding:12px;border-radius:12px;border:1px solid var(--hairgold);background:none;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
+
+.gwin{display:none;align-items:flex-end;justify-content:center;gap:6px;margin:4px auto 10px;max-width:320px}
+.gwin .gbub{position:relative;background:#fff4e3;color:#5a2b08;font-weight:800;font-size:14px;line-height:1.35;padding:10px 14px;border-radius:14px;border:2px solid var(--gold);box-shadow:0 6px 16px rgba(0,0,0,.4);margin-bottom:26px}
+.gwin .gbub:after{content:"";position:absolute;left:-10px;bottom:14px;border:6px solid transparent;border-right:10px solid var(--gold)}
+.gwin svg{flex:0 0 auto}
 </style>
 <button class="ah-ins" id="ahIns" type="button">&#128242; <span class="t-hi">App install karein</span><span class="t-en">Install app</span></button>
 <div class="ah-ins-ov" id="ahInsOv" role="dialog" aria-modal="true">
@@ -836,9 +858,11 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
   var dp=null,btn=document.getElementById('ahIns'),ov=document.getElementById('ahInsOv');
   if(!btn||!ov)return;
   function standalone(){return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true}
-  if(standalone()){btn.style.display='none'}
+  var IKEY='ah-installed-v1';
+  function wasInstalled(){try{return !!localStorage.getItem(IKEY)}catch(e){return false}}
+  if(standalone()||wasInstalled()){btn.style.display='none'}
   window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e});
-  window.addEventListener('appinstalled',function(){btn.style.display='none';dp=null});
+  window.addEventListener('appinstalled',function(){try{localStorage.setItem(IKEY,'1')}catch(e){}btn.style.display='none';dp=null});
   btn.addEventListener('click',function(){
     if(dp){dp.prompt();dp.userChoice.then(function(){dp=null}).catch(function(){dp=null})}
     else{ov.classList.add('open')}
@@ -848,4 +872,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-                         </html>
+  </html>
