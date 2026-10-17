@@ -155,6 +155,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(11,12,15,.96);border-bot
 .vd-card video{width:100%;display:block;background:#000}
 .vd-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;pointer-events:none}
 .vd-card figcaption{padding:10px 12px;font-size:13px;color:var(--muted);text-align:center}
+.vd-track .prod{flex:0 0 200px;scroll-snap-align:center}
 
 /* sections */
 section{padding:52px 0 8px}
@@ -465,7 +466,22 @@ header{background:rgba(28,11,4,.96)}
       </div>
       <figcaption><span class="t-hi">Nal leakage ka solution - quality taps</span><span class="t-en">Tap leakage solution - quality taps</span></figcaption>
     </figure>
+    <figure class="vd-card">
+      <div class="vd-wrap">
+        <video controls preload="none" playsinline poster="img/6-texmo-poster.webp" src="img/5-texmo-pump-hq.mp4"></video>
+        <span class="vd-badge">0:28</span>
+      </div>
+      <figcaption><span class="t-hi">Super Texmo openwell pump - heavy duty</span><span class="t-en">Super Texmo openwell pump - heavy duty</span></figcaption>
+    </figure>
   </div>
+</section>
+
+<!-- NAYA-MAAL: ye section PRODUCTS list ke latest 6 items apne aap dikhata hai - naya card add karte hi ye update ho jata hai, kuch alag se badalna nahi. -->
+<section class="wrap rv" id="naya">
+  <div class="eyebrow metal-gold"><span class="t-hi">Naya maal aaya</span><span class="t-en">New stock</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Naya maal aaya</span><span class="t-en">Just arrived</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Dukaan par aaya latest stock - side swipe karke dekhein.</span><span class="t-en">Latest stock at the shop - swipe sideways to see.</span></p>
+  <div class="vd-track" id="nayaTrack"></div>
 </section>
 <section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Highlights</span><span class="t-en">Highlights</span></div>
@@ -726,6 +742,7 @@ function card(p,n){
 document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
+(function(){var nt=document.getElementById('nayaTrack');if(!nt)return;var last=PRODUCTS.slice(-6);nt.innerHTML=last.map(function(p,i){return card(p,PRODUCTS.length-6+i+1)}).join('')})();
 (function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores'),cur='all';if(!inp)return;
 window.applyProdFilter=function(){var q=inp.value.trim().toLowerCase(),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
 for(var i=0;i<all.length;i++){var el=all[i],c=el.getAttribute('data-cat');
