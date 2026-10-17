@@ -147,6 +147,14 @@ header{position:sticky;top:0;z-index:60;background:rgba(11,12,15,.96);border-bot
 .rvf-stars span{transition:opacity .15s}
 .rvf-btn{width:100%;padding:13px;border-radius:999px;border:1px solid var(--hairgold);background:linear-gradient(145deg,#2ac263,var(--wa));color:#fff;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
 .rvf-btn:active{transform:scale(.98)}
+.vd-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 2px 14px;-webkit-overflow-scrolling:touch;margin-top:10px}
+.vd-track::-webkit-scrollbar{height:6px}
+.vd-track::-webkit-scrollbar-thumb{background:var(--hairgold);border-radius:999px}
+.vd-card{margin:0;background:var(--card);border:1px solid var(--hairgold);border-radius:16px;overflow:hidden;flex:0 0 190px;scroll-snap-align:center}
+.vd-card .vd-wrap{position:relative}
+.vd-card video{width:100%;display:block;background:#000}
+.vd-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;pointer-events:none}
+.vd-card figcaption{padding:10px 12px;font-size:13px;color:var(--muted);text-align:center}
 
 /* sections */
 section{padding:52px 0 8px}
@@ -438,6 +446,27 @@ header{background:rgba(28,11,4,.96)}
 
 
 <!-- VIDEO-SECTION: jab dukaan ki video mile, yahan ek <section> add karo - <video controls playsinline poster="..."> tag, mp4 file repo mein (25MB se chhoti web upload ke liye; badi ho to compress karo). -->
+<section class="wrap rv" id="videos">
+  <div class="eyebrow metal-gold"><span class="t-hi">Dukaan ki videos</span><span class="t-en">Shop videos</span></div>
+  <div class="sec-h"><h2><span class="t-hi">Video gallery</span><span class="t-en">Video gallery</span></h2><div class="line"></div></div>
+  <p class="sec-sub"><span class="t-hi">Dukaan aur saaman ki videos - side swipe karke dekhein, play dabakar chalayein. Video tabhi load hoti hai jab aap play karein.</span><span class="t-en">Videos of the shop and products - swipe sideways and tap play. Videos load only when you play them.</span></p>
+  <div class="vd-track">
+    <figure class="vd-card">
+      <div class="vd-wrap">
+        <video controls preload="none" playsinline poster="img/2-tank-poster.webp" src="img/1-tank-alarm-hq.mp4"></video>
+        <span class="vd-badge">0:30</span>
+      </div>
+      <figcaption><span class="t-hi">Tank overflow alarm - pani barbaad hone se bachaye</span><span class="t-en">Tank overflow alarm - stops water wastage</span></figcaption>
+    </figure>
+    <figure class="vd-card">
+      <div class="vd-wrap">
+        <video controls preload="none" playsinline poster="img/4-tap-poster.webp" src="img/3-tap-leakage-hq.mp4"></video>
+        <span class="vd-badge">0:31</span>
+      </div>
+      <figcaption><span class="t-hi">Nal leakage ka solution - quality taps</span><span class="t-en">Tap leakage solution - quality taps</span></figcaption>
+    </figure>
+  </div>
+</section>
 <section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Highlights</span><span class="t-en">Highlights</span></div>
   <div class="sec-h"><h2><span class="t-hi">Products ki jhalak</span><span class="t-en">Product highlights</span></h2><div class="line"></div></div>
