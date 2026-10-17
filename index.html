@@ -276,6 +276,10 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .srch input{width:100%;padding:14px 16px 14px 44px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--ink);font:inherit;font-size:17px}
 .srch input::placeholder{color:var(--muted)}
 .srch:before{content:"\1F50D";position:absolute;left:15px;top:11px;font-size:18px}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:10px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.cats::-webkit-scrollbar{display:none}
+.ct{flex:none;padding:9px 16px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.ct.on{background:var(--gold);color:#1a0f08;border-color:var(--gold)}
 .nores{display:none;text-align:center;color:var(--muted);padding:14px}
 .wa-q{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:8px;padding:8px 10px;border-radius:999px;background:#1fae53;color:#fff;font-weight:800;font-size:14px}
 .mapfr{width:100%;height:260px;border:0;border-radius:14px;margin-top:14px;filter:saturate(.9)}
@@ -448,6 +452,7 @@ header{background:rgba(28,11,4,.96)}
   <div class="sec-h"><h2><span class="t-hi">Dukaan ke kuch products</span><span class="t-en">Some products from the shop</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Ye asli photos hamari dukaan ke hain. Keemat jaanne ke liye WhatsApp par poochh lijiye.</span><span class="t-en">These are real photos from our shop. Ask on WhatsApp for prices.</span></p>
   <div class="srch"><input type="search" id="psearch" placeholder="Khojo / Search: pipe, switch, tap, paint..." aria-label="Search products" autocomplete="off"></div>
+  <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span></button></div>
   <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span></div>
   <div class="prods" id="prodGrid"></div>
 </section>
@@ -586,49 +591,49 @@ var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tan
 var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
 
 var PRODUCTS=[
- {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe'},
- {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan'},
- {img:'bulb-goldmedal-wow.jpg',brand:'GOLDMEDAL',hi:'WOW LED bulb',en:'WOW LED bulb',alt:'Goldmedal WOW LED bulb'},
- {img:'panel-goldmedal-atom.jpg',brand:'GOLDMEDAL',hi:'Atom-Mini panel light',en:'Atom-Mini panel light',alt:'Goldmedal Atom-Mini panel light'},
- {img:'ledstrip-litbec-echo.jpg',brand:'LITBEC',hi:'Echo series LED strip',en:'Echo series LED strip',alt:'Litbec Echo series LED strip light'},
- {img:'driver-litbec.jpg',brand:'LITBEC',hi:'LED driver (power supply)',en:'LED driver (power supply)',alt:'Litbec LED power supply / driver'},
- {img:'wires-dormit.jpg',brand:'DORMIT',hi:'Wires & cables',en:'Wires & cables',alt:'Dormit wires and cables'},
- {img:'paint-malak.jpg',brand:'MALAK',hi:'Active Plus distemper',en:'Active Plus distemper',alt:'Malak Active Plus acrylic distemper'},
- {img:'paint-eshine.jpg',brand:'E-SHINE',hi:'Hi sheen emulsion',en:'Hi sheen emulsion',alt:'E-Shine hi sheen emulsion paint'},
- {img:'ropes.jpg',brand:'GENERAL',hi:'Rassi - har size mein',en:'Ropes, all sizes',alt:'Rassi (ropes) har size mein'},
- {img:'rassi-12mm.jpg',brand:'GENERAL',hi:'Rassi (12 mm)',en:'Rope (12 mm)',alt:'Yellow 12 mm rassi (rope) coil'},
- {img:'parde-rod.jpg',brand:'GENERAL',hi:'Parde ki rod',en:'Curtain rods',alt:'Parde ki rod (curtain rods) with decorative finials'},
- {img:'apcolite-enamel.jpg',brand:'APCOLITE',hi:'Premium Enamel (Gloss)',en:'Premium Enamel (Gloss)',alt:'Apcolite Premium Enamel Gloss paint tin'},
- {img:'drip-joiner.jpg',brand:'DRIP PIPE',hi:'Drip pipe joiner (jodne wala)',en:'Drip pipe joiner / connector',alt:'Blue and black drip irrigation pipe joiners'},
- {img:'centring-nails.jpg',brand:'GENERAL',hi:'Sentring khile (har size mein)',en:'Centring nails (all sizes)',alt:'Centring nails, all sizes'},
- {img:'tasla-plastic.jpg',brand:'PLASTIC',hi:'Tasla & plastic saaman',en:'Tasla & plastic goods',alt:'Plastic tasla aur gamle'},
- {img:'polo-health-faucet.jpg',brand:'POLO',hi:'Health faucet (jet spray set)',en:'Health faucet / jet spray set',alt:'Polo Aqua 2-in-1 health faucet with steel hose'},
- {img:'rr-alarm-bell.jpg',brand:'RR KABEL',hi:'Paani bachao alarm bell',en:'Water conservation alarm bell',alt:'RR Kabel water conservation alarm bell'},
- {img:'rr-ivaa-switch.jpg',brand:'RR KABEL',hi:'ivaa modular switch',en:'ivaa modular switches',alt:'RR Kabel ivaa modular switch boxes'},
- {img:'aqua-plast-pipes.jpg',brand:'AQUA PLAST',hi:'Aqua Plast pipes (SWR/PVC)',en:'Aqua Plast pipes (SWR/PVC)',alt:'Aqua Plast large grey SWR PVC pipes'},
- {img:'guru-garden-pipe.jpg',brand:'GURU',hi:'Guru garden pipe (1/2 inch, 100 ft)',en:'Guru garden pipe (1/2 inch, 100 ft)',alt:'Guru Saiguru garden LD pipe coils'},
- {img:'fan-goldmedal.jpg',brand:'GOLDMEDAL',hi:'Ceiling fan (Volt 400 / Speedo Air)',en:'Ceiling fans (Volt 400 / Speedo Air)',alt:'Goldmedal Volt 400 and Speedo Air ceiling fan boxes, 1200 mm'},
- {img:'surya-cem.jpg',brand:'SURYA CEM \u2022 DELIGHT CHEMICALS',hi:'Surya Cem white wash (5 Kg)',en:'Surya Cem sparkling white wash (5 Kg)',alt:'Surya Cem Sparkling White Wash 5 Kg bag'},
- {img:'surya-plus.jpg',brand:'SURYA PLUS \u2022 DELIGHT\'S',hi:'Surya Plus premium basecoat (5 Kg)',en:'Surya Plus premium basecoat (5 Kg)',alt:'Surya Plus Premium Basecoat 5 Kg bag'},
- {img:'fevicol-sh.jpg',brand:'FEVICOL',hi:'Fevicol SH (woodworking adhesive)',en:'Fevicol SH (woodworking adhesive)',alt:'Fevicol SH synthetic resin adhesive jar'},
- {img:'fusion-pro.jpg',brand:'FUSION PAINTS',hi:'Fusion Pro Enamel (aluminium paint, 1 Ltr)',en:'Fusion Pro Enamel (aluminium paint, 1 Ltr)',alt:'Fusion Paints Fusion Pro Hi-Gloss Enamel aluminium paint 1 litre tin'},
- {img:'tdk-capacitor.jpg',brand:'TDK',hi:'Motor capacitor (TDK 36\u00b5F, 450 V)',en:'Motor capacitor (TDK 36\u00b5F, 450 V)',alt:'TDK 36 microfarad 450 VAC motor run capacitors'},
- {img:'tractor-brand-lime-colour.jpg',brand:'TRACTOR BRAND \u2022 KOHINOOR INDUSTRIES',hi:'Lime colour (pink, blue, green)',en:'Lime colour (pink, blue, green)',alt:'Tractor Brand Lime Colour boxes in pink, blue and green - Kohinoor Industries'},
- {img:'line-dori.jpg',brand:'GENERAL',hi:'Line dori (orange, green, yellow, red)',en:'Line dori - coloured thread (orange, green, yellow, red)',alt:'Line dori coloured thread balls - orange, green, yellow, red'},
- {img:'lal-qila-cement-colour.jpg',brand:'LAL QILA',hi:'Cement colour - sandal (1 kg)',en:'Cement colour - sandal (1 kg)',alt:'Lal Qila Brand Sandal cement colour 1 kg packs'},
- {img:'arkwell-upvc-ball-valve.jpg',brand:'ARKWELL',hi:'UPVC ball valve (1/2 inch, 15 mm)',en:'UPVC ball valve (1/2 inch, 15 mm)',alt:'Arkwell UPVC ball valve 1/2 inch 15mm boxes'},
- {img:'panther-copper-adhesive.jpg',brand:'PANTHER',hi:'Copper synthetic resin adhesive (500 g)',en:'Copper synthetic resin adhesive (500 g)',alt:'Panther Copper synthetic resin adhesive 500 g packs'},
- {img:'bulbond-xtra-adhesive.jpg',brand:'BULBOND',hi:'Xtra synthetic resin adhesive (500 g)',en:'Xtra synthetic resin adhesive (500 g)',alt:'Bulbond Xtra synthetic resin adhesive 500 g packs'},
- {img:'astral-vetra-lv401.jpg',brand:'ASTRAL VETRA',hi:'LV 401 instant adhesive',en:'LV 401 instant adhesive',alt:'Astral Vetra LV 401 instant adhesive packs'},
- {img:'upvc-valve-63mm.jpg',brand:'GENERAL',hi:'UPVC valve (63 mm)',en:'UPVC valve (63 mm)',alt:'Blue UPVC valve 63 mm'},
- {img:'white-cat-hcl.jpg',brand:'WHITE CAT',hi:'HCL - Hydrochloric Acid (1 kg, special grade)',en:'HCL - Hydrochloric Acid (1 kg, special grade)',alt:'White Cat HCL Hydrochloric Acid 1 kg can, special grade'},
- {img:'weldfit-ptfe-tape.jpg',brand:'WELD FIT',hi:'PTFE thread seal tape (teflon tape)',en:'PTFE thread seal tape (teflon tape)',alt:'Weld Fit PTFE thread seal tape (teflon tape) boxes'},
- {img:'drfixit-pidiproof-lw101.jpg',brand:'DR. FIXIT',hi:'Pidiproof LW+ 101 (tonic for cement)',en:'Pidiproof LW+ 101 (tonic for cement)',alt:'Dr. Fixit Pidiproof LW+ 101 tonic for cement jar'},
- {img:'zplus-ball-valve-20mm.jpg',brand:'Z+',hi:'Ball valve (20 mm, 3/4 inch)',en:'Ball valve (20 mm, 3/4 inch)',alt:'Z+ ball valve 20mm 3/4 inch boxes'}
+ {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe',cat:'pipe'},
+ {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan',cat:'elec'},
+ {img:'bulb-goldmedal-wow.jpg',brand:'GOLDMEDAL',hi:'WOW LED bulb',en:'WOW LED bulb',alt:'Goldmedal WOW LED bulb',cat:'elec'},
+ {img:'panel-goldmedal-atom.jpg',brand:'GOLDMEDAL',hi:'Atom-Mini panel light',en:'Atom-Mini panel light',alt:'Goldmedal Atom-Mini panel light',cat:'elec'},
+ {img:'ledstrip-litbec-echo.jpg',brand:'LITBEC',hi:'Echo series LED strip',en:'Echo series LED strip',alt:'Litbec Echo series LED strip light',cat:'elec'},
+ {img:'driver-litbec.jpg',brand:'LITBEC',hi:'LED driver (power supply)',en:'LED driver (power supply)',alt:'Litbec LED power supply / driver',cat:'elec'},
+ {img:'wires-dormit.jpg',brand:'DORMIT',hi:'Wires & cables',en:'Wires & cables',alt:'Dormit wires and cables',cat:'elec'},
+ {img:'paint-malak.jpg',brand:'MALAK',hi:'Active Plus distemper',en:'Active Plus distemper',alt:'Malak Active Plus acrylic distemper',cat:'paint'},
+ {img:'paint-eshine.jpg',brand:'E-SHINE',hi:'Hi sheen emulsion',en:'Hi sheen emulsion',alt:'E-Shine hi sheen emulsion paint',cat:'paint'},
+ {img:'ropes.jpg',brand:'GENERAL',hi:'Rassi - har size mein',en:'Ropes, all sizes',alt:'Rassi (ropes) har size mein',cat:'hw'},
+ {img:'rassi-12mm.jpg',brand:'GENERAL',hi:'Rassi (12 mm)',en:'Rope (12 mm)',alt:'Yellow 12 mm rassi (rope) coil',cat:'hw'},
+ {img:'parde-rod.jpg',brand:'GENERAL',hi:'Parde ki rod',en:'Curtain rods',alt:'Parde ki rod (curtain rods) with decorative finials',cat:'hw'},
+ {img:'apcolite-enamel.jpg',brand:'APCOLITE',hi:'Premium Enamel (Gloss)',en:'Premium Enamel (Gloss)',alt:'Apcolite Premium Enamel Gloss paint tin',cat:'paint'},
+ {img:'drip-joiner.jpg',brand:'DRIP PIPE',hi:'Drip pipe joiner (jodne wala)',en:'Drip pipe joiner / connector',alt:'Blue and black drip irrigation pipe joiners',cat:'pipe'},
+ {img:'centring-nails.jpg',brand:'GENERAL',hi:'Sentring khile (har size mein)',en:'Centring nails (all sizes)',alt:'Centring nails, all sizes',cat:'hw'},
+ {img:'tasla-plastic.jpg',brand:'PLASTIC',hi:'Tasla & plastic saaman',en:'Tasla & plastic goods',alt:'Plastic tasla aur gamle',cat:'hw'},
+ {img:'polo-health-faucet.jpg',brand:'POLO',hi:'Health faucet (jet spray set)',en:'Health faucet / jet spray set',alt:'Polo Aqua 2-in-1 health faucet with steel hose',cat:'pipe'},
+ {img:'rr-alarm-bell.jpg',brand:'RR KABEL',hi:'Paani bachao alarm bell',en:'Water conservation alarm bell',alt:'RR Kabel water conservation alarm bell',cat:'elec'},
+ {img:'rr-ivaa-switch.jpg',brand:'RR KABEL',hi:'ivaa modular switch',en:'ivaa modular switches',alt:'RR Kabel ivaa modular switch boxes',cat:'elec'},
+ {img:'aqua-plast-pipes.jpg',brand:'AQUA PLAST',hi:'Aqua Plast pipes (SWR/PVC)',en:'Aqua Plast pipes (SWR/PVC)',alt:'Aqua Plast large grey SWR PVC pipes',cat:'pipe'},
+ {img:'guru-garden-pipe.jpg',brand:'GURU',hi:'Guru garden pipe (1/2 inch, 100 ft)',en:'Guru garden pipe (1/2 inch, 100 ft)',alt:'Guru Saiguru garden LD pipe coils',cat:'pipe'},
+ {img:'fan-goldmedal.jpg',brand:'GOLDMEDAL',hi:'Ceiling fan (Volt 400 / Speedo Air)',en:'Ceiling fans (Volt 400 / Speedo Air)',alt:'Goldmedal Volt 400 and Speedo Air ceiling fan boxes, 1200 mm',cat:'elec'},
+ {img:'surya-cem.jpg',brand:'SURYA CEM \u2022 DELIGHT CHEMICALS',hi:'Surya Cem white wash (5 Kg)',en:'Surya Cem sparkling white wash (5 Kg)',alt:'Surya Cem Sparkling White Wash 5 Kg bag',cat:'paint'},
+ {img:'surya-plus.jpg',brand:'SURYA PLUS \u2022 DELIGHT\'S',hi:'Surya Plus premium basecoat (5 Kg)',en:'Surya Plus premium basecoat (5 Kg)',alt:'Surya Plus Premium Basecoat 5 Kg bag',cat:'paint'},
+ {img:'fevicol-sh.jpg',brand:'FEVICOL',hi:'Fevicol SH (woodworking adhesive)',en:'Fevicol SH (woodworking adhesive)',alt:'Fevicol SH synthetic resin adhesive jar',cat:'adh'},
+ {img:'fusion-pro.jpg',brand:'FUSION PAINTS',hi:'Fusion Pro Enamel (aluminium paint, 1 Ltr)',en:'Fusion Pro Enamel (aluminium paint, 1 Ltr)',alt:'Fusion Paints Fusion Pro Hi-Gloss Enamel aluminium paint 1 litre tin',cat:'paint'},
+ {img:'tdk-capacitor.jpg',brand:'TDK',hi:'Motor capacitor (TDK 36\u00b5F, 450 V)',en:'Motor capacitor (TDK 36\u00b5F, 450 V)',alt:'TDK 36 microfarad 450 VAC motor run capacitors',cat:'elec'},
+ {img:'tractor-brand-lime-colour.jpg',brand:'TRACTOR BRAND \u2022 KOHINOOR INDUSTRIES',hi:'Lime colour (pink, blue, green)',en:'Lime colour (pink, blue, green)',alt:'Tractor Brand Lime Colour boxes in pink, blue and green - Kohinoor Industries',cat:'paint'},
+ {img:'line-dori.jpg',brand:'GENERAL',hi:'Line dori (orange, green, yellow, red)',en:'Line dori - coloured thread (orange, green, yellow, red)',alt:'Line dori coloured thread balls - orange, green, yellow, red',cat:'hw'},
+ {img:'lal-qila-cement-colour.jpg',brand:'LAL QILA',hi:'Cement colour - sandal (1 kg)',en:'Cement colour - sandal (1 kg)',alt:'Lal Qila Brand Sandal cement colour 1 kg packs',cat:'paint'},
+ {img:'arkwell-upvc-ball-valve.jpg',brand:'ARKWELL',hi:'UPVC ball valve (1/2 inch, 15 mm)',en:'UPVC ball valve (1/2 inch, 15 mm)',alt:'Arkwell UPVC ball valve 1/2 inch 15mm boxes',cat:'pipe'},
+ {img:'panther-copper-adhesive.jpg',brand:'PANTHER',hi:'Copper synthetic resin adhesive (500 g)',en:'Copper synthetic resin adhesive (500 g)',alt:'Panther Copper synthetic resin adhesive 500 g packs',cat:'adh'},
+ {img:'bulbond-xtra-adhesive.jpg',brand:'BULBOND',hi:'Xtra synthetic resin adhesive (500 g)',en:'Xtra synthetic resin adhesive (500 g)',alt:'Bulbond Xtra synthetic resin adhesive 500 g packs',cat:'adh'},
+ {img:'astral-vetra-lv401.jpg',brand:'ASTRAL VETRA',hi:'LV 401 instant adhesive',en:'LV 401 instant adhesive',alt:'Astral Vetra LV 401 instant adhesive packs',cat:'adh'},
+ {img:'upvc-valve-63mm.jpg',brand:'GENERAL',hi:'UPVC valve (63 mm)',en:'UPVC valve (63 mm)',alt:'Blue UPVC valve 63 mm',cat:'pipe'},
+ {img:'white-cat-hcl.jpg',brand:'WHITE CAT',hi:'HCL - Hydrochloric Acid (1 kg, special grade)',en:'HCL - Hydrochloric Acid (1 kg, special grade)',alt:'White Cat HCL Hydrochloric Acid 1 kg can, special grade',cat:'adh'},
+ {img:'weldfit-ptfe-tape.jpg',brand:'WELD FIT',hi:'PTFE thread seal tape (teflon tape)',en:'PTFE thread seal tape (teflon tape)',alt:'Weld Fit PTFE thread seal tape (teflon tape) boxes',cat:'pipe'},
+ {img:'drfixit-pidiproof-lw101.jpg',brand:'DR. FIXIT',hi:'Pidiproof LW+ 101 (tonic for cement)',en:'Pidiproof LW+ 101 (tonic for cement)',alt:'Dr. Fixit Pidiproof LW+ 101 tonic for cement jar',cat:'adh'},
+ {img:'zplus-ball-valve-20mm.jpg',brand:'Z+',hi:'Ball valve (20 mm, 3/4 inch)',en:'Ball valve (20 mm, 3/4 inch)',alt:'Z+ ball valve 20mm 3/4 inch boxes',cat:'pipe'}
 ];
 var MORE=[
- {img:'gen-tank.jpg',brand:'POLYRAJ \u2022 AQUA PLAST',hi:'Paani ki tanki',en:'Water tanks',alt:'Paani ki tanki (water tanks)',sil:1},
- {img:'gen-tools.jpg',brand:'HAR KAAM KE TOOLS',hi:'Tools & hardware',en:'Tools & hardware',alt:'Tools aur hardware saaman',sil:1}
+ {img:'gen-tank.jpg',brand:'POLYRAJ \u2022 AQUA PLAST',hi:'Paani ki tanki',en:'Water tanks',alt:'Paani ki tanki (water tanks)',sil:1,cat:'pipe'},
+ {img:'gen-tools.jpg',brand:'HAR KAAM KE TOOLS',hi:'Tools & hardware',en:'Tools & hardware',alt:'Tools aur hardware saaman',sil:1,cat:'hw'}
 ];
 var TILES=[
  {img:'cat-motors.jpg',hi:'Motor',en:'Motors',alt:'Motor (sample photo)'},
@@ -645,17 +650,24 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
   var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
-  return '<div class="prod tilt" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
+  return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
     '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span></a></div></div>';
 }
 document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
-(function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores');if(!inp)return;
-inp.addEventListener('input',function(){var q=inp.value.trim().toLowerCase(),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
-for(var i=0;i<all.length;i++){var ok=!q||all[i].getAttribute('data-s').indexOf(q)>-1;all[i].style.display=ok?'':'none';if(ok)shown++}
-nr.style.display=(q&&!shown)?'block':'none'})})();
+(function(){var inp=document.getElementById('psearch'),nr=document.getElementById('nores'),cur='all';if(!inp)return;
+window.applyProdFilter=function(){var q=inp.value.trim().toLowerCase(),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
+for(var i=0;i<all.length;i++){var el=all[i],c=el.getAttribute('data-cat');
+var okc=(el.closest('#tileGrid'))?true:(cur==='all'||c===cur);
+var ok=okc&&(!q||el.getAttribute('data-s').indexOf(q)>-1);el.style.display=ok?'':'none';if(ok)shown++}
+nr.style.display=((q||cur!=='all')&&!shown)?'block':'none'};
+inp.addEventListener('input',window.applyProdFilter);
+var tabs=document.getElementById('catTabs');
+if(tabs){tabs.addEventListener('click',function(e){var b=e.target.closest('.ct');if(!b)return;cur=b.getAttribute('data-c');
+var all=tabs.querySelectorAll('.ct');for(var i=0;i<all.length;i++)all[i].classList.toggle('on',all[i]===b);
+window.applyProdFilter()})}})();
 document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
   return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span></div>';
 }).join('');
@@ -935,4 +947,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-        </html>
+  </html>
