@@ -138,6 +138,15 @@ header{position:sticky;top:0;z-index:60;background:rgba(11,12,15,.96);border-bot
 .btn-ph{background:linear-gradient(145deg,#f5f7fa,#c9ced8);color:#181a1f}
 .btn-map{border:1.5px solid var(--hairgold);color:var(--gold2);background:rgba(212,175,55,.07)}
 .btn-route{background:linear-gradient(145deg,var(--gold),var(--gold-deep));color:#1c0b04;border:1.5px solid var(--hairgold)}
+.rvf{margin:26px auto 0;background:var(--card);border:1px solid var(--hairgold);border-radius:18px;padding:22px 18px;max-width:560px;text-align:center}
+.rvf h3{margin:0 0 4px;font-size:20px}
+.rvf-sub{color:var(--muted);font-size:13px;margin:0 0 16px}
+.rvf input,.rvf textarea{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid var(--hairgold);background:rgba(255,255,255,.04);color:var(--ink);font:inherit;margin-bottom:12px}
+.rvf textarea{resize:vertical}
+.rvf-stars{font-size:34px;color:var(--gold2);letter-spacing:6px;margin-bottom:12px;cursor:pointer;user-select:none}
+.rvf-stars span{transition:opacity .15s}
+.rvf-btn{width:100%;padding:13px;border-radius:999px;border:1px solid var(--hairgold);background:linear-gradient(145deg,#2ac263,var(--wa));color:#fff;font:inherit;font-weight:800;font-size:15px;cursor:pointer}
+.rvf-btn:active{transform:scale(.98)}
 
 /* sections */
 section{padding:52px 0 8px}
@@ -542,6 +551,34 @@ header{background:rgba(28,11,4,.96)}
   <div class="rv-sum"><div class="big">5.0</div><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="cnt"><span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span></div></div>
   <div class="rv-g"><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#7b1fa2">N</div><div><div class="rv-nm">Nasim</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#00897b">R</div><div><div class="rv-nm">Rishabh</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#e64a19">H</div><div><div class="rv-nm">Hussain</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#3949ab">A</div><div><div class="rv-nm">Ammar</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p></div></div>
   <p class="sec-sub" style="text-align:center;margin-top:12px"><a href="https://share.google/56C974OvKQ4Z5leWG" style="text-decoration:underline"><span class="t-hi">Sab reviews Google par dekhein</span><span class="t-en">See all reviews on Google</span></a></p>
+
+  <div class="rvf">
+    <div class="eyebrow metal-gold" style="margin-bottom:6px"><span class="t-hi">Apna review likhein</span><span class="t-en">Write your review</span></div>
+    <h3><span class="t-hi">Aapka anubhav kaisa raha?</span><span class="t-en">How was your experience?</span></h3>
+    <p class="rvf-sub"><span class="t-hi">Review WhatsApp par dukaan ko jayega - owner ke approval ke baad yahan dikhega.</span><span class="t-en">Your review goes to the shop on WhatsApp - it appears here after the owner approves it.</span></p>
+    <form id="rvfForm" autocomplete="off">
+      <input id="rvfName" type="text" maxlength="40" placeholder="Aapka naam / Your name" required>
+      <div class="rvf-stars" id="rvfStars" role="radiogroup" aria-label="star rating"><span data-i="1">&#9733;</span><span data-i="2">&#9733;</span><span data-i="3">&#9733;</span><span data-i="4">&#9733;</span><span data-i="5">&#9733;</span></div>
+      <textarea id="rvfText" rows="3" maxlength="500" placeholder="Apna review yahan likhein... / Write your review..." required></textarea>
+      <button type="submit" class="rvf-btn">&#128172; <span class="t-hi">WhatsApp par bhejein</span><span class="t-en">Send on WhatsApp</span></button>
+    </form>
+  </div>
+  <script>(function(){
+var rating=5;
+var stars=[].slice.call(document.querySelectorAll('#rvfStars span'));
+function paint(){stars.forEach(function(st,i){st.style.opacity=i<rating?'1':'.25'})}
+stars.forEach(function(st){st.addEventListener('click',function(){rating=parseInt(st.getAttribute('data-i'),10);paint()})});
+paint();
+document.getElementById('rvfForm').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var n=document.getElementById('rvfName').value.trim();
+  var t=document.getElementById('rvfText').value.trim();
+  if(n.length<2){alert('Apna naam likhein / Please enter your name');return}
+  if(t.length<5){alert('Review thoda likhein / Please write a short review');return}
+  var msg='Namaste! Main '+n+'. Mera review: '+rating+'/5 stars - '+t;
+  window.open('https://wa.me/918261896180?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+})();</script>
 </section>
 
 <!-- HOURS-SECTION (abhi hidden): shop timing confirm hone par "hidden" hata kar timing likho. -->
