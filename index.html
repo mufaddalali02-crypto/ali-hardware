@@ -281,13 +281,19 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .qrbox{text-align:center}
 .qrbox .qrimg{width:200px;max-width:70%;margin:12px auto 0;background:#fff;padding:8px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 .qrbox .qrimg svg{display:block;width:100%;height:auto}
-.rv-sum{text-align:center;margin:6px 0 14px;font-size:18px;color:var(--gold2);font-weight:800}
+.rv-sum{display:flex;flex-direction:column;align-items:center;gap:2px;margin:6px 0 18px}
+.rv-sum .big{font-size:52px;font-weight:800;line-height:1;color:var(--ink);font-family:'Playfair Display',serif}
+.rv-sum .stars{color:#fbbc04;font-size:24px;letter-spacing:4px}
+.rv-sum .cnt{color:var(--muted);font-size:14px;font-weight:500}
 .rv-g{display:grid;gap:12px;grid-template-columns:1fr}
 @media(min-width:760px){.rv-g{grid-template-columns:1fr 1fr}}
-.rv-c{background:var(--card);border:1px solid var(--hairgold);border-radius:14px;padding:14px 16px}
-.rv-c .st{color:#ffc23d;letter-spacing:2px;font-size:16px}
-.rv-c p{margin:6px 0 8px;font-size:16px;line-height:1.5}
-.rv-c .by{color:var(--muted);font-size:14px}
+.rv-c{background:#fff;border:1px solid #e2e2e2;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.rv-h{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.rv-av{width:40px;height:40px;border-radius:50%;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.rv-nm{font-weight:700;font-size:15px;color:#202124;line-height:1.2}
+.rv-via{font-size:13px;color:#5f6368}
+.rv-c .st{color:#fbbc04;letter-spacing:2px;font-size:16px}
+.rv-c p{margin:8px 0 0;font-size:15px;line-height:1.5;color:#3c4043}
 .hero-ov{background:linear-gradient(180deg,rgba(20,4,4,.62) 0%,rgba(20,4,4,.78) 40%,rgba(26,7,7,.98) 100%)}
 .hero h1.metal-gold{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff3cf;-webkit-text-fill-color:#fff3cf;text-shadow:0 2px 3px rgba(0,0,0,.9),0 4px 24px rgba(0,0,0,.85)}
 .hero .tag,.hero .addr{text-shadow:0 1px 3px rgba(0,0,0,.9);color:#fff4e3}
@@ -525,8 +531,8 @@ header{background:rgba(28,11,4,.96)}
 <section class="wrap rv" id="reviews">
   <div class="eyebrow metal-gold"><span class="t-hi">Hamare grahak</span><span class="t-en">Our customers</span></div>
   <div class="sec-h"><h2><span class="t-hi">Google reviews</span><span class="t-en">Google reviews</span></h2><div class="line"></div></div>
-  <div class="rv-sum">&#9733; 5.0 &middot; <span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span></div>
-  <div class="rv-g"><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p><div class="by">Nasim &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p><div class="by">Rishabh &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p><div class="by">Hussain &middot; via Google</div></div><div class="rv-c"><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p><div class="by">Ammar &middot; via Google</div></div></div>
+  <div class="rv-sum"><div class="big">5.0</div><div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="cnt"><span class="t-hi">Google par 28 reviews</span><span class="t-en">28 reviews on Google</span></div></div>
+  <div class="rv-g"><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#7b1fa2">N</div><div><div class="rv-nm">Nasim</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Best material&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#00897b">R</div><div><div class="rv-nm">Rishabh</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Very nice Ali Hardware &amp; Electricals Dharni&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#e64a19">H</div><div><div class="rv-nm">Hussain</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;Ali Hardware Shop is a great place for all your hardware needs. They have a good variety of products, reasonable prices, and helpful staff. The service is quick and friendly, and the quality of the products is reliable. Overall, a trustworthy shop with excellent customer service. Highly recommended!&#8221;</p></div><div class="rv-c"><div class="rv-h"><div class="rv-av" style="background:#3949ab">A</div><div><div class="rv-nm">Ammar</div><div class="rv-via">via Google</div></div></div><div class="st" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&#8220;This shop is very good and its products are also very good and the quality is also very nice and the price is quite affordable, I want to say that you should buy all your hardware items from here.&#8221;</p></div></div>
   <p class="sec-sub" style="text-align:center;margin-top:12px"><a href="https://share.google/56C974OvKQ4Z5leWG" style="text-decoration:underline"><span class="t-hi">Sab reviews Google par dekhein</span><span class="t-en">See all reviews on Google</span></a></p>
 </section>
 
@@ -928,4 +934,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-  </html>
+        </html>
