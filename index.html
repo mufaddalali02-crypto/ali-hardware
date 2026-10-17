@@ -380,6 +380,12 @@ html[data-theme="light"] .themeBtn{color:#8a6410;background:rgba(160,118,25,.12)
 .rv-via{font-size:13px;color:#5f6368}
 .rv-c .st{color:#fbbc04;letter-spacing:2px;font-size:16px}
 .rv-c p{margin:8px 0 0;font-size:15px;line-height:1.5;color:#3c4043}
+.rv-g.rv3d{display:block;position:relative;height:330px;perspective:1200px;overflow:hidden;border-radius:14px}
+.rv3d .rv-c{position:absolute;left:50%;top:50%;width:min(82%,330px);max-height:310px;overflow-y:auto;margin:0;backface-visibility:hidden;transition:transform .75s cubic-bezier(.22,.7,.24,1),opacity .75s ease}
+.rv-dots{display:flex;justify-content:center;gap:9px;margin-top:14px}
+.rv-dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:var(--hairline);cursor:pointer;transition:background .3s,transform .3s}
+.rv-dots button.on{background:var(--gold2);transform:scale(1.35)}
+@media (prefers-reduced-motion:reduce){.rv3d .rv-c{transition:none}}
 .hero-ov{background:linear-gradient(180deg,rgba(20,4,4,.62) 0%,rgba(20,4,4,.78) 40%,rgba(26,7,7,.98) 100%)}
 .hero h1.metal-gold{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#fff3cf;-webkit-text-fill-color:#fff3cf;text-shadow:0 2px 3px rgba(0,0,0,.9),0 4px 24px rgba(0,0,0,.85)}
 .hero .tag,.hero .addr{text-shadow:0 1px 3px rgba(0,0,0,.9);color:#fff4e3}
@@ -701,6 +707,40 @@ header{background:rgba(28,11,4,.96)}
     </form>
   </div>
   <script>(function(){
+/* REVIEWS 3D CAROUSEL: existing real review cards ko rotating ring banata hai. JS fail ho to normal grid hi rehta hai. */
+(function(){
+var g=document.querySelector('.rv-g');if(!g)return;
+var cards=[].slice.call(g.children);var N=cards.length;if(N<3)return;
+g.classList.add('rv3d');
+var ang=0,timer=null,paused=false;
+function R(){return Math.min(300,Math.max(150,window.innerWidth*0.36))}
+function paint(){
+  var r=R();
+  for(var i=0;i<N;i++){
+    var a=(i*(360/N)+ang)%360;var rad=a*Math.PI/180;
+    var op=0.25+0.75*Math.pow((Math.cos(rad)+1)/2,2);
+    cards[i].style.transform='translate(-50%,-50%) rotateY('+a+'deg) translateZ('+r+'px)';
+    cards[i].style.opacity=op.toFixed(2);
+    cards[i].style.zIndex=Math.round(100*Math.cos(rad))+100;
+  }
+  var dots=g._dots||[];var cur=((Math.round(-ang/(360/N))%N)+N)%N;
+  for(var d=0;d<dots.length;d++)dots[d].className=d===cur?'on':'';
+}
+function go(step){ang-=step*(360/N);paint()}
+function auto(){if(timer)clearInterval(timer);if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  timer=setInterval(function(){if(!paused)go(1)},3800)}
+var dots=document.createElement('div');dots.className='rv-dots';g._dots=[];
+for(var i=0;i<N;i++){(function(i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Review '+(i+1));
+  b.addEventListener('click',function(){ang=-i*(360/N);paint();paused=true;setTimeout(function(){paused=false},6000)});
+  dots.appendChild(b);g._dots.push(b)})(i)}
+g.parentNode.insertBefore(dots,g.nextSibling);
+var sx=null;
+g.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;paused=true},{passive:true});
+g.addEventListener('touchend',function(e){if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;
+  if(Math.abs(dx)>36)go(dx>0?-1:1);setTimeout(function(){paused=false},5000)},{passive:true});
+window.addEventListener('resize',paint);
+paint();auto();
+})();
 var rating=5;
 var stars=[].slice.call(document.querySelectorAll('#rvfStars span'));
 function paint(){stars.forEach(function(st,i){st.style.opacity=i<rating?'1':'.25'})}
