@@ -688,7 +688,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img'),function(i){i.deco
 <div class="petals" aria-hidden="true"><i style="left:4%;animation-delay:-0s;animation-duration:12s"></i><i style="left:13%;animation-delay:-5s;animation-duration:10s"></i><i style="left:22%;animation-delay:-2s;animation-duration:13s"></i><i style="left:31%;animation-delay:-8s;animation-duration:11s"></i><i style="left:40%;animation-delay:-3s;animation-duration:14s"></i><i style="left:49%;animation-delay:-9s;animation-duration:10s"></i><i style="left:58%;animation-delay:-1s;animation-duration:12s"></i><i style="left:67%;animation-delay:-6s;animation-duration:13s"></i><i style="left:76%;animation-delay:-4s;animation-duration:11s"></i><i style="left:85%;animation-delay:-10s;animation-duration:12s"></i><i style="left:93%;animation-delay:-7s;animation-duration:14s"></i></div>
 <script>
 (function(){
-var POOL=[1,2,4,6,7,11,14,16,17,18,20,15],N=8,q,sc,order,cur,busy;
+var POOL=window.PRODUCTS.map(function(_,i){return i}),N=8,q,sc,order,cur,busy;
 function $(i){return document.getElementById(i)}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
