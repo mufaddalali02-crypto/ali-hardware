@@ -312,6 +312,39 @@ header{background:rgba(26,7,7,.96);border-bottom:1px solid var(--hairgold)}
 .gdBack{background:none;border:0;color:var(--gold2);font:inherit;font-size:14px;font-weight:700;cursor:pointer;padding:4px 0 12px}
 .gdChip{display:inline-block;background:rgba(212,175,55,.1);border:1px solid var(--hairgold);border-radius:999px;padding:8px 14px;margin:0 8px 8px 0;font-size:14.5px;font-weight:600;color:var(--ink)}
 .gdWa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:12px;padding:13px;border-radius:999px;border:0;background:linear-gradient(145deg,#2ac263,var(--wa));color:#fff;font:inherit;font-weight:800;font-size:15.5px;cursor:pointer;text-decoration:none}
+/* premium gold/ivory light theme + toggle */
+html[data-theme="light"]{
+  --bg:#f4eddc; --bg2:#fbf6e9; --card:#fffdf4; --card2:#f8efdb;
+  --ink:#2e2007; --muted:#6f6046;
+  --silver:#4a3a1c; --silver2:#3a2c10; --silver-dim:#7a6a4d;
+  --hairline:rgba(120,90,25,.22); --hairgold:rgba(160,118,25,.5);
+}
+html[data-theme="light"] body{background:
+  radial-gradient(1100px 560px at 85% -10%, rgba(212,175,55,.22), transparent 60%),
+  radial-gradient(900px 520px at -10% 12%, rgba(190,150,60,.14), transparent 55%),
+  radial-gradient(700px 700px at 50% 110%, rgba(212,175,55,.12), transparent 60%),
+  var(--bg)}
+html[data-theme="light"] header{background:rgba(251,246,233,.94);box-shadow:0 1px 14px rgba(120,90,25,.1)}
+html[data-theme="light"] .hd-name{color:#8a6410!important;-webkit-text-fill-color:#8a6410;text-shadow:none}
+html[data-theme="light"] .bottombar{background:rgba(251,246,233,.96)}
+html[data-theme="light"] .srch input{background:#fffdf4;color:var(--ink);box-shadow:0 2px 10px rgba(120,90,25,.08)}
+html[data-theme="light"] .ct{background:rgba(160,118,25,.09)}
+html[data-theme="light"] .ct.on{background:linear-gradient(145deg,var(--gold2),var(--gold));color:#241a05}
+html[data-theme="light"] .sl-dot{background:rgba(120,90,25,.35)}
+html[data-theme="light"] .poster .ph,html[data-theme="light"] .gm .gi{background:#f2e9d4}
+html[data-theme="light"] .lpn{background:#fffdf4}
+html[data-theme="light"] .lg-card input{background:rgba(120,90,25,.07)}
+html[data-theme="light"] .rvf input,html[data-theme="light"] .rvf textarea{background:rgba(120,90,25,.05)}
+html[data-theme="light"] .gm .go button{background:rgba(160,118,25,.08)}
+html[data-theme="light"] .rows,html[data-theme="light"] .gal figure,html[data-theme="light"] .sl,html[data-theme="light"] .vd-card,html[data-theme="light"] .poster,html[data-theme="light"] .vc-card{box-shadow:0 10px 26px rgba(120,90,25,.16)}
+html[data-theme="light"] .prod{box-shadow:0 8px 20px rgba(120,90,25,.14)}
+html[data-theme="light"] .logo-coin .face{box-shadow:0 16px 38px rgba(120,90,25,.3),0 0 0 3px rgba(160,118,25,.55),0 0 26px rgba(212,175,55,.35)}
+html[data-theme="light"] .sec-h .line{background:linear-gradient(90deg,var(--hairgold),transparent)}
+/* theme toggle button */
+.themeBtn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--hairgold);background:rgba(212,175,55,.08);color:var(--gold2);font-size:19px;cursor:pointer;font-family:inherit;line-height:1;padding:0}
+.themeBtn:hover{background:rgba(212,175,55,.16)}
+html[data-theme="light"] .themeBtn{color:#8a6410;background:rgba(160,118,25,.12);box-shadow:0 2px 8px rgba(120,90,25,.12)}
+
 .cats{display:flex;gap:8px;overflow-x:auto;padding:10px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 .ct{flex:none;padding:9px 16px;border-radius:999px;border:1.5px solid var(--hairgold);background:rgba(0,0,0,.28);color:var(--muted);font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
@@ -400,7 +433,7 @@ header{background:rgba(28,11,4,.96)}
       <div class="hd-sub">Main Road, Dharni</div>
     </div>
     <div class="hd-right">
-      <button type="button" class="lang" id="langBtn" aria-label="Language / Bhasha"><span class="t-hi">EN</span><span class="t-en">MR</span><span class="t-mr">HI</span></button>
+      <button type="button" class="themeBtn" id="themeBtn" aria-label="Dark / Light mode">&#9728;&#65039;</button><button type="button" class="lang" id="langBtn" aria-label="Language / Bhasha"><span class="t-hi">EN</span><span class="t-en">MR</span><span class="t-mr">HI</span></button>
       <a class="hd-call" href="tel:+918308244597">&#128222; <span class="ct"><span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></span></a>
     </div>
   </div>
@@ -871,6 +904,14 @@ function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah
 langBtn.addEventListener('click',function(){var l=document.documentElement.lang;setLang(l==='hi'?'en':(l==='en'?'mr':'hi'))});
 try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi'||saved==='mr')setLang(saved)}catch(e){}
 
+/* dark/light theme toggle (default dark) */
+(function(){
+var tb=document.getElementById('themeBtn');if(!tb)return;
+function setTheme(t){if(t==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}tb.textContent=(t==='light')?'\u{1F319}':'\u{2600}\u{FE0F}';try{localStorage.setItem('ah-theme',t)}catch(e){}}
+tb.addEventListener('click',function(){setTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light')});
+try{var sv=localStorage.getItem('ah-theme');if(sv==='light')setTheme('light')}catch(e){}
+})();
+
 /* slideshow */
 var stage=document.getElementById('slStage'),dots=document.getElementById('slDots');
 var n=SLIDE_IDX.length,cur=0,paused=false,timer=null;
@@ -1133,4 +1174,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-</html>
+  </html>
