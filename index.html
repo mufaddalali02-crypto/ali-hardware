@@ -399,6 +399,11 @@ html[data-theme="light"] header .hd-name{background-image:linear-gradient(100deg
 .obadge.closed .ob-closed{display:inline}
 @keyframes obPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.65}}
 @media (prefers-reduced-motion:reduce){.obadge .ob-dot{animation:none}}
+/* per-product stock tag - sirf tab dikhta hai jab item me stock:'in'/'out' set ho */
+.prod .ph{position:relative}
+.stk{position:absolute;top:8px;left:8px;z-index:2;padding:3px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.2px}
+.stk.in{background:rgba(22,163,74,.9);color:#fff}
+.stk.out{background:rgba(220,38,38,.9);color:#fff}
 /* Dussehra overrides */
 :root{--bg:#1c0b04; --bg2:#261006; --card:#2b1306; --card2:#361a09;
   --gold:#ff9f1c; --gold2:#ffd166; --gold-deep:#b45309;
@@ -763,6 +768,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function
 var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tanki','Paint & distemper','Wire & cable','Fan & lighting','Tools & general'];
 var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
 
+// STOCK TAG: kisi bhi item me stock:'in' (Stock me hai) ya stock:'out' (Khatam) jodo - tag sirf tabhi dikhta hai. Field nahi = koi tag nahi.
 var PRODUCTS=[
  {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe',cat:'pipe'},
  {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan',cat:'elec'},
@@ -823,7 +829,8 @@ function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
   var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
-  return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph"><img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
+  var stk=p.stock==='in'?'<span class="stk in"><span class="t-hi">Stock me hai</span><span class="t-en">In stock</span><span class="t-mr">स्टॉकमध्ये आहे</span></span>':(p.stock==='out'?'<span class="stk out"><span class="t-hi">Khatam</span><span class="t-en">Out of stock</span><span class="t-mr">संपला</span></span>':'');
+  return '<div class="prod tilt" data-cat="'+(p.cat||'')+'" data-s="'+esc((p.hi+' '+p.en+' '+p.brand).toLowerCase()).replace(/"/g,'')+'"><div class="ph">'+stk+'<img loading="lazy" src="'+IMGS[p.img]+'" alt="'+esc(p.alt)+'"></div>'+
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
     '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a></div></div>';
 }
