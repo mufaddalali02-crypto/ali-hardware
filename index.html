@@ -643,13 +643,6 @@ header{background:rgba(28,11,4,.96)}
 </section>
 
 <section class="wrap rv">
-  <div class="eyebrow metal-gold"><span class="t-hi">Ads</span><span class="t-en">Ads</span><span class="t-mr">जाहिराती</span></div>
-  <div class="sec-h"><h2><span class="t-hi">Hamare ads</span><span class="t-en">Our ads</span><span class="t-mr">आमच्या जाहिराती</span></h2><div class="line"></div></div>
-  <p class="sec-sub"><span class="t-hi">Hamari dukaan ke posters - computer par mouse ghumaiye, card 3D mein ghoomta hai.</span><span class="t-en">Posters from our shop - move your mouse on desktop, the cards tilt in 3D.</span><span class="t-mr">आमच्या दुकानाचे पोस्टर्स - कॉम्प्युटरवर माऊस फिरवा, कार्ड 3D मध्ये फिरते.</span></p>
-  <div class="posters" id="posterGrid"></div>
-</section>
-
-<section class="wrap rv">
   <div class="eyebrow metal-gold"><span class="t-hi">Photo slides</span><span class="t-en">Photo slides</span><span class="t-mr">फोटो स्लाइड्स</span></div>
   <div class="sec-h"><h2><span class="t-hi">Parcos &amp; Malak paint</span><span class="t-en">Parcos &amp; Malak paint</span><span class="t-mr">Parcos आणि Malak पेंट</span></h2><div class="line"></div></div>
   <p class="sec-sub"><span class="t-hi">Parcos aur Malak Map Active Plus ke photos - side swipe karke dekhein.</span><span class="t-en">Photos of Parcos and Malak Map Active Plus - swipe sideways to see them.</span><span class="t-mr">Parcos आणि Malak Map Active Plus चे फोटो - बाजूने स्वाइप करून पाहा.</span></p>
@@ -961,14 +954,6 @@ try{rec.start();on=true;mic.classList.add('on');mic.textContent='\u23FA'}catch(e
 var CAT_FX={1:'<span class="fx bulbfx" aria-hidden="true">&#128161;</span>',2:'<span class="fx pipefx" aria-hidden="true"><i></i></span>'};
 document.getElementById('catRows').innerHTML=CATS_HI.map(function(c,i){
   return '<div class="rowi"><span class="num">'+(i+1)+'</span><span class="t-hi">'+esc(c)+'</span><span class="t-en">'+esc(CATS_EN[i])+'</span><span class="t-mr">'+esc(c)+'</span>'+(CAT_FX[i]||'')+'</div>';
-}).join('');
-
-/* Ad posters - naya poster add karne ke liye bas yahan ek line jodo (aur posters.js mein uski image) */
-var POSTERS=[
- {key:'parcos',hi:'Parcos switch boards',en:'Parcos switch boards'}
-];
-document.getElementById('posterGrid').innerHTML=POSTERS.map(function(p){
-  return '<div class="poster"><div class="ph"><img loading="lazy" src="'+POSTER_IMGS[p.key]+'" alt="'+esc(p.en)+' poster"></div><div class="cap"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div></div>';
 }).join('');
 
 
@@ -1436,4 +1421,4 @@ if(location.hash==='#owner')openPan();else{window.__ahOnWelcomeDone=function(){s
 })();
 </script>
 </body>
-  </html>
+                                                                                                                                                                   </html>
