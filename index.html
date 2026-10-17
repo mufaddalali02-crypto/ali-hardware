@@ -728,5 +728,86 @@ document.addEventListener('click',function(e){
 });
 })();
 </script>
+<style>.lg-ov{position:fixed;inset:0;z-index:120;background:rgba(10,4,2,.72);display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(3px)}
+.lg-ov.open{display:flex}
+.lg-card{width:100%;max-width:380px;background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--hairgold);border-radius:20px;padding:22px 20px 18px;box-shadow:0 20px 60px rgba(0,0,0,.6);color:var(--ink);font-family:'Mukta',sans-serif}
+.lg-card h3{margin:0 0 4px;font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--gold2)}
+.lg-card p{margin:0 0 14px;color:var(--muted);font-size:.98rem;line-height:1.4}
+.lg-card label{display:block;font-weight:700;font-size:.9rem;margin:10px 0 4px;color:var(--ink)}
+.lg-card input{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:12px;border:1px solid var(--hairgold);background:rgba(0,0,0,.35);color:var(--ink);font:inherit;font-size:1.05rem}
+.lg-card input:focus{outline:2px solid var(--gold);outline-offset:1px}
+.lg-go{width:100%;margin-top:16px;padding:13px;border:0;border-radius:14px;background:linear-gradient(135deg,#ffb347,#ff8a1f);color:#2a1202;font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer}
+.lg-skip{display:block;width:100%;margin-top:8px;padding:10px;border:0;background:none;color:var(--muted);font:inherit;font-size:.98rem;text-decoration:underline;cursor:pointer}
+.lg-note{margin-top:8px;font-size:.85rem;color:var(--muted);text-align:center}
+.lg-err{color:#ff9d8a;font-size:.9rem;min-height:1.2em;margin-top:6px}
+.lg-pan{align-items:flex-start;overflow:auto}
+.lg-pan .lg-card{max-width:560px;margin:20px auto}
+.lg-tbl{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem}
+.lg-tbl th,.lg-tbl td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--hairline);vertical-align:top}
+.lg-tbl th{color:var(--gold2);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
+.lg-tbl a{color:var(--gold2)}
+.lg-row{display:flex;gap:8px;margin-top:12px}
+.lg-row button{flex:1;padding:10px;border-radius:12px;border:1px solid var(--hairgold);background:none;color:var(--ink);font:inherit;cursor:pointer}
+</style>
+<div class="lg-ov" id="lgov" role="dialog" aria-modal="true" aria-labelledby="lgt"><form class="lg-card" id="lgf" autocomplete="on" novalidate>
+<h3 id="lgt"><span class="t-hi">Swagat hai!</span><span class="t-en">Welcome!</span></h3>
+<p><span class="t-hi">Apna naam aur number bata dein, taaki hum aapki madad kar sakein.</span><span class="t-en">Share your name and number so we can help you.</span></p>
+<label for="lgn"><span class="t-hi">Naam</span><span class="t-en">Name</span></label><input id="lgn" name="name" maxlength="60" autocomplete="name">
+<label for="lgp"><span class="t-hi">Mobile number</span><span class="t-en">Mobile number</span></label><input id="lgp" name="tel" type="tel" inputmode="numeric" maxlength="14" autocomplete="tel-national" placeholder="98XXXXXXXX">
+<div class="lg-err" id="lge" role="alert"></div>
+<button class="lg-go" type="submit"><span class="t-hi">Aage badhein</span><span class="t-en">Continue</span></button>
+<button class="lg-skip" type="button" id="lgs"><span class="t-hi">Skip karein</span><span class="t-en">Skip</span></button>
+<div class="lg-note"><span class="t-hi">Aapka number sirf dukaan ko milega.</span><span class="t-en">Your number goes only to the shop.</span></div>
+</form></div>
+<div class="lg-ov lg-pan" id="lgpan" role="dialog" aria-modal="true"><div class="lg-card">
+<h3>Owner panel</h3>
+<form id="lgpf" autocomplete="off"><label for="lgpw">Password</label><input id="lgpw" type="password" autocomplete="off"><div class="lg-err" id="lgpe" role="alert"></div><button class="lg-go" type="submit">Kholein</button></form>
+<div id="lgpl" style="display:none"><div id="lgpc" style="color:var(--muted)"></div><div style="overflow-x:auto"><table class="lg-tbl"><thead><tr><th>Time</th><th>Naam</th><th>Number</th></tr></thead><tbody id="lgpb"></tbody></table></div><div class="lg-row"><button type="button" id="lgpr">Refresh</button><button type="button" id="lgpx">Band karein</button></div></div>
+<button class="lg-skip" type="button" id="lgpc2">Band karein</button>
+</div></div>
+
+<script>window.AH_LEAD_URL="https://script.google.com/macros/s/AKfycbxyUsicxAJwskQhmONLs34Ci2lOuVdPigldsvzybysMukmPLKivmjQWI-R-RqErLrfWuA/exec";
+(function(){
+var URL_=window.AH_LEAD_URL||'';
+var KEY='ah-visitor-v1';
+var ov=document.getElementById('lgov'),f=document.getElementById('lgf'),pan=document.getElementById('lgpan');
+if(!ov||!pan)return;
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function seen(){try{return !!localStorage.getItem(KEY)}catch(e){return false}}
+function mark(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+function post(o){return fetch(URL_,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)})}
+function showVisitor(){if(URL_&&!seen()&&location.hash!=='#owner'){ov.classList.add('open');setTimeout(function(){try{$('lgn').focus()}catch(e){}},300)}}
+function closeV(){ov.classList.remove('open')}
+$('lgs').addEventListener('click',function(){mark('skip');closeV()});
+f.addEventListener('submit',function(ev){ev.preventDefault();
+  var n=$('lgn').value.trim(),p=$('lgp').value.replace(/\D/g,'');
+  if(p.length>10&&p.slice(0,2)==='91')p=p.slice(2);
+  if(p.length===11&&p[0]==='0')p=p.slice(1);
+  if(n.length<2){$('lge').textContent='Naam likhein / Please enter your name';return}
+  if(!/^[6-9]\d{9}$/.test(p)){$('lge').textContent='10 digit ka mobile number likhein / Enter a 10 digit number';return}
+  $('lge').textContent='';mark('done');
+  try{post({action:'add',name:n,phone:p}).catch(function(){})}catch(e){}
+  closeV();
+});
+var pw='';
+function row(r){var ph=String(r[2]||'').replace(/\D/g,'');return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td><a href="tel:'+esc(ph)+'">'+esc(ph)+'</a><br><a href="https://wa.me/91'+esc(ph)+'" target="_blank" rel="noopener">WhatsApp</a></td></tr>'}
+function load(){$('lgpe').textContent='Ruko...';
+  return post({action:'list',password:pw}).then(function(r){return r.json()}).then(function(j){
+    if(!j||!j.ok){pw='';$('lgpe').textContent='Password galat hai';$('lgpl').style.display='none';$('lgpf').style.display='';return}
+    $('lgpe').textContent='';$('lgpf').style.display='none';$('lgpl').style.display='';
+    $('lgpc').textContent='Kul '+(j.total||0)+' customer'+((j.total||0)>500?' (latest 500 dikh rahe)':'');
+    $('lgpb').innerHTML=(j.rows||[]).map(row).join('')||'<tr><td colspan="3">Abhi koi nahi</td></tr>';
+  }).catch(function(){$('lgpe').textContent='Net check karein, dobara try karein'});
+}
+function openPan(){pan.classList.add('open');ov.classList.remove('open');$('lgpw').value='';pw='';$('lgpl').style.display='none';$('lgpf').style.display='';$('lgpe').textContent=URL_?'':'Abhi setup baaki hai'}
+function closePan(){pan.classList.remove('open');pw='';$('lgpw').value='';$('lgpb').innerHTML='';if(location.hash==='#owner'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){location.hash=''}}}
+$('lgpf').addEventListener('submit',function(e){e.preventDefault();if(!URL_)return;pw=$('lgpw').value;$('lgpw').value='';load()});
+$('lgpr').addEventListener('click',load);
+$('lgpx').addEventListener('click',closePan);$('lgpc2').addEventListener('click',closePan);
+window.addEventListener('hashchange',function(){if(location.hash==='#owner')openPan()});
+if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
+})();
+</script>
 </body>
                          </html>
