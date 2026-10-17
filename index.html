@@ -1311,7 +1311,9 @@ function finish(nm){
   ov.classList.remove('open');
   if(window.__ahOnWelcomeDone)window.__ahOnWelcomeDone();
 }
-document.getElementById('wgo').addEventListener('click',function(){
+var wBusy=false;
+function wSubmit(){
+  if(wBusy)return;
   var nm=inp.value.trim();
   var p=document.getElementById('wph').value.replace(/\D/g,'');
   if(p.length>10&&p.slice(0,2)==='91')p=p.slice(2);
@@ -1321,15 +1323,26 @@ document.getElementById('wgo').addEventListener('click',function(){
     if(!/^[6-9]\d{9}$/.test(p)){err.textContent='10 digit ka sahi mobile number likhein / Enter a valid 10-digit mobile';return}
     if(nm.length<2){err.textContent='Number ke saath naam bhi likhein / Please enter your name too';return}
     err.textContent='';
-    try{localStorage.setItem('ah-visitor-v1','done')}catch(e){}
-    try{fetch(window.AH_LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',name:nm,phone:p})}).catch(function(){})}catch(e){}
+    wBusy=true;
+    var btn=document.getElementById('wgo'),oldBtn=btn.innerHTML;
+    btn.innerHTML='<span class="t-hi">Ek second...</span><span class="t-en">One moment...</span><span class="t-mr">Ek second...</span>';
+    fetch(window.AH_LEAD_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'add',name:nm,phone:p})})
+      .then(function(r){if(!r.ok)throw new Error('bad');
+        try{localStorage.setItem('ah-visitor-v1','done')}catch(e){}
+        showWelcome(nm)})
+      .catch(function(){wBusy=false;btn.innerHTML=oldBtn;
+        err.textContent='Save nahi ho paya - phir try karein ya Skip kar dein / Could not save - please try again or Skip'});
   }else{
     try{localStorage.setItem('ah-visitor-v1','skip')}catch(e){}
+    showWelcome(nm);
   }
-  showWelcome(nm);
-});
-document.getElementById('wsk').addEventListener('click',function(){showWelcome('')});
-inp.addEventListener('keydown',function(e){if(e.key==='Enter')showWelcome(inp.value.trim())});
+}
+document.getElementById('wgo').addEventListener('click',wSubmit);
+document.getElementById('wsk').addEventListener('click',function(){
+  try{if(localStorage.getItem('ah-visitor-v1')!=='done')localStorage.setItem('ah-visitor-v1','skip')}catch(e){}
+  showWelcome('')});
+inp.addEventListener('keydown',function(e){if(e.key==='Enter')wSubmit()});
+document.getElementById('wph').addEventListener('keydown',function(e){if(e.key==='Enter')wSubmit()});
 })();
 </script>
 <script>window.AH_LEAD_URL="https://script.google.com/macros/s/AKfycbxyUsicxAJwskQhmONLs34Ci2lOuVdPigldsvzybysMukmPLKivmjQWI-R-RqErLrfWuA/exec";
