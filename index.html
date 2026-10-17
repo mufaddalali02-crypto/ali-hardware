@@ -382,9 +382,9 @@ html[data-theme="light"] .themeBtn{color:#8a6410;background:rgba(160,118,25,.12)
 .hero .tag,.hero .addr{text-shadow:0 1px 3px rgba(0,0,0,.9);color:#fff4e3}
 .hd-name{background:none!important;-webkit-text-fill-color:#ffd36b;color:#ffd36b;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 /* gold shine sweep on shop name + offer gleam (idea #3) */
-header .hd-name{background:linear-gradient(100deg,#ffd36b 32%,#fffbe8 50%,#ffd36b 68%)!important;background-size:250% auto!important;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent!important;color:transparent;text-shadow:none;animation:hdShine 5s linear infinite}
+header .hd-name{background-image:linear-gradient(100deg,#ffd36b 32%,#fffbe8 50%,#ffd36b 68%)!important;background-size:250% auto!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent;text-shadow:none;animation:hdShine 5s linear infinite}
 @keyframes hdShine{from{background-position:250% center}to{background-position:-250% center}}
-html[data-theme="light"] header .hd-name{background:linear-gradient(100deg,#8a6410 32%,#e9c85c 50%,#8a6410 68%)!important;-webkit-text-fill-color:transparent!important;color:transparent}
+html[data-theme="light"] header .hd-name{background-image:linear-gradient(100deg,#8a6410 32%,#e9c85c 50%,#8a6410 68%)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent}
 .dw-offer{position:relative;overflow:hidden}
 .dw-offer::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.5) 50%,transparent 58%);transform:translateX(-130%);animation:offerSheen 4.4s ease-in-out infinite;pointer-events:none}
 @keyframes offerSheen{0%,55%{transform:translateX(-130%)}85%,100%{transform:translateX(130%)}}
@@ -1225,4 +1225,4 @@ if(location.hash==='#owner')openPan();else setTimeout(showVisitor,900);
 })();
 </script>
 </body>
-  </html>
+                </html>
