@@ -941,7 +941,7 @@ var langBtn=document.getElementById('langBtn');
 function setLang(l){document.documentElement.lang=l;try{localStorage.setItem('ah-lang',l)}catch(e){}}
 langBtn.addEventListener('click',function(){var l=document.documentElement.lang;setLang(l==='hi'?'en':(l==='en'?'mr':'hi'))});
 try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi'||saved==='mr')setLang(saved)}catch(e){}
-;(function(){var ob=document.getElementById('openBadge');if(!ob)return;function obTick(){try{var ist=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));var mins=ist.getHours()*60+ist.getMinutes();ob.classList.toggle('closed',!(mins>=390&&mins<1170))}catch(e){}}obTick();setInterval(obTick,30000)})();
+;(function(){var ob=document.getElementById('openBadge');if(!ob)return;function obTick(){try{var nw=new Date();var mins=(nw.getUTCHours()*60+nw.getUTCMinutes()+330)%1440;ob.classList.toggle('closed',!(mins>=390&&mins<1290))}catch(e){}}obTick();setInterval(obTick,30000)})();
 
 /* dark/light theme toggle (default dark) */
 (function(){
