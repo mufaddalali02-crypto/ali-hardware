@@ -766,7 +766,7 @@ Array.prototype.forEach.call(document.querySelectorAll('img[data-biz]'),function
 var CATS_HI=['Hardware saaman','Electric saaman','Pipe & fittings','Paani ki tanki','Paint & distemper','Wire & cable','Fan & lighting','Tools & general'];
 var CATS_EN=['Hardware supplies','Electrical supplies','Pipes & fittings','Water tanks','Paint & distemper','Wires & cables','Fans & lighting','Tools & general'];
 
-// STOCK TAG: kisi bhi product mein stock:'in' (Stock me hai) ya stock:'out' (Khatam) likh do - tag apne aap dikhne lagega. Na likho to kuch nahi dikhta (default).
+// STOCK TAG: DEFAULT sab products 'Stock me hai' dikhate hain (Mufaddal ne bola sab stock me hai, 17 Oct). Jo cheez khatam ho usme stock:'out' likh do - 'Khatam' dikhega. Wapas default off karna ho to neeche card() me p.stock!=='out' ko p.stock==='in' kar do.
 var PRODUCTS=[
  {img:'plasto-pipe.jpg',brand:'PLASTO',hi:'UPVC & CPVC pipe',en:'UPVC & CPVC pipes',alt:'Plasto UPVC CPVC pipe',cat:'pipe'},
  {img:'fan-goldmedal-speedo.jpg',brand:'GOLDMEDAL',hi:'Speedo Air ceiling fan',en:'Speedo Air ceiling fan',alt:'Goldmedal Speedo Air ceiling fan',cat:'elec'},
@@ -826,7 +826,7 @@ var SLIDE_IDX=[0,1,2,3,4,6,7,10,11,12,13,14,15,16,17,18,19,20];
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
   var stk='';
-  if(p.stock==='in')stk='<span class="stk in"><span class="t-hi">&#10003; Stock me hai</span><span class="t-en">&#10003; In stock</span><span class="t-mr">&#10003; &#2360;&#2381;&#2335;&#2377;&#2325;&#2350;&#2343;&#2381;&#2351;&#2375; &#2310;&#2361;&#2375;</span></span>';
+  if(p.stock!=='out')stk='<span class="stk in"><span class="t-hi">&#10003; Stock me hai</span><span class="t-en">&#10003; In stock</span><span class="t-mr">&#10003; &#2360;&#2381;&#2335;&#2377;&#2325;&#2350;&#2343;&#2381;&#2351;&#2375; &#2310;&#2361;&#2375;</span></span>';
   else if(p.stock==='out')stk='<span class="stk out"><span class="t-hi">Khatam</span><span class="t-en">Out of stock</span><span class="t-mr">&#2360;&#2306;&#2346;&#2354;&#2375;</span></span>';
   var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
