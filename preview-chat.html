@@ -1499,11 +1499,11 @@ function findProducts(q){
     var p=PLIST[i],hay=norm(p.hi+' '+p.en+' '+p.brand+' '+(p.cat||''));
     var score=0;
     for(var j=0;j<toks.length;j++){var t=toks[j];
-      var hw=hay.split(' '),hit=0;
+      var hw=hay.split(' ').filter(function(w){return w.length>0}),hit=0;
       for(var k=0;k<hw.length;k++){var w=hw[k];
         if(w===t){hit=2;break}
-        if(t.length>=4&&Math.abs(w.length-t.length)<=2&&(w.indexOf(t)===0||t.indexOf(w)===0)){hit=2;break}
-        if(t.length>=6&&(w.indexOf(t)>-1||t.indexOf(w)>-1)){hit=2;break}
+        if(w.length>=3&&t.length>=4&&Math.abs(w.length-t.length)<=2&&(w.indexOf(t)===0||t.indexOf(w)===0)){hit=2;break}
+        if(w.length>=3&&t.length>=6&&(w.indexOf(t)>-1||t.indexOf(w)>-1)){hit=2;break}
         if(!hit&&t.length>=4&&Math.abs(w.length-t.length)<=1&&lev(w,t)<=1){hit=1}
       }
       score+=hit;
