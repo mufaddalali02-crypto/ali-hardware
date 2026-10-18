@@ -251,6 +251,32 @@ section{padding:52px 0 8px}
 .poster .cap{padding:10px 14px 13px;font-size:14.5px;font-weight:700;text-align:center}
 
 
+/* CHATBOT (preview) - rule based, gold theme */
+.chat-fab{position:fixed;right:12px;bottom:152px;z-index:71;width:56px;height:56px;border-radius:50%;border:1px solid var(--hairgold);background:linear-gradient(160deg,var(--gold2),var(--gold));color:#241a05;font-size:24px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.5),0 0 18px rgba(212,175,55,.35);display:flex;align-items:center;justify-content:center}
+.chat-fab:hover{transform:translateY(-2px)}
+.chat-pn{position:fixed;right:12px;bottom:218px;z-index:72;width:min(344px,calc(100vw - 24px));max-height:min(58vh,540px);display:none;flex-direction:column;background:linear-gradient(170deg,var(--card2),var(--card));border:1px solid var(--hairgold);border-radius:18px;overflow:hidden;box-shadow:0 16px 44px rgba(0,0,0,.6)}
+.chat-pn.open{display:flex}
+.chat-hd{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(90deg,rgba(212,175,55,.22),rgba(212,175,55,.06));border-bottom:1px solid var(--hairgold)}
+.chat-hd .av{width:34px;height:34px;border-radius:50%;background:linear-gradient(160deg,var(--gold2),var(--gold));display:flex;align-items:center;justify-content:center;font-size:18px}
+.chat-hd .tt{font-weight:800;font-size:15px;color:var(--gold2)}
+.chat-hd .st{font-size:11.5px;color:var(--muted)}
+.chat-hd .x{margin-left:auto;background:none;border:0;color:var(--muted);font-size:20px;cursor:pointer;padding:4px 8px}
+.chat-msgs{flex:1;overflow-y:auto;padding:12px 12px 6px;display:flex;flex-direction:column;gap:8px;min-height:140px}
+.cmsg{max-width:86%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.45;white-space:pre-wrap;word-wrap:break-word}
+.cmsg.bot{align-self:flex-start;background:var(--card);border:1px solid var(--hairline);border-bottom-left-radius:4px;color:var(--silver2)}
+.cmsg.me{align-self:flex-end;background:linear-gradient(160deg,rgba(212,175,55,.28),rgba(212,175,55,.16));border:1px solid var(--hairgold);border-bottom-right-radius:4px;color:var(--silver2)}
+.cmsg a{color:var(--gold2)}
+.cmsg.typing{color:var(--muted);font-style:italic}
+.chat-chips{display:flex;gap:6px;overflow-x:auto;padding:6px 12px 8px;scrollbar-width:none}
+.chat-chips::-webkit-scrollbar{display:none}
+.chat-chips button{flex:0 0 auto;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--hairgold);background:transparent;color:var(--gold2);cursor:pointer}
+.chat-in{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));border-top:1px solid var(--hairline)}
+.chat-in input{flex:1;background:var(--bg2);border:1px solid var(--hairline);border-radius:12px;padding:10px 12px;color:var(--silver2);font-size:14px;outline:none}
+.chat-in input:focus{border-color:var(--gold)}
+.chat-in button{background:linear-gradient(160deg,var(--gold2),var(--gold));border:0;border-radius:12px;padding:0 16px;font-size:16px;cursor:pointer;color:#241a05;font-weight:700}
+@media (prefers-reduced-motion:reduce){.chat-fab:hover{transform:none}}
+html[data-theme="light"] .cmsg.me{background:rgba(180,140,40,.16)}
+
 /* photo slides strip (Parcos + Malak) */
 .psw{position:relative;margin-top:14px}
 .pshow{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:18px}
@@ -814,6 +840,21 @@ document.getElementById('rvfForm').addEventListener('submit',function(ev){
   <div class="rule"></div>
   <p><span class="t-hi">Keemat ya offer ki jaankari yahan nahi hai - WhatsApp par poochh lijiye.</span><span class="t-en">No prices or offers listed here - please ask on WhatsApp.</span><span class="t-mr">किंमत किंवा ऑफरची माहिती येथे नाही - कृपया WhatsApp वर विचारा.</span></p>
   <p class="credit">Ali Hardware &amp; Electricals &middot; Dharni</p>
+</div>
+
+<button type="button" class="chat-fab" id="chatFab" aria-label="AI Chatbot kholein">&#128172;</button>
+<div class="chat-pn" id="chatPn" role="dialog" aria-label="Shop assistant chat">
+  <div class="chat-hd">
+    <div class="av">&#129302;</div>
+    <div><div class="tt">AI Chatbot</div><div class="st" id="chatSt">Shop assistant - turant jawab</div></div>
+    <button type="button" class="x" id="chatX" aria-label="Chat band karein">&times;</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs" role="log" aria-live="polite"></div>
+  <div class="chat-chips" id="chatChips"></div>
+  <div class="chat-in">
+    <input type="text" id="chatIn" placeholder="Apna sawaal likhein..." autocomplete="off" aria-label="Apna sawaal likhein">
+    <button type="button" id="chatGo" aria-label="Bhejein">&#10148;</button>
+  </div>
 </div>
 
 <div class="bottombar">
@@ -1433,5 +1474,87 @@ if(location.hash==='#owner')openPan();else{window.__ahOnWelcomeDone=function(){s
   ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('open')});
 })();
 </script>
+<script>/* CHATBOT: rule-based assistant - sirf site ke apne data se jawab deta hai, koi price/stock nahi batata */
+(function(){
+var fab=document.getElementById('chatFab'),pn=document.getElementById('chatPn'),msgs=document.getElementById('chatMsgs'),inp=document.getElementById('chatIn');
+if(!fab)return;
+var WA='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe Ali Hardware & Electricals ke baare mein jaankari chahiye.');
+var PLIST=(window.PRODUCTS||[]).concat(window.MORE||[]).concat((window.TILES||[]).map(function(t){return {hi:t.hi,en:t.en,brand:'SAMPLE PHOTO',sample:1}}));
+var DEV={'पाईप':'pipe','बल्ब':'bulb','बत्ती':'bulb','पंखा':'fan','रंग':'paint','पेंट':'paint','नळ':'faucet valve tap','मोटार':'motor','टाकी':'tank','तार':'wire','वाल्व':'valve','टेप':'tape','स्विच':'switch','रस्सी':'rassi rope','दुकान':'address shop','वेळ':'time','समय':'time','किंमत':'price','लाईट':'led light','नल':'faucet valve tap'};
+var SYN=[['balb','bulb'],['light','led bulb panel strip'],['lights','led bulb panel strip'],['pankha','fan'],['pankhe','fan'],['rang','paint'],['colour','paint'],['color','paint'],['pipeline','pipe'],['nal','faucet valve tap pipe'],['tap','faucet valve'],['tanki','tank'],['paani ki tanki','tank'],['tar','wire'],['cable','wire'],['board','switch'],['switches','switch'],['glue','adhesive'],['fevicol','adhesive'],['chipkane','adhesive'],['ropes','rassi rope'],['rope','rassi'],['dori','dori rassi'],['rod','parde rod'],['parde','parde rod'],['khile','nails'],['keel','nails'],['nail','nails'],['jet','faucet'],['bell','alarm'],['baghicha','garden'],['garden','garden pipe'],['acid','hcl'],['bulbs','bulb'],['fans','fan'],['paints','paint'],['pipes','pipe'],['valves','valve'],['tapes','tape'],['motors','motor'],['wires','wire'],['tank','tank'],['dispenser','dispenser'],['soap','dispenser'],['distemper','distemper paint'],['emulsion','paint'],['enamel','enamel paint'],['capacitor','capacitor motor'],['driver','driver led'],['strip','led strip'],['panel','panel light'],['cement','cement colour surya']];
+function norm(s){
+  s=(' '+s+' ').toLowerCase();
+  for(var k in DEV){if(s.indexOf(k)>-1)s+=' '+DEV[k]+' '}
+  s=s.replace(/[^a-z0-9\u0900-\u097F ]/g,' ').replace(/\s+/g,' ');
+  for(var i=0;i<SYN.length;i++){if((' '+s+' ').indexOf(' '+SYN[i][0]+' ')>-1)s+=' '+SYN[i][1]+' '}
+  return s.trim();
+}
+function lev(a,b){if(Math.abs(a.length-b.length)>1)return 9;var d=[a.split(''),b.split('')];var m=a.length,n=b.length;var dp=[];for(var i=0;i<=m;i++){dp[i]=[i]}for(var j=0;j<=n;j++){dp[0][j]=j}for(var i2=1;i2<=m;i2++){for(var j2=1;j2<=n;j2++){dp[i2][j2]=Math.min(dp[i2-1][j2]+1,dp[i2][j2-1]+1,dp[i2-1][j2-1]+(a[i2-1]===b[j2-1]?0:1))}}return dp[m][n]}
+function findProducts(q){
+  var toks=norm(q).split(' ').filter(function(t){return t.length>=3}),out=[];
+  for(var i=0;i<PLIST.length;i++){
+    var p=PLIST[i],hay=norm(p.hi+' '+p.en+' '+p.brand+' '+(p.cat||''));
+    var score=0;
+    for(var j=0;j<toks.length;j++){var t=toks[j];
+      var hw=hay.split(' ').filter(function(w){return w.length>0}),hit=0;
+      for(var k=0;k<hw.length;k++){var w=hw[k];
+        if(w===t){hit=2;break}
+        if(w.length>=3&&t.length>=4&&Math.abs(w.length-t.length)<=2&&(w.indexOf(t)===0||t.indexOf(w)===0)){hit=2;break}
+        if(w.length>=3&&t.length>=6&&(w.indexOf(t)>-1||t.indexOf(w)>-1)){hit=2;break}
+        if(!hit&&t.length>=4&&Math.abs(w.length-t.length)<=1&&lev(w,t)<=1){hit=1}
+      }
+      score+=hit;
+    }
+    if(score>=2)out.push({p:p,score:score});
+  }
+  out.sort(function(a,b){return b.score-a.score});
+  return out.slice(0,3);
+}
+function istMins(){var d=new Date(Date.now()+(330*60000)+(new Date().getTimezoneOffset()*60000));return d.getHours()*60+d.getMinutes()}
+function openNow(){var m=istMins();return m>=390&&m<1290}
+function has(q){return function(w){return (' '+norm(q)+' ').indexOf(' '+w+' ')>-1}}
+function answer(q){
+  var H=has(q),nq=norm(q);
+  if(!nq)return 'Kuch likhiye - main madad karta hoon.';
+  if(/^(hi|hii+|hello|hey|namaste|namaskar|salaam)\b/.test(nq)||nq.length<3)return 'Namaste! Main Ali Hardware ka assistant hoon. Products, timing, address, offer, reviews - kuch bhi poochhiye.';
+  if(H('offer')||H('offers')||H('discount')||H('free')||H('scheme')||H('ofar'))return '\u{1F381} Dussehra offer: 1 HP ki motor lene par ek press FREE - 3 November tak. Dukaan pe aaiye ya <a href="'+WA+'" target="_blank" rel="noopener">WhatsApp karein</a>.';
+  if(H('time')||H('timing')||H('timings')||H('khula')||H('band')||H('open')||H('close')||H('closed')||H('baje')||H('kab'))return (openNow()?'Abhi dukaan KHULI hai. ':'Abhi dukaan BAND hai. ')+'Roz subah 6:30 se raat 9:30 tak (6:30 AM - 9:30 PM, saatoon din).';
+  if(H('address')||H('kahan')||H('location')||H('where')||H('dukaan')||H('shop')||H('map')||H('rasta')||H('pata')||H('dharni'))return 'Ali Hardware & Electricals - Chandralok Market ke paas, Main Road, Dharni (MH). Neeche page mein map bhi hai.';
+  if(H('call')||H('phone')||H('number')||H('contact')||H('baat')||H('whatsapp'))return 'Call: <a href="tel:+918308244597">83082 44597</a> ya <a href="tel:+919420892704">94208 92704</a><br>WhatsApp: <a href="'+WA+'" target="_blank" rel="noopener">82618 96180</a>';
+  if(H('review')||H('reviews')||H('rating')||H('ratings')||H('star')||H('stars')||H('accha'))return 'Logon ne hamein \u2B50 5.0/5 rating di hai - neeche reviews section mein padh sakte hain.';
+  if(H('keemat')||H('kimmat')||H('price')||H('prices')||H('cost')||H('rate')||H('rates')||H('dam'))return 'Keemat yahan nahi batate - <a href="'+WA+'" target="_blank" rel="noopener">WhatsApp par poochh lijiye</a> ya dukaan pe aaiye, best rate mil jayega.';
+  if(H('stock')||H('milega')||H('available')||H('availability')){
+    var m2=findProducts(q);
+    if(m2.length)return 'Stock roz badalta hai, isliye confirm kar lijiye: <a href="'+WA+'" target="_blank" rel="noopener">WhatsApp par poochhein</a> - photo bhi bhej denge.';
+    return 'Stock roz badalta hai - <a href="'+WA+'" target="_blank" rel="noopener">WhatsApp par poochh lijiye</a>, turant bata denge.';
+  }
+  var m=findProducts(q);
+  if(m.length){
+    var lines=m.map(function(x){var p=x.p;return '\u2022 <b>'+esc(p.hi)+'</b>'+(p.brand&&p.brand!=='SAMPLE PHOTO'?' ('+esc(p.brand)+')':'')+(p.sample?' - abhi photo sample hai':'')});
+    return 'Haan, ye milta hai:\n'+lines.join('\n')+'\nKeemat ya stock ke liye <a href="'+WA+'" target="_blank" rel="noopener">WhatsApp par poochh lijiye</a>.';
+  }
+  return 'Maaf kijiye, ye samajh nahi aaya. Aap ye poochh sakte hain: koi product (jaise "LED bulb", "garden pipe"), timing, address, offer, reviews, ya call number.';
+}
+function add(html,me){var d=document.createElement('div');d.className='cmsg '+(me?'me':'bot');d.innerHTML=html;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function send(q){
+  q=(q||'').trim();if(!q)return;
+  add(esc(q),true);inp.value='';
+  var t=add('Soch raha hoon...');t.classList.add('typing');
+  setTimeout(function(){t.remove();add(answer(q))},450);
+}
+document.getElementById('chatGo').addEventListener('click',function(){send(inp.value)});
+inp.addEventListener('keydown',function(e){if(e.key==='Enter')send(inp.value)});
+var CHIPS=['Timing kya hai?','Address kahan hai?','Koi offer?','Reviews kaisi hain?','LED bulb milta hai?','Call number'];
+var chips=document.getElementById('chatChips');
+CHIPS.forEach(function(c){var b=document.createElement('button');b.type='button';b.textContent=c;b.addEventListener('click',function(){send(c)});chips.appendChild(b)});
+var opened=false;
+fab.addEventListener('click',function(){
+  pn.classList.toggle('open');
+  if(pn.classList.contains('open')&&!opened){opened=true;add('Namaste! \u{1F64B} Main Ali Hardware ka assistant hoon. Products dhundo, timing, address, offer - jo bhi poochna ho likhiye. (Keemat/stock ke liye WhatsApp hi best hai)')}
+  if(pn.classList.contains('open'))setTimeout(function(){try{inp.focus()}catch(e){}},150);
+});
+document.getElementById('chatX').addEventListener('click',function(){pn.classList.remove('open')});
+})();
+</script>
 </body>
-                                                                                                                                                                   </html>
+  </html>
