@@ -941,13 +941,13 @@ var PRODUCTS=[
 {"img": "western-toilet.jpg", "brand": "GENERAL", "hi": "Western toilet (safed)", "en": "Western toilet (white)", "alt": "White western toilet with cistern and open seat lid", "cat": "sanitary"},
 {"img": "square-toilet.jpg", "brand": "GENERAL", "hi": "Western toilet (square type, safed)", "en": "Western toilet (square type, white)", "alt": "White square-style western toilet with cistern", "cat": "sanitary"},
 {"img": "indian-toilet.jpg", "brand": "GENERAL", "hi": "Indian toilet pan (safed)", "en": "Indian toilet pan (white)", "alt": "White squat toilet pan with ribbed footrests", "cat": "sanitary"},
-{"img": "duster.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Duster (grey)", "en": "Extendable duster (grey)", "alt": "Grey fluffy duster with handle", "cat": "tools"},
-{"img": "squeegee.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Wiper (laal, hara, neela)", "en": "Wiper / squeegee (red, green, blue)", "alt": "Handheld cleaning squeegees in red, green and blue", "cat": "tools"},
-{"img": "cleaning-gloves.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Safai ke gloves (gulabi)", "en": "Cleaning gloves (pink)", "alt": "Pair of pink cleaning gloves", "cat": "tools"},
-{"img": "wooden-brushes.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Lakdi wale brushes", "en": "Wooden bristle brushes", "alt": "Three wooden handled bristle brushes", "cat": "tools"},
-{"img": "mop.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Pocha (blue head)", "en": "Mop (blue head)", "alt": "White strand mop with blue head and long handle", "cat": "tools"},
-{"img": "packing-tape.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Packing tape / cello tape", "en": "Transparent packing tape", "alt": "Transparent packing tape rolls", "cat": "hw"},
-{"img": "brooms.jpg", "brand": "GENERAL", "stock": "unknown", "hi": "Jhadu", "en": "Brooms", "alt": "Several bundled stick brooms", "cat": "tools"}
+{"img": "duster.jpg", "brand": "GENERAL", "hi": "Duster (grey)", "en": "Extendable duster (grey)", "alt": "Grey fluffy duster with handle", "cat": "tools"},
+{"img": "squeegee.jpg", "brand": "GENERAL", "hi": "Wiper (laal, hara, neela)", "en": "Wiper / squeegee (red, green, blue)", "alt": "Handheld cleaning squeegees in red, green and blue", "cat": "tools"},
+{"img": "cleaning-gloves.jpg", "brand": "GENERAL", "hi": "Safai ke gloves (gulabi)", "en": "Cleaning gloves (pink)", "alt": "Pair of pink cleaning gloves", "cat": "tools"},
+{"img": "wooden-brushes.jpg", "brand": "GENERAL", "hi": "Lakdi wale brushes", "en": "Wooden bristle brushes", "alt": "Three wooden handled bristle brushes", "cat": "tools"},
+{"img": "mop.jpg", "brand": "GENERAL", "hi": "Pocha (blue head)", "en": "Mop (blue head)", "alt": "White strand mop with blue head and long handle", "cat": "tools"},
+{"img": "packing-tape.jpg", "brand": "GENERAL", "hi": "Packing tape / cello tape", "en": "Transparent packing tape", "alt": "Transparent packing tape rolls", "cat": "hw"},
+{"img": "brooms.jpg", "brand": "GENERAL", "hi": "Jhadu", "en": "Brooms", "alt": "Several bundled stick brooms", "cat": "tools"}
 ];
 var MORE=[
  {img:'gen-tank.jpg',brand:'POLYRAJ \u2022 AQUA PLAST',hi:'Paani ki tanki',en:'Water tanks',alt:'Paani ki tanki (water tanks)',sil:1,cat:'pipe'},
@@ -967,7 +967,7 @@ var SLIDE_IDX=[0,1,2,3,4,6,7,10,11,12,13,14,15,16,17,18,19,20];
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function card(p,n){
   var stk='';
-  if(p.stock!=='out'&&p.stock!=='unknown')stk='<span class="stk in"><span class="t-hi">&#10003; Stock me hai</span><span class="t-en">&#10003; In stock</span><span class="t-mr">&#10003; &#2360;&#2381;&#2335;&#2377;&#2325;&#2350;&#2343;&#2381;&#2351;&#2375; &#2310;&#2361;&#2375;</span></span>';
+  if(p.stock!=='out')stk='<span class="stk in"><span class="t-hi">&#10003; Stock me hai</span><span class="t-en">&#10003; In stock</span><span class="t-mr">&#10003; &#2360;&#2381;&#2335;&#2377;&#2325;&#2350;&#2343;&#2381;&#2351;&#2375; &#2310;&#2361;&#2375;</span></span>';
   else if(p.stock==='out')stk='<span class="stk out"><span class="t-hi">Khatam</span><span class="t-en">Out of stock</span><span class="t-mr">&#2360;&#2306;&#2346;&#2354;&#2375;</span></span>';
   var nm=p.hi+(p.en&&p.en!==p.hi?' / '+p.en:'');
   var wa='https://wa.me/918261896180?text='+encodeURIComponent('Namaste, mujhe '+p.hi+' ke baare mein jaankari chahiye.');
@@ -1623,4 +1623,4 @@ document.getElementById('chatX').addEventListener('click',function(){pn.classLis
 })();
 </script>
 </body>
-                                                                                                                </html>
+</html>
