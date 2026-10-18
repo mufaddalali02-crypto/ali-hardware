@@ -1499,8 +1499,14 @@ function findProducts(q){
     var p=PLIST[i],hay=norm(p.hi+' '+p.en+' '+p.brand+' '+(p.cat||''));
     var score=0;
     for(var j=0;j<toks.length;j++){var t=toks[j];
-      if(hay.indexOf(t)>-1){score+=2}
-      else if(t.length>=4){var hw=hay.split(' ');for(var k=0;k<hw.length;k++){if(Math.abs(hw[k].length-t.length)<=1&&lev(hw[k],t)<=1){score+=1;break}}}
+      var hw=hay.split(' '),hit=0;
+      for(var k=0;k<hw.length;k++){var w=hw[k];
+        if(w===t){hit=2;break}
+        if(t.length>=4&&Math.abs(w.length-t.length)<=2&&(w.indexOf(t)===0||t.indexOf(w)===0)){hit=2;break}
+        if(t.length>=6&&(w.indexOf(t)>-1||t.indexOf(w)>-1)){hit=2;break}
+        if(!hit&&t.length>=4&&Math.abs(w.length-t.length)<=1&&lev(w,t)<=1){hit=1}
+      }
+      score+=hit;
     }
     if(score>=2)out.push({p:p,score:score});
   }
