@@ -1260,6 +1260,8 @@ document.addEventListener('click',function(e){
 .lg-tbl th,.lg-tbl td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--hairline);vertical-align:top}
 .lg-tbl th{color:var(--gold2);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
 .lg-tbl a{color:var(--gold2)}
+.lg-wab{display:inline-block;margin:5px 6px 0 0;padding:8px 13px;border-radius:999px;background:#1fae54;color:#fff!important;font-weight:700;font-size:.92rem;text-decoration:none}
+.lg-wab.lg-off{background:linear-gradient(135deg,#ffb347,#ff8a1f);color:#2a1202!important}
 .lg-row{display:flex;gap:8px;margin-top:12px}
 .lg-row button{flex:1;padding:10px;border-radius:12px;border:1px solid var(--hairgold);background:none;color:var(--ink);font:inherit;cursor:pointer}
 </style>
@@ -1271,7 +1273,7 @@ document.addEventListener('click',function(e){
 <div class="lg-err" id="lge" role="alert"></div>
 <button class="lg-go" type="submit"><span class="t-hi">Aage badhein</span><span class="t-en">Continue</span><span class="t-mr">पुढे जा</span></button>
 <button class="lg-skip" type="button" id="lgs"><span class="t-hi">Skip karein</span><span class="t-en">Skip</span><span class="t-mr">स्किप करा</span></button>
-<div class="lg-note"><span class="t-hi">Aapka number sirf dukaan ko milega.</span><span class="t-en">Your number goes only to the shop.</span><span class="t-mr">तुमचा नंबर फक्त दुकानाला मिळेल.</span></div>
+<div class="lg-note"><span class="t-hi">Aapka number sirf dukaan ko milega.</span><span class="t-en">Your number goes only to the shop.</span><span class="t-mr">तुमचा नंबर फक्त दुकानाला मिळेल.</span></div><div class="lg-note"><span class="t-hi">Offer ke liye WhatsApp pe message aa sakta hai.</span><span class="t-en">You may get offer messages on WhatsApp.</span><span class="t-mr">ऑफरसाठी WhatsApp वर मेसेज येऊ शकतो.</span></div>
 </form></div>
 <div class="lg-ov lg-pan" id="lgpan" role="dialog" aria-modal="true"><div class="lg-card">
 <h3>Owner panel</h3>
@@ -1289,6 +1291,7 @@ document.addEventListener('click',function(e){
     <input id="wnm" type="text" maxlength="30" autocomplete="off" placeholder="Naam / Name / &#2344;&#2366;&#2357;">
     <input id="wph" type="tel" inputmode="numeric" maxlength="14" autocomplete="off" placeholder="Mobile number (optional) - 98XXXXXXXX">
     <div class="w-consent"><span class="t-hi">Number sirf Ali Hardware ko dikhega.</span><span class="t-en">Number is visible only to Ali Hardware.</span><span class="t-mr">&#2344;&#2306;&#2348;&#2352; &#2347;&#2325;&#2381;&#2340; Ali Hardware &#2354;&#2366; &#2342;&#2367;&#2360;&#2375;&#2354;.</span></div>
+    <div class="w-consent"><span class="t-hi">Offer ke liye WhatsApp pe message aa sakta hai.</span><span class="t-en">You may get offer messages on WhatsApp.</span><span class="t-mr">&#2321;&#2347;&#2352;&#2360;&#2366;&#2336;&#2368; WhatsApp &#2357;&#2352; &#2350;&#2375;&#2360;&#2375;&#2332; &#2351;&#2375;&#2314; &#2358;&#2325;&#2340;&#2379;.</span></div>
     <div class="w-err" id="werr" role="alert"></div>
     <button class="w-go" id="wgo" type="button"><span class="t-hi">Shuru karein</span><span class="t-en">Let's start</span><span class="t-mr">&#2360;&#2369;&#2352;&#2370; &#2325;&#2352;&#2366;</span></button>
     <button class="w-skip" id="wsk" type="button"><span class="t-hi">Skip</span><span class="t-en">Skip</span><span class="t-mr">&#2360;&#2381;&#2325;&#2367;&#2346;</span></button>
@@ -1411,7 +1414,16 @@ f.addEventListener('submit',function(ev){ev.preventDefault();
   closeV();
 });
 var pw='';
-function row(r){var ph=String(r[2]||'').replace(/\D/g,'');return '<tr><td>'+esc(r[0])+'</td><td>'+esc(r[1])+'</td><td><a href="tel:'+esc(ph)+'">'+esc(ph)+'</a><br><a href="https://wa.me/91'+esc(ph)+'" target="_blank" rel="noopener">WhatsApp</a></td></tr>'}
+/* OFFER text: har offer ke saath yahan update karein */
+var OFFER_MSG='Ali Hardware OFFER: 1 HP ki motor lene par ek press FREE - 3 November tak! Main Road, Dharni. Call 83082 44597';
+function normPh(v){var p=String(v||'').replace(/\D/g,'');if(p.length>10&&p.slice(0,2)==='91')p=p.slice(2);if(p.length===11&&p[0]==='0')p=p.slice(1);return /^[6-9]\d{9}$/.test(p)?p:''}
+function waLink(ph,msg){return 'https://wa.me/91'+ph+'?text='+encodeURIComponent(msg)}
+function row(r){var ph=normPh(r[2]),nm=String(r[1]||'').trim();
+var wmsg='Ali Hardware me aapka swagat hai'+(nm?', '+nm+' ji':'')+'!';
+var omsg=(nm?'Namaste '+nm+' ji! ':'')+OFFER_MSG;
+var tel=ph?'<a href="tel:+91'+ph+'">'+esc(ph)+'</a>':esc(String(r[2]||''));
+var wa=ph?'<a class="lg-wab" href="'+waLink(ph,wmsg)+'" target="_blank" rel="noopener">Welcome bhejo</a><a class="lg-wab lg-off" href="'+waLink(ph,omsg)+'" target="_blank" rel="noopener">Offer bhejo</a>':'';
+return '<tr><td>'+esc(r[0])+'</td><td>'+esc(nm)+'</td><td>'+tel+'<br>'+wa+'</td></tr>'}
 function load(){$('lgpe').textContent='Ruko...';
   return post({action:'list',password:pw}).then(function(r){return r.json()}).then(function(j){
     if(!j||!j.ok){pw='';$('lgpe').textContent='Password galat hai';$('lgpl').style.display='none';$('lgpf').style.display='';return}
