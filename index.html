@@ -1166,7 +1166,7 @@ try{
   if('IntersectionObserver' in window&&!reduced()){
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('rv-in');io.unobserve(en.target)}});
-    },{threshold:.08});
+    },{threshold:0});
     Array.prototype.forEach.call(document.querySelectorAll('.rv, .prod'),function(el){el.classList.add('rv');io.observe(el)});
   }else{
     Array.prototype.forEach.call(document.querySelectorAll('.rv'),function(el){el.classList.add('rv-in')});
