@@ -652,6 +652,7 @@ header{background:rgba(28,11,4,.96)}
   <div class="cats" id="catTabs" role="tablist"><button type="button" class="ct on" data-c="all"><span class="t-hi">Sab</span><span class="t-en">All</span><span class="t-mr">सर्व</span></button><button type="button" class="ct" data-c="pipe"><span class="t-hi">Pipe &amp; Plumbing</span><span class="t-en">Pipe &amp; Plumbing</span><span class="t-mr">Pipe &amp; Plumbing</span></button><button type="button" class="ct" data-c="elec"><span class="t-hi">Electrical</span><span class="t-en">Electrical</span><span class="t-mr">Electrical</span></button><button type="button" class="ct" data-c="paint"><span class="t-hi">Paint &amp; Colour</span><span class="t-en">Paint &amp; Colour</span><span class="t-mr">Paint &amp; Colour</span></button><button type="button" class="ct" data-c="adh"><span class="t-hi">Adhesive &amp; Chemical</span><span class="t-en">Adhesive &amp; Chemical</span><span class="t-mr">Adhesive &amp; Chemical</span></button><button type="button" class="ct" data-c="hw"><span class="t-hi">Baaki saaman</span><span class="t-en">Everything else</span><span class="t-mr">उरलेले साहित्य</span></button></div>
   <div class="nores" id="nores"><span class="t-hi">Kuch nahi mila - WhatsApp par poochh lijiye.</span><span class="t-en">Nothing found - ask us on WhatsApp.</span><span class="t-mr">काही सापडले नाही - WhatsApp वर विचारा.</span></div>
   <div class="prods" id="prodGrid"></div>
+<div style="text-align:center;margin:16px 0 4px"><button type="button" class="gdBtn" id="moreProdsBtn" style="display:none">&#9660; <span class="t-hi">Aur dikhao</span><span class="t-en">Show more</span><span class="t-mr">&#2309;&#2332;&#2370;&#2344; &#2342;&#2366;&#2326;&#2357;&#2366;</span> (<span class="cnt"></span>)</button></div>
 </section>
 
 <section class="wrap rv">
@@ -948,7 +949,6 @@ function card(p,n){
     '<div class="tx"><span class="num">'+n+'</span><span class="b'+(p.sil?' sil':'')+'">'+esc(p.brand)+'</span>'+
     '<div class="n"><span class="t-hi">'+esc(p.hi)+'</span><span class="t-en">'+esc(p.en)+'</span><span class="t-mr">'+esc(p.hi)+'</span></div><button type="button" class="add-q" data-nm="'+esc(p.hi).replace(/"/g,'&quot;')+'"><span class="ic">&#10133;</span> <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><a class="wa-q" href="'+wa+'" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a><button type="button" class="sh-q">&#8599; <span class="t-hi">Share karo</span><span class="t-en">Share</span><span class="t-mr">&#2358;&#2375;&#2309;&#2352; &#2325;&#2352;&#2366;</span></button></div></div>';
 }
-document.getElementById('prodGrid').innerHTML=PRODUCTS.map(function(p,i){return card(p,i+1)}).join('');
 document.getElementById('moreGrid').innerHTML=MORE.map(function(p,i){return card(p,PRODUCTS.length+i+1)}).join('');
 document.getElementById('tileGrid').innerHTML=TILES.map(function(p,i){return card({img:p.img,brand:'SAMPLE PHOTO',hi:p.hi,en:p.en,alt:p.alt,sil:1},PRODUCTS.length+MORE.length+i+1)}).join('');
 (function(){var nt=document.getElementById('nayaTrack');if(!nt)return;var last=PRODUCTS.slice(-6);nt.innerHTML=last.map(function(p,i){return card(p,PRODUCTS.length-6+i+1)}).join('')})();
@@ -970,12 +970,31 @@ for(var i=0;i<toks.length;i++){var t=toks[i];
 for(var j=0;j<DEVMAP.length;j++){if(t.indexOf(DEVMAP[j][0])>-1)t=t.split(DEVMAP[j][0]).join(DEVMAP[j][1])}
 if(FILL[t])continue;out.push(t)}
 return out.length?out.join(' '):q}
-window.applyProdFilter=function(){var q=normQ(inp.value),shown=0,all=document.querySelectorAll('#prodGrid .prod,#moreGrid .prod,#tileGrid .prod');
+var PAGE=12,shownN=PAGE;
+function prodOk(p,q){if(cur!=='all'&&(p.cat||'')!==cur)return false;
+if(!q)return true;var s=(p.hi+' '+p.en+' '+p.brand).toLowerCase();
+return q.split(' ').every(function(t){return s.indexOf(t)>-1})}
+function syncListUI(){if(window.__syncList)window.__syncList()}
+function updMoreBtn(total){var mb=document.getElementById('moreProdsBtn');if(!mb)return;
+mb.style.display=(total>shownN)?'':'none';mb.querySelector('.cnt').textContent=Math.max(0,total-shownN)}
+function renderProds(){var q=normQ(inp.value);
+var list=PRODUCTS.filter(function(p){return prodOk(p,q)});
+document.getElementById('prodGrid').innerHTML=list.slice(0,shownN).map(function(p){return card(p,PRODUCTS.indexOf(p)+1)}).join('');
+var all=document.querySelectorAll('#moreGrid .prod,#tileGrid .prod');
 for(var i=0;i<all.length;i++){var el=all[i],c=el.getAttribute('data-cat');
 var okc=(el.closest('#tileGrid'))?true:(cur==='all'||c===cur);
-var ok=okc&&(!q||q.split(' ').every(function(t){return el.getAttribute('data-s').indexOf(t)>-1}));el.style.display=ok?'':'none';if(ok)shown++}
-nr.style.display=((q||cur!=='all')&&!shown)?'block':'none'};
+var ok=okc&&(!q||q.split(' ').every(function(t){return el.getAttribute('data-s').indexOf(t)>-1}));el.style.display=ok?'':'none'}
+nr.style.display=((q||cur!=='all')&&!list.length)?'block':'none';
+updMoreBtn(list.length);syncListUI()}
+window.applyProdFilter=function(){shownN=PAGE;renderProds()};
 inp.addEventListener('input',window.applyProdFilter);
+var mpb=document.getElementById('moreProdsBtn');
+if(mpb){mpb.addEventListener('click',function(){var q=normQ(inp.value);
+var list=PRODUCTS.filter(function(p){return prodOk(p,q)});
+var add=list.slice(shownN,shownN+PAGE);
+document.getElementById('prodGrid').insertAdjacentHTML('beforeend',add.map(function(p){return card(p,PRODUCTS.indexOf(p)+1)}).join(''));
+shownN+=PAGE;updMoreBtn(list.length);syncListUI()})}
+renderProds();
 var tabs=document.getElementById('catTabs');
 if(tabs){tabs.addEventListener('click',function(e){var b=e.target.closest('.ct');if(!b)return;cur=b.getAttribute('data-c');
 var all=tabs.querySelectorAll('.ct');for(var i=0;i<all.length;i++)all[i].classList.toggle('on',all[i]===b);
@@ -1240,6 +1259,7 @@ function render(){
   $('lsend').href='https://wa.me/918261896180?text='+encodeURIComponent(msg);
   if(!L.length)$('lsh').className='lsh'
 }
+window.__syncList=sync;
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('.add-q');
   if(b){var n=b.getAttribute('data-nm'),i=L.indexOf(n);if(i>-1)L.splice(i,1);else L.push(n);sync();return}
