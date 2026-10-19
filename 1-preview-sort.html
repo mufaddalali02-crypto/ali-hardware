@@ -1797,7 +1797,7 @@ box.addEventListener('wheel',function(e){e.preventDefault();var m=rel(e.clientX,
 <script>
 (function(){var sb=document.getElementById('sbSort'),bb=document.getElementById('sbBrand');if(!sb||!bb||!window.PRODUCTS)return;
 var cnt={};PRODUCTS.forEach(function(p){if(p.brand&&p.brand!=='GENERAL')cnt[p.brand]=(cnt[p.brand]||0)+1});
-var names=Object.keys(cnt),top=names.filter(function(b){return cnt[b]>=2}).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)}),rest=names.filter(function(b){return cnt[b]<2}).sort();
+var names=Object.keys(cnt),PIN=['TAPARIA','PLASTO','MILAP'],top=names.filter(function(b){return cnt[b]>=2}).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)}).concat(PIN.filter(function(b){return cnt[b]===1})),rest=names.filter(function(b){return top.indexOf(b)<0}).sort();
 function esc2(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 var h='<button type="button" class="on" data-b="all"><span class="t-hi">Sab brand</span><span class="t-en">All brands</span><span class="t-mr">सर्व ब्रँड</span></button>';
 top.forEach(function(b){h+='<button type="button" data-b="'+esc2(b)+'">'+esc2(b)+'<span class="n">'+cnt[b]+'</span></button>'});
