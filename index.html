@@ -1684,6 +1684,13 @@ document.getElementById('chatX').addEventListener('click',function(){pn.classLis
 #pdv .pd-act>*{flex:1 1 130px;text-align:center;padding:12px 10px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;font-family:inherit}
 #pdv .pd-wa{background:#1faa59;color:#fff;border:0}
 #pdv .pd-sh,#pdv .pd-add{background:rgba(212,175,55,.1);color:var(--gold2);border:1.5px solid var(--hairgold)}
+#rvw{max-width:1100px;margin:10px auto 14px;padding:0 4px;display:none}
+#rvw .rv-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;color:var(--gold2);font-weight:800;font-size:15px}
+#rvw .rv-c{background:none;border:1px solid var(--hairgold);color:var(--gold2);border-radius:999px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+#rvw .rv-r{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+#rvw .rv-r button{flex:0 0 92px;scroll-snap-align:start;background:var(--card2);border:1px solid var(--hairgold);border-radius:12px;padding:0;color:inherit;cursor:pointer;overflow:hidden;font-family:inherit;text-align:center}
+#rvw .rv-r img{width:92px;height:92px;object-fit:cover;display:block;background:#e8e4da}
+#rvw .rv-r span.nm{display:block;font-size:11px;line-height:1.2;padding:5px 4px 6px;height:2.5em;overflow:hidden}
 #pdv .pd-sim{margin-top:14px}
 #pdv .pd-st{font-weight:800;color:var(--gold2);font-size:14px;margin-bottom:8px}
 #pdv .pd-sr{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
@@ -1719,10 +1726,10 @@ pv.querySelector('.pd-n').innerHTML=c.querySelector('.n').innerHTML;
 var st=c.querySelector('.stk');pv.querySelector('.pd-s').innerHTML=st?st.innerHTML:'';
 pv.querySelector('.pd-wa').href=(c.querySelector('.wa-q')||{}).href||'#';
 var n=c.querySelector('.num');pv.querySelector('.pd-c').textContent=(n?'#'+n.textContent+'  ':'')+(ix+1)+' / '+list.length;
-showSim(c);updAdd();var nx=list[(ix+1)%list.length].querySelector('.ph img');if(nx){var pre=new Image();pre.src=nx.currentSrc||nx.src}}
+showSim(c);updAdd();rvAdd(c);var nx=list[(ix+1)%list.length].querySelector('.ph img');if(nx){var pre=new Image();pre.src=nx.currentSrc||nx.src}}
 function openAt(c){pool.innerHTML='';var par=c.parentElement;list=[].filter.call(par.querySelectorAll(':scope>.prod'),vis);if(!list.length)return;
 show(list.indexOf(c));pv.classList.add('on');document.body.style.overflow='hidden';if(!open){history.pushState({pdv:1},'');open=true}}
-function close(fromPop){pv.classList.remove('on');document.body.style.overflow='';if(open){open=false;if(!fromPop)history.back()}}
+function close(fromPop){pv.classList.remove('on');setTimeout(rvRender,0);document.body.style.overflow='';if(open){open=false;if(!fromPop)history.back()}}
 document.addEventListener('click',function(e){var ph=e.target.closest&&e.target.closest('.prod .ph');if(!ph||e.target.closest('a,button'))return;openAt(ph.closest('.prod'))});
 window.addEventListener('popstate',function(){if(open)close(true)});
 pv.querySelector('.pd-x').onclick=function(){close()};
@@ -1730,6 +1737,19 @@ pv.querySelector('.pd-prev').onclick=function(){show(ix-1)};pv.querySelector('.p
 pv.querySelector('.pd-add').onclick=function(){var b=list[ix].querySelector('.add-q');if(b)b.click();updAdd()};
 pv.querySelector('.pd-sh').onclick=function(){var b=list[ix].querySelector('.sh-q');if(b)b.click()};
 document.addEventListener('keydown',function(e){if(!pv.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(ix-1);if(e.key==='ArrowRight')show(ix+1)});
+/* recently viewed: saved on this phone only (localStorage) */
+var RK='ah_rv',rvw=document.createElement('div');rvw.id='rvw';
+rvw.innerHTML='<div class="rv-h"><span><span class="t-hi">Aapne abhi dekha</span><span class="t-en">Recently viewed</span><span class="t-mr">नुकतेच पाहिलेले</span></span><button type="button" class="rv-c"><span class="t-hi">Hatao</span><span class="t-en">Clear</span><span class="t-mr">काढा</span></button></div><div class="rv-r"></div>';
+var sr=document.querySelector('.srch');if(sr&&sr.parentNode)sr.parentNode.insertBefore(rvw,sr);
+function rvGet(){try{var v=JSON.parse(localStorage.getItem(RK)||'[]');return Array.isArray(v)?v:[]}catch(x){return[]}}
+function rvSet(v){try{localStorage.setItem(RK,JSON.stringify(v))}catch(x){}}
+function rvAdd(c){var p=prodOf(c);if(!p)return;var v=rvGet().filter(function(k){return k!==p.img});v.unshift(p.img);rvSet(v.slice(0,8))}
+function rvList(){return rvGet().map(function(k){return PRODUCTS.filter(function(p){return p.img===k})[0]}).filter(Boolean)}
+function rvRender(){var g=rvList();if(!g.length){rvw.style.display='none';return}
+rvw.querySelector('.rv-r').innerHTML=g.map(function(q,i){return '<button type="button" data-i="'+i+'"><img loading="lazy" src="'+IMGS[q.img]+'" alt=""><span class="nm"><span class="t-hi">'+esc(q.hi)+'</span><span class="t-en">'+esc(q.en)+'</span><span class="t-mr">'+esc(q.hi)+'</span></span></button>'}).join('');rvw.style.display='block'}
+rvw.querySelector('.rv-r').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var g=rvList();pool.innerHTML='';list=g.map(mk);show(+b.getAttribute('data-i'));pv.classList.add('on');document.body.style.overflow='hidden';if(!open){history.pushState({pdv:1},'');open=true}});
+rvw.querySelector('.rv-c').onclick=function(){rvSet([]);rvRender()};
+rvRender();
 /* zoom: tap = 2.5x at the tapped point, drag = pan (clamped), pinch = zoom around fingers, swipe = prev/next only when not zoomed */
 var P={},g=null;
 function W(){return box.clientWidth}function H(){return box.clientHeight}
@@ -1754,4 +1774,4 @@ box.addEventListener('wheel',function(e){e.preventDefault();var m=rel(e.clientX,
 })();
 </script>
 </body>
-        </html>
+</html>
