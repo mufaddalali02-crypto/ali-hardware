@@ -1684,17 +1684,34 @@ document.getElementById('chatX').addEventListener('click',function(){pn.classLis
 #pdv .pd-act>*{flex:1 1 130px;text-align:center;padding:12px 10px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;font-family:inherit}
 #pdv .pd-wa{background:#1faa59;color:#fff;border:0}
 #pdv .pd-sh,#pdv .pd-add{background:rgba(212,175,55,.1);color:var(--gold2);border:1.5px solid var(--hairgold)}
+#pdv .pd-sim{margin-top:14px}
+#pdv .pd-st{font-weight:800;color:var(--gold2);font-size:14px;margin-bottom:8px}
+#pdv .pd-sr{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+#pdv .pd-sr button{flex:0 0 84px;scroll-snap-align:start;background:var(--card2);border:1px solid var(--hairgold);border-radius:12px;padding:0;color:#fff;cursor:pointer;overflow:hidden;font-family:inherit;text-align:center}
+#pdv .pd-sr img{width:84px;height:84px;object-fit:cover;display:block;background:#e8e4da}
+#pdv .pd-sr span.nm{display:block;font-size:11px;line-height:1.2;padding:5px 4px 6px;height:2.5em;overflow:hidden}
 @media (prefers-reduced-motion:no-preference){#pdv.on{animation:pdin .2s ease}@keyframes pdin{from{opacity:0}to{opacity:1}}}
 </style>
 <div id="pdv" role="dialog" aria-modal="true" aria-label="Product detail"><div class="pd-top"><span class="pd-c"></span><button type="button" class="pd-x" aria-label="Close">&#10005;</button></div>
 <div class="pd-img"><button type="button" class="pd-nav pd-prev" aria-label="Previous">&#10094;</button><img alt=""><button type="button" class="pd-nav pd-next" aria-label="Next">&#10095;</button><div class="pd-hint"><span class="t-hi">Zoom ke liye photo tap karein, swipe karke agla dekhein</span><span class="t-en">Tap photo to zoom, swipe for next</span><span class="t-mr">झूम करण्यासाठी फोटो टॅप करा, पुढच्यासाठी स्वाइप करा</span></div></div>
-<div class="pd-info"><span class="pd-b"></span><div class="pd-n"></div><div class="pd-s"></div><div class="pd-act"><a class="pd-wa" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a><button type="button" class="pd-add">&#10133; <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><button type="button" class="pd-sh">&#8599; <span class="t-hi">Share</span><span class="t-en">Share</span><span class="t-mr">शेअर</span></button></div></div></div>
+<div class="pd-info"><span class="pd-b"></span><div class="pd-n"></div><div class="pd-s"></div><div class="pd-act"><a class="pd-wa" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a><button type="button" class="pd-add">&#10133; <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><button type="button" class="pd-sh">&#8599; <span class="t-hi">Share</span><span class="t-en">Share</span><span class="t-mr">शेअर</span></button></div><div class="pd-sim" style="display:none"><div class="pd-st"><span class="t-hi">Milte-julte saaman</span><span class="t-en">Similar products</span><span class="t-mr">असेच इतर सामान</span></div><div class="pd-sr"></div></div></div></div>
 <script>
 (function(){var pv=document.getElementById('pdv');if(!pv)return;
 var im=pv.querySelector('.pd-img img'),box=pv.querySelector('.pd-img'),list=[],ix=0,sc=1,tx=0,ty=0,open=false;
 function vis(el){return el.offsetParent!==null||getComputedStyle(el).display!=='none'}
 function setT(){im.style.transform='translate('+tx+'px,'+ty+'px) scale('+sc+')'}
 function reset(){im.style.transition='none';sc=1;tx=0;ty=0;setT();box.style.cursor='zoom-in'}
+var pool=document.createElement('div');pool.style.display='none';document.body.appendChild(pool);
+function prodOf(c){var n=c.querySelector('.num');if(!n||typeof PRODUCTS==='undefined')return null;var i=(+n.textContent)-1,p=PRODUCTS[i];if(!p)return null;var h=c.querySelector('.n .t-hi');return(h&&h.textContent===p.hi)?p:null}
+function sims(p){var k=PRODUCTS.indexOf(p),r=[],j;for(j=1;j<PRODUCTS.length&&r.length<6;j++){var q=PRODUCTS[(k+j)%PRODUCTS.length];if(q.cat===p.cat)r.push(q)}return r}
+function mk(p){var d=document.createElement('div');d.innerHTML=card(p,PRODUCTS.indexOf(p)+1);var el=d.firstChild;pool.appendChild(el);return el}
+function updAdd(){var b=list[ix].querySelector('.add-q'),on=b&&/\bon\b/.test(b.className),x=pv.querySelector('.pd-add');
+x.innerHTML=(on?'&#10003; ':'&#10133; ')+(on?'<span class="t-hi">List mein hai</span><span class="t-en">In my list</span><span class="t-mr">यादीत आहे</span>':'<span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span>')}
+function showSim(c){var box2=pv.querySelector('.pd-sim'),row=pv.querySelector('.pd-sr'),p=prodOf(c);box2.style.display='none';row.innerHTML='';if(!p)return;
+var s=sims(p);if(s.length<2)return;row.scrollLeft=0;
+row.innerHTML=s.map(function(q,i){return '<button type="button" data-i="'+i+'"><img loading="lazy" src="'+IMGS[q.img]+'" alt=""><span class="nm"><span class="t-hi">'+esc(q.hi)+'</span><span class="t-en">'+esc(q.en)+'</span><span class="t-mr">'+esc(q.hi)+'</span></span></button>'}).join('');
+row._s=s;row._p=p;box2.style.display=''}
+pv.querySelector('.pd-sr').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var row=this,g=[row._p].concat(row._s);pool.innerHTML='';list=g.map(mk);show(+b.getAttribute('data-i')+1)});
 function show(i){ix=(i+list.length)%list.length;var c=list[ix];reset();
 var src=c.querySelector('.ph img');im.src=src.currentSrc||src.src;im.alt=src.alt||'';
 pv.querySelector('.pd-b').textContent=(c.querySelector('.b')||{}).textContent||'';
@@ -1702,15 +1719,15 @@ pv.querySelector('.pd-n').innerHTML=c.querySelector('.n').innerHTML;
 var st=c.querySelector('.stk');pv.querySelector('.pd-s').innerHTML=st?st.innerHTML:'';
 pv.querySelector('.pd-wa').href=(c.querySelector('.wa-q')||{}).href||'#';
 var n=c.querySelector('.num');pv.querySelector('.pd-c').textContent=(n?'#'+n.textContent+'  ':'')+(ix+1)+' / '+list.length;
-var nx=list[(ix+1)%list.length].querySelector('.ph img');if(nx){var pre=new Image();pre.src=nx.currentSrc||nx.src}}
-function openAt(c){var par=c.parentElement;list=[].filter.call(par.querySelectorAll(':scope>.prod'),vis);if(!list.length)return;
+showSim(c);updAdd();var nx=list[(ix+1)%list.length].querySelector('.ph img');if(nx){var pre=new Image();pre.src=nx.currentSrc||nx.src}}
+function openAt(c){pool.innerHTML='';var par=c.parentElement;list=[].filter.call(par.querySelectorAll(':scope>.prod'),vis);if(!list.length)return;
 show(list.indexOf(c));pv.classList.add('on');document.body.style.overflow='hidden';if(!open){history.pushState({pdv:1},'');open=true}}
 function close(fromPop){pv.classList.remove('on');document.body.style.overflow='';if(open){open=false;if(!fromPop)history.back()}}
 document.addEventListener('click',function(e){var ph=e.target.closest&&e.target.closest('.prod .ph');if(!ph||e.target.closest('a,button'))return;openAt(ph.closest('.prod'))});
 window.addEventListener('popstate',function(){if(open)close(true)});
 pv.querySelector('.pd-x').onclick=function(){close()};
 pv.querySelector('.pd-prev').onclick=function(){show(ix-1)};pv.querySelector('.pd-next').onclick=function(){show(ix+1)};
-pv.querySelector('.pd-add').onclick=function(){var b=list[ix].querySelector('.add-q');if(b)b.click()};
+pv.querySelector('.pd-add').onclick=function(){var b=list[ix].querySelector('.add-q');if(b)b.click();updAdd()};
 pv.querySelector('.pd-sh').onclick=function(){var b=list[ix].querySelector('.sh-q');if(b)b.click()};
 document.addEventListener('keydown',function(e){if(!pv.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(ix-1);if(e.key==='ArrowRight')show(ix+1)});
 /* zoom: tap = 2.5x at the tapped point, drag = pan (clamped), pinch = zoom around fingers, swipe = prev/next only when not zoomed */
@@ -1737,4 +1754,4 @@ box.addEventListener('wheel',function(e){e.preventDefault();var m=rel(e.clientX,
 })();
 </script>
 </body>
-                                                                                                </html>
+        </html>
