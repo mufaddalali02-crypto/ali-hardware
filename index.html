@@ -1665,5 +1665,76 @@ fab.addEventListener('click',function(){
 document.getElementById('chatX').addEventListener('click',function(){pn.classList.remove('open')});
 })();
 </script>
+<style>
+.prod .ph{cursor:zoom-in}
+#pdv{position:fixed;inset:0;z-index:500;background:rgba(5,6,8,.94);display:none;flex-direction:column;overscroll-behavior:contain}
+#pdv.on{display:flex}
+#pdv .pd-top{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;color:var(--gold2);font-weight:800}
+#pdv .pd-x{background:rgba(255,255,255,.1);border:1px solid var(--hairgold);color:#fff;border-radius:999px;width:42px;height:42px;font-size:20px;cursor:pointer}
+#pdv .pd-img{flex:1;min-height:0;position:relative;overflow:hidden;touch-action:none;display:flex;align-items:center;justify-content:center;background:#e8e4da;margin:0 10px;border-radius:16px}
+#pdv .pd-img img{width:100%;height:100%;object-fit:contain;transform-origin:50% 50%;user-select:none;-webkit-user-drag:none;will-change:transform}
+#pdv .pd-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:22px;cursor:pointer}
+#pdv .pd-prev{left:8px}#pdv .pd-next{right:8px}
+#pdv .pd-hint{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:12px;color:#555;pointer-events:none}
+#pdv .pd-info{padding:12px 16px 16px;color:#fff;max-width:640px;width:100%;margin:0 auto;box-sizing:border-box}
+#pdv .pd-b{display:inline-block;background:linear-gradient(145deg,var(--gold2),#c39a2b);color:#241a05;font-weight:800;font-size:12px;padding:3px 11px;border-radius:999px;letter-spacing:1px}
+#pdv .pd-n{font-size:20px;font-weight:800;margin:8px 0 4px;line-height:1.25}
+#pdv .pd-s{color:#6fe0a0;font-weight:700;font-size:14px;margin-bottom:12px}
+#pdv .pd-act{display:flex;gap:8px;flex-wrap:wrap}
+#pdv .pd-act>*{flex:1 1 130px;text-align:center;padding:12px 10px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;font-family:inherit}
+#pdv .pd-wa{background:#1faa59;color:#fff;border:0}
+#pdv .pd-sh,#pdv .pd-add{background:rgba(212,175,55,.1);color:var(--gold2);border:1.5px solid var(--hairgold)}
+@media (prefers-reduced-motion:no-preference){#pdv.on{animation:pdin .2s ease}@keyframes pdin{from{opacity:0}to{opacity:1}}}
+</style>
+<div id="pdv" role="dialog" aria-modal="true" aria-label="Product detail"><div class="pd-top"><span class="pd-c"></span><button type="button" class="pd-x" aria-label="Close">&#10005;</button></div>
+<div class="pd-img"><button type="button" class="pd-nav pd-prev" aria-label="Previous">&#10094;</button><img alt=""><button type="button" class="pd-nav pd-next" aria-label="Next">&#10095;</button><div class="pd-hint"><span class="t-hi">Zoom ke liye photo tap karein, swipe karke agla dekhein</span><span class="t-en">Tap photo to zoom, swipe for next</span><span class="t-mr">झूम करण्यासाठी फोटो टॅप करा, पुढच्यासाठी स्वाइप करा</span></div></div>
+<div class="pd-info"><span class="pd-b"></span><div class="pd-n"></div><div class="pd-s"></div><div class="pd-act"><a class="pd-wa" target="_blank" rel="noopener">&#128172; <span class="t-hi">WhatsApp pe poochho</span><span class="t-en">Ask on WhatsApp</span><span class="t-mr">WhatsApp वर विचारा</span></a><button type="button" class="pd-add">&#10133; <span class="t-hi">List mein jodein</span><span class="t-en">Add to my list</span><span class="t-mr">यादीत जोडा</span></button><button type="button" class="pd-sh">&#8599; <span class="t-hi">Share</span><span class="t-en">Share</span><span class="t-mr">शेअर</span></button></div></div></div>
+<script>
+(function(){var pv=document.getElementById('pdv');if(!pv)return;
+var im=pv.querySelector('.pd-img img'),box=pv.querySelector('.pd-img'),list=[],ix=0,sc=1,tx=0,ty=0,open=false;
+function vis(el){return el.offsetParent!==null||getComputedStyle(el).display!=='none'}
+function setT(){im.style.transform='translate('+tx+'px,'+ty+'px) scale('+sc+')'}
+function reset(){im.style.transition='none';sc=1;tx=0;ty=0;setT();box.style.cursor='zoom-in'}
+function show(i){ix=(i+list.length)%list.length;var c=list[ix];reset();
+var src=c.querySelector('.ph img');im.src=src.currentSrc||src.src;im.alt=src.alt||'';
+pv.querySelector('.pd-b').textContent=(c.querySelector('.b')||{}).textContent||'';
+pv.querySelector('.pd-n').innerHTML=c.querySelector('.n').innerHTML;
+var st=c.querySelector('.stk');pv.querySelector('.pd-s').innerHTML=st?st.innerHTML:'';
+pv.querySelector('.pd-wa').href=(c.querySelector('.wa-q')||{}).href||'#';
+var n=c.querySelector('.num');pv.querySelector('.pd-c').textContent=(n?'#'+n.textContent+'  ':'')+(ix+1)+' / '+list.length;
+var nx=list[(ix+1)%list.length].querySelector('.ph img');if(nx){var pre=new Image();pre.src=nx.currentSrc||nx.src}}
+function openAt(c){var par=c.parentElement;list=[].filter.call(par.querySelectorAll(':scope>.prod'),vis);if(!list.length)return;
+show(list.indexOf(c));pv.classList.add('on');document.body.style.overflow='hidden';if(!open){history.pushState({pdv:1},'');open=true}}
+function close(fromPop){pv.classList.remove('on');document.body.style.overflow='';if(open){open=false;if(!fromPop)history.back()}}
+document.addEventListener('click',function(e){var ph=e.target.closest&&e.target.closest('.prod .ph');if(!ph||e.target.closest('a,button'))return;openAt(ph.closest('.prod'))});
+window.addEventListener('popstate',function(){if(open)close(true)});
+pv.querySelector('.pd-x').onclick=function(){close()};
+pv.querySelector('.pd-prev').onclick=function(){show(ix-1)};pv.querySelector('.pd-next').onclick=function(){show(ix+1)};
+pv.querySelector('.pd-add').onclick=function(){var b=list[ix].querySelector('.add-q');if(b)b.click()};
+pv.querySelector('.pd-sh').onclick=function(){var b=list[ix].querySelector('.sh-q');if(b)b.click()};
+document.addEventListener('keydown',function(e){if(!pv.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(ix-1);if(e.key==='ArrowRight')show(ix+1)});
+/* zoom: tap = 2.5x at the tapped point, drag = pan (clamped), pinch = zoom around fingers, swipe = prev/next only when not zoomed */
+var P={},g=null;
+function W(){return box.clientWidth}function H(){return box.clientHeight}
+function clamp(){var mx=(sc-1)*W()/2,my=(sc-1)*H()/2;tx=Math.max(-mx,Math.min(mx,tx));ty=Math.max(-my,Math.min(my,ty))}
+function rel(x,y){var r=box.getBoundingClientRect();return [x-r.left-W()/2,y-r.top-H()/2]}
+function zoomAt(ns,px,py){ns=Math.min(4,Math.max(1,ns));var k=ns/sc;tx=px-(px-tx)*k;ty=py-(py-ty)*k;sc=ns;if(sc<1.02){sc=1;tx=0;ty=0}clamp();setT();box.style.cursor=sc>1?'zoom-out':'zoom-in'}
+function anim(on){im.style.transition=on&&!matchMedia('(prefers-reduced-motion:reduce)').matches?'transform .2s ease':'none'}
+function pts(){return Object.keys(P).map(function(k){return P[k]})}
+box.addEventListener('pointerdown',function(e){if(e.target.closest('.pd-nav'))return;try{box.setPointerCapture(e.pointerId)}catch(x){}
+P[e.pointerId]={x:e.clientX,y:e.clientY};anim(false);var a=pts();
+if(a.length===1)g={sx:e.clientX,sy:e.clientY,t:Date.now(),moved:0,multi:false};
+else if(a.length===2&&g){g.multi=true;g.d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)||1}});
+box.addEventListener('pointermove',function(e){var o=P[e.pointerId];if(!o||!g)return;var dx=e.clientX-o.x,dy=e.clientY-o.y;P[e.pointerId]={x:e.clientX,y:e.clientY};g.moved+=Math.abs(dx)+Math.abs(dy);var a=pts();
+if(a.length>=2){var d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)||1,m=rel((a[0].x+a[1].x)/2,(a[0].y+a[1].y)/2);zoomAt(sc*d/g.d,m[0],m[1]);g.d=d;tx+=dx/2;ty+=dy/2;clamp();setT();return}
+if(sc>1&&!g.multi){tx+=dx;ty+=dy;clamp();setT()}});
+function end(e){var had=P[e.pointerId];delete P[e.pointerId];if(!had||!g)return;if(pts().length)return;
+var s=g;g=null;if(s.multi)return;var dx=e.clientX-s.sx,dy=e.clientY-s.sy;
+if(sc===1&&Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3){show(ix+(dx<0?1:-1));return}
+if(s.moved<12&&Date.now()-s.t<450){anim(true);if(sc>1)zoomAt(1,0,0);else{var m=rel(e.clientX,e.clientY);zoomAt(2.5,m[0],m[1])}}}
+box.addEventListener('pointerup',end);box.addEventListener('pointercancel',function(e){delete P[e.pointerId];if(!pts().length)g=null});
+box.addEventListener('wheel',function(e){e.preventDefault();var m=rel(e.clientX,e.clientY);zoomAt(sc*(e.deltaY<0?1.2:1/1.2),m[0],m[1])},{passive:false});
+})();
+</script>
 </body>
-</html>
+  </html>
