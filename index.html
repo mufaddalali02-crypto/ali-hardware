@@ -516,7 +516,7 @@ header{background:rgba(28,11,4,.96)}
       <div class="hd-sub">Main Road, Dharni</div>
     </div>
     <div class="hd-right">
-      <button type="button" class="themeBtn" id="themeBtn" aria-label="Dark / Light mode">&#9728;&#65039;</button><button type="button" class="lang" id="langBtn" aria-label="Language / Bhasha"><span class="t-hi">EN</span><span class="t-en">MR</span><span class="t-mr">HI</span></button>
+      <button type="button" class="themeBtn" id="themeBtn" aria-label="Dark / Light / Gold mode">&#9728;&#65039;</button><button type="button" class="lang" id="langBtn" aria-label="Language / Bhasha"><span class="t-hi">EN</span><span class="t-en">MR</span><span class="t-mr">HI</span></button>
       <a class="hd-call" href="tel:+918308244597">&#128222; <span class="ct"><span class="t-hi">Call karein</span><span class="t-en">Call</span><span class="t-mr">कॉल करा</span></span></a>
     </div>
   </div>
@@ -1189,9 +1189,11 @@ try{var saved=localStorage.getItem('ah-lang');if(saved==='en'||saved==='hi'||sav
 /* dark/light theme toggle (default dark) */
 (function(){
 var tb=document.getElementById('themeBtn');if(!tb)return;
-function setTheme(t){if(t==='light'){document.documentElement.setAttribute('data-theme','light')}else{document.documentElement.removeAttribute('data-theme')}tb.textContent=(t==='light')?'\u{1F319}':'\u{2600}\u{FE0F}';try{localStorage.setItem('ah-theme',t)}catch(e){}}
-tb.addEventListener('click',function(){setTheme(document.documentElement.getAttribute('data-theme')==='light'?'dark':'light')});
-try{var sv=localStorage.getItem('ah-theme');if(sv==='light')setTheme('light')}catch(e){}
+var ORDER=['dark','light','gold'],ICON={dark:'\u{2600}\u{FE0F}',light:'\u{1F451}',gold:'\u{1F319}'};
+function cur(){return document.documentElement.getAttribute('data-theme')||'dark'}
+function setTheme(t){if(t==='dark')document.documentElement.removeAttribute('data-theme');else document.documentElement.setAttribute('data-theme',t);tb.textContent=ICON[t];try{localStorage.setItem('ah-theme',t)}catch(e){}}
+tb.addEventListener('click',function(){setTheme(ORDER[(ORDER.indexOf(cur())+1)%3])});
+try{var sv=localStorage.getItem('ah-theme');if(sv==='light'||sv==='gold')setTheme(sv)}catch(e){}
 })();
 
 /* offer countdown - ends 3 Nov 2026, 8:00 AM IST (5 din pehle Diwali) */
@@ -1805,6 +1807,44 @@ function setBr(v){window.__SB.br=v;[].forEach.call(bb.querySelectorAll('button')
 sb.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;window.__SB.sort=b.getAttribute('data-s');[].forEach.call(sb.querySelectorAll('button'),function(x){x.classList.toggle('on',x===b)});window.applyProdFilter()});
 bb.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setBr(b.getAttribute('data-b'))});
 var sel=document.getElementById('sbMore');if(sel)sel.addEventListener('change',function(){if(sel.value)setBr(sel.value)});
+})();
+</script>
+<style id="glass">
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(420px 420px at 12% 30%,rgba(255,159,28,.20),transparent 70%),radial-gradient(480px 480px at 92% 62%,rgba(212,175,55,.16),transparent 70%),radial-gradient(380px 380px at 30% 92%,rgba(190,40,20,.18),transparent 70%)}
+.prod,.rows,.rvf,.vd-card,.poster,.gal figure{background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.16);box-shadow:0 8px 24px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.18)}
+@supports((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+.prod,.rows,.rvf,.poster{-webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}
+}
+.prod .ph{background:#fff}
+.prod .tx{background:rgba(255,255,255,.04)}
+html[data-theme="light"] .prod,html[data-theme="light"] .rows,html[data-theme="light"] .rvf{background:linear-gradient(160deg,rgba(255,255,255,.75),rgba(255,255,255,.45));border-color:rgba(255,255,255,.8);box-shadow:0 8px 24px rgba(0,0,0,.10),inset 0 1px 0 #fff}
+@media (prefers-reduced-transparency:reduce){.prod,.rows,.rvf,.poster{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--card)}}
+</style>
+<style id="gold-rise">
+html[data-theme="gold"]{--bg:#0a0804; --bg2:#14100a; --card:#1a1409; --card2:#231a0b;
+ --gold:#f2c14e; --gold2:#ffe39a; --gold-deep:#b8861b; --ink:#fff4d6; --muted:#cdb98a;
+ --silver:#f0dca8; --silver2:#fff1c9; --silver-dim:#bda676;
+ --hairline:rgba(242,193,78,.22); --hairgold:rgba(242,193,78,.6)}
+html[data-theme="gold"] body{background:radial-gradient(1000px 560px at 85% -10%,rgba(242,193,78,.28),transparent 60%),radial-gradient(800px 500px at -10% 16%,rgba(184,134,27,.22),transparent 55%),radial-gradient(700px 600px at 50% 112%,rgba(242,193,78,.14),transparent 60%),var(--bg)}
+html[data-theme="gold"] header{background:rgba(10,8,4,.96);border-bottom:1px solid var(--hairgold)}
+html[data-theme="gold"] .bottombar{background:rgba(10,8,4,.96)}
+html[data-theme="gold"] .sec-h h2{background:linear-gradient(100deg,#f2c14e,#ffe39a 50%,#d79f2a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+html[data-theme="gold"] .prod,html[data-theme="gold"] .rows,html[data-theme="gold"] .rvf,html[data-theme="gold"] .poster{border-color:rgba(242,193,78,.4);background:linear-gradient(160deg,rgba(242,193,78,.14),rgba(242,193,78,.03))}
+html[data-theme="gold"] .ct.on{background:linear-gradient(145deg,#ffe39a,#f2c14e);color:#241a05}
+html[data-theme="gold"] .themeBtn{color:#ffe39a;background:rgba(242,193,78,.16)}
+@media (prefers-reduced-motion:no-preference){
+.rv-pre{opacity:0;translate:0 18px}
+.rv-pre.in{opacity:1;translate:0 0;transition:opacity .45s ease var(--d,0s),translate .45s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+}
+html[data-theme="light"] .add-q{color:#7a5410;background:rgba(160,118,25,.12);border-color:rgba(160,118,25,.55)}
+html[data-theme="light"] .prod .n{color:#2e2007}
+</style>
+<script>
+(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var io=new IntersectionObserver(function(es){var k=0;es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;io.unobserve(el);el.style.setProperty('--d',Math.min(k++,6)*60+'ms');el.classList.add('in');setTimeout(function(){el.classList.remove('rv-pre','in');el.style.removeProperty('--d')},900)})},{rootMargin:'0px 0px -6% 0px',threshold:.08});
+function scan(){document.querySelectorAll('.prod:not(.rv-seen)').forEach(function(el){el.classList.add('rv-seen');var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0&&window.scrollY<5)return;el.classList.add('rv-pre');io.observe(el)})}
+var t=0;new MutationObserver(function(){clearTimeout(t);t=setTimeout(scan,30)}).observe(document.body,{childList:true,subtree:true});scan();
+setTimeout(function(){document.querySelectorAll('.rv-pre').forEach(function(el){el.classList.remove('rv-pre')})},60000);
 })();
 </script>
 </body>
